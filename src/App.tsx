@@ -40,30 +40,68 @@ export default function App() {
   return (
     <div className="min-h-screen bg-dark-950 text-gray-200 selection:bg-blue-500/30 selection:text-blue-200">
       {/* NAVIGATION */}
-      <nav className="fixed w-full z-50 top-0 pt-6 px-6 pb-4 bg-gradient-to-b from-dark-950 via-dark-950/90 to-transparent backdrop-blur-sm">
+      <nav className="fixed w-full z-50 top-0 pt-6 px-6 pb-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex-shrink-0 group hover:opacity-80 transition-opacity">
+          <motion.a 
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            href="#" 
+            className="flex-shrink-0 group hover:opacity-80 transition-opacity flex items-center gap-2"
+          >
             <img 
               src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0acbc128-f2dc-469c-aed5-8cb8db34385b_320w.png" 
               alt="JTC Logo" 
               className="w-auto h-12 object-contain invert brightness-200"
               referrerPolicy="no-referrer"
             />
-          </a>
+            <span className="text-2xl font-bold text-white tracking-tight">JurisTech</span>
+          </motion.a>
 
           {/* Central Navigation */}
-          <div className="hidden md:flex items-center bg-dark-800/80 border-white/10 border rounded-full px-8 py-3 shadow-2xl backdrop-blur-xl gap-8 text-sm font-medium text-gray-400">
-            <a href="#features" className="hover:text-white transition-colors">Features</a>
-            <a href="#how-it-works" className="hover:text-white transition-colors">How it works</a>
-            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="hidden md:flex items-center bg-dark-800/80 border-white/10 border rounded-full px-10 py-4 shadow-2xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-400"
+          >
+            <motion.a 
+              whileHover={{ scale: 1.1, color: "#fff" }}
+              href="#features" 
+              className="hover:text-white transition-colors"
+            >
+              Features
+            </motion.a>
+            <motion.a 
+              whileHover={{ scale: 1.1, color: "#fff" }}
+              href="#how-it-works" 
+              className="hover:text-white transition-colors"
+            >
+              How it works
+            </motion.a>
+            <motion.a 
+              whileHover={{ scale: 1.1, color: "#fff" }}
+              href="#pricing" 
+              className="hover:text-white transition-colors"
+            >
+              Pricing
+            </motion.a>
+          </motion.div>
 
           {/* CTA */}
-          <button className="hidden md:flex items-center gap-2 px-6 py-3 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-full transition-all shadow-[0_0_20px_-5px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_-5px_rgba(14,165,233,0.6)] group">
-            Try Now
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          <motion.button 
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            className="hidden md:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-dark-900 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.6)] hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.8)] group relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors"></div>
+            <span className="relative z-10">Try Now</span>
+            <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 transition-transform" />
+          </motion.button>
 
           {/* Mobile Menu Toggle */}
           <button className="md:hidden text-gray-300">
@@ -83,8 +121,21 @@ export default function App() {
         <div className="z-10 text-center max-w-5xl mx-auto px-6 relative">
           {/* Badge */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, y: 0 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1,
+              y: [0, -12, 0],
+            }}
+            transition={{
+              opacity: { duration: 0.5 },
+              scale: { duration: 0.5 },
+              y: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-8 backdrop-blur-sm"
           >
             <Star className="w-3 h-3" />
@@ -138,6 +189,18 @@ export default function App() {
               <motion.div 
                 key={i}
                 variants={fadeIn}
+                animate={{
+                  opacity: 1,
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  y: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.3
+                  }
+                }}
                 className="glass-card px-4 py-3 rounded-xl flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300"
               >
                 <div className={`w-8 h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
@@ -150,9 +213,15 @@ export default function App() {
 
           {/* Dashboard Preview */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ 
+              type: "spring",
+              stiffness: 80,
+              damping: 15,
+              delay: 0.2
+            }}
             className="relative max-w-4xl mx-auto group"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
@@ -211,7 +280,7 @@ export default function App() {
             ].map((card, i) => (
               <motion.div 
                 key={i}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.05 }}
                 className="glass-card p-8 rounded-2xl group hover:bg-white/[0.02] transition-colors"
               >
                 <div className={`mb-6 w-12 h-12 rounded-lg bg-${card.color}-500/10 border border-${card.color}-500/20 flex items-center justify-center text-${card.color}-400 group-hover:scale-110 transition-transform`}>
@@ -242,7 +311,7 @@ export default function App() {
                 title: "Choose Type",
                 desc: "Select from 12+ essential legal documents including Legal Notices, Rent Agreements, and Affidavits.",
                 icon: <FileText className="w-5 h-5" />,
-                img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
+                img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=800",
                 color: "blue"
               },
               {
@@ -264,20 +333,24 @@ export default function App() {
             ].map((step, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15,
+                  delay: i * 0.1 
+                }}
                 className="bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-colors group"
               >
                 <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
                   <img 
                     src={step.img} 
-                    className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+                    className={`w-full h-full object-cover ${i === 0 ? 'opacity-100 relative z-10' : 'opacity-60'} group-hover:scale-105 transition-transform duration-700`} 
                     alt={step.title}
-                    referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent"></div>
+                  {i !== 0 && <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent"></div>}
                   <div className={`absolute bottom-4 left-4 w-10 h-10 rounded-full bg-${step.color}-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-${step.color}-400 shadow-lg`}>
                     {step.icon}
                   </div>
@@ -299,7 +372,13 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-6 space-y-24">
           
           {/* Feature 1: Version Control */}
-          <div className="flex flex-col md:flex-row items-center gap-12 border border-white/5 bg-dark-900/50 rounded-3xl p-8 md:p-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            className="flex flex-col md:flex-row items-center gap-12 border border-white/5 bg-dark-900/50 rounded-3xl p-8 md:p-12"
+          >
             <div className="w-full md:w-1/2">
               <div className="inline-flex items-center gap-2 mb-6">
                 <Settings className="w-4 h-4 text-blue-400" />
@@ -339,10 +418,16 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Feature 2: Tone Control */}
-          <div className="flex flex-col md:flex-row-reverse items-center gap-12 border border-white/5 bg-dark-900/50 rounded-3xl p-8 md:p-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
+            className="flex flex-col md:flex-row-reverse items-center gap-12 border border-white/5 bg-dark-900/50 rounded-3xl p-8 md:p-12"
+          >
             <div className="w-full md:w-1/2">
               <div className="inline-flex items-center gap-2 mb-6">
                 <Tally3 className="w-4 h-4 text-purple-400" />
@@ -370,7 +455,7 @@ export default function App() {
                 <div className="px-4 py-2 rounded-lg bg-dark-900 border border-white/10 text-xs text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all">Formal</div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -397,6 +482,14 @@ export default function App() {
 
           {/* Pricing Card */}
           <motion.div 
+            initial={{ opacity: 0, scale: 0.8, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ 
+              type: "spring",
+              stiffness: 100,
+              damping: 15
+            }}
             whileHover={{ y: -5 }}
             className="max-w-md mx-auto relative group"
           >
@@ -432,9 +525,9 @@ export default function App() {
       </section>
 
       {/* FINAL CTA SECTION */}
-      <section className="bg-dark-900 border-white/5 border-t py-24">
+      <section className="bg-dark-950 py-24">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="relative bg-dark-950 rounded-3xl p-12 overflow-hidden text-center border border-white/5">
+          <div className="relative bg-dark-900/50 rounded-3xl p-12 overflow-hidden text-center">
             <div className="absolute inset-0 grid-pattern opacity-[0.05]"></div>
             
             <div className="relative z-10">
@@ -454,7 +547,7 @@ export default function App() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-dark-950 border-white/5 border-t pt-16 pb-8">
+      <footer className="bg-dark-950 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col mb-12 items-center justify-center">
             {/* Footer Logo */}
@@ -474,7 +567,7 @@ export default function App() {
             </div>
           </div>
           
-          <div className="text-center border-t border-white/5 pt-8">
+          <div className="text-center pt-8">
             <p className="text-xs text-gray-600">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
           </div>
         </div>
