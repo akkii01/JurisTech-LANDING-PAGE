@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -19,7 +20,8 @@ import {
   Star,
   Menu,
   ShieldCheck,
-  IndianRupee
+  IndianRupee,
+  X
 } from "lucide-react";
 
 const fadeIn = {
@@ -37,6 +39,9 @@ const stagger = {
 };
 
 export default function App() {
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-dark-950 text-gray-200 selection:bg-blue-500/30 selection:text-blue-200">
       {/* NAVIGATION */}
@@ -64,7 +69,7 @@ export default function App() {
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="hidden md:flex items-center bg-dark-800/80 border-white/10 border rounded-full px-10 py-4 shadow-2xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-400"
+            className="hidden lg:flex items-center bg-dark-800/80 border-white/10 border rounded-full px-10 py-4 shadow-2xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-400"
           >
             <motion.a 
               whileHover={{ scale: 1.1, color: "#fff" }}
@@ -87,6 +92,13 @@ export default function App() {
             >
               Pricing
             </motion.a>
+            <motion.button 
+              whileHover={{ scale: 1.1, color: "#fff" }}
+              onClick={() => setIsFeedbackOpen(true)}
+              className="hover:text-white transition-colors focus:outline-none"
+            >
+              Your Feedback
+            </motion.button>
           </motion.div>
 
           {/* CTA */}
@@ -96,7 +108,7 @@ export default function App() {
             transition={{ duration: 0.4, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="hidden md:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-dark-900 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.6)] hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.8)] group relative overflow-hidden"
+            className="hidden lg:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-dark-900 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.6)] hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.8)] group relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors"></div>
             <span className="relative z-10">Try Now</span>
@@ -104,10 +116,65 @@ export default function App() {
           </motion.button>
 
           {/* Mobile Menu Toggle */}
-          <button className="md:hidden text-gray-300">
-            <Menu className="w-6 h-6" />
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden text-gray-300 p-2 hover:bg-white/5 rounded-lg transition-colors"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+
+        {/* Mobile/Tablet Menu Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden mt-4 overflow-hidden"
+            >
+              <div className="bg-dark-800/95 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl flex flex-col gap-4">
+                <a 
+                  href="#features" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
+                >
+                  Features
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
+                >
+                  How it works
+                </a>
+                <a 
+                  href="#pricing" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
+                >
+                  Pricing
+                </a>
+                <button 
+                  onClick={() => {
+                    setIsFeedbackOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
+                >
+                  Your Feedback
+                </button>
+                <button 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="mt-2 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-lg shadow-blue-600/20"
+                >
+                  Try Now
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* HERO SECTION */}
@@ -334,13 +401,29 @@ export default function App() {
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  scale: [1, 1.03, 1], 
+                  y: [0, -8, 0] 
+                }}
                 viewport={{ once: false, margin: "-50px" }}
                 transition={{ 
+                  opacity: { duration: 0.5, delay: i * 0.1 },
+                  scale: { 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: i * 0.8
+                  },
+                  y: { 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: i * 0.8
+                  },
                   type: "spring",
                   stiffness: 100,
-                  damping: 15,
-                  delay: i * 0.1 
+                  damping: 15
                 }}
                 className="bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-colors group"
               >
@@ -449,10 +532,10 @@ export default function App() {
               </ul>
             </div>
             <div className="w-full md:w-1/2 flex justify-center">
-              <div className="bg-dark-800 rounded-xl border border-white/10 p-8 shadow-2xl w-full max-w-sm flex items-center justify-between gap-2">
-                <div className="px-4 py-2 rounded-lg bg-dark-900 border border-white/10 text-xs text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all">Professional</div>
-                <div className="px-4 py-2 rounded-lg bg-purple-600 text-white text-xs font-semibold shadow-lg shadow-purple-900/50 transform scale-110">Persuasive</div>
-                <div className="px-4 py-2 rounded-lg bg-dark-900 border border-white/10 text-xs text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all">Formal</div>
+              <div className="bg-dark-800 rounded-xl border border-white/10 p-6 sm:p-8 shadow-2xl w-full max-w-[280px] sm:max-w-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+                <div className="px-4 py-2 rounded-lg bg-dark-900 border border-white/10 text-xs text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all text-center">Professional</div>
+                <div className="px-4 py-2 rounded-lg bg-purple-600 text-white text-xs font-semibold shadow-lg shadow-purple-900/50 transform scale-100 sm:scale-110 text-center">Persuasive</div>
+                <div className="px-4 py-2 rounded-lg bg-dark-900 border border-white/10 text-xs text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all text-center">Formal</div>
               </div>
             </div>
           </motion.div>
@@ -561,7 +644,7 @@ export default function App() {
             </div>
             <div className="flex gap-8 text-sm text-gray-500">
               <a href="#" className="hover:text-white transition-colors">Contact</a>
-              <a href="#" className="hover:text-white transition-colors">Pricing</a>
+              <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
               <a href="#" className="hover:text-white transition-colors">Terms</a>
             </div>
@@ -572,6 +655,82 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* FEEDBACK MODAL */}
+      <AnimatePresence>
+        {isFeedbackOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-dark-950/80 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="relative w-full max-w-lg bg-dark-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+            >
+              {/* Header with Logo */}
+              <div className="p-8 flex items-center justify-between border-b border-white/5">
+                <div className="flex items-center gap-3">
+                  <img 
+                    src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0acbc128-f2dc-469c-aed5-8cb8db34385b_320w.png" 
+                    alt="JTC Logo" 
+                    className="w-auto h-10 object-contain invert brightness-200"
+                    referrerPolicy="no-referrer"
+                  />
+                  <span className="text-xl font-bold text-white tracking-tight">JurisTech</span>
+                </div>
+                <button 
+                  onClick={() => setIsFeedbackOpen(false)}
+                  className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Form Content */}
+              <form className="p-8 space-y-6" onSubmit={(e) => { e.preventDefault(); setIsFeedbackOpen(false); }}>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-400 ml-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    required
+                    placeholder="John Doe"
+                    className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-400 ml-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    required
+                    placeholder="john@example.com"
+                    className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-400 ml-1">Your Feedback</label>
+                  <textarea 
+                    required
+                    rows={4}
+                    placeholder="Tell us what you think..."
+                    className="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none"
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit"
+                  className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl shadow-lg shadow-blue-600/20 transition-all active:scale-[0.98]"
+                >
+                  Submit Feedback
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
