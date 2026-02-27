@@ -206,7 +206,7 @@ export default function App() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-8 backdrop-blur-sm"
           >
             <Star className="w-3 h-3" />
-            Powered by Google Gemini AI
+            Where Accuracy Meets Innovation
           </motion.div>
 
           {/* Headline */}
