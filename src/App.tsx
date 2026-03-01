@@ -56,9 +56,9 @@ export default function App() {
             className="flex-shrink-0 group hover:opacity-80 transition-opacity flex items-center gap-2"
           >
             <img 
-              src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0acbc128-f2dc-469c-aed5-8cb8db34385b_320w.png" 
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSI0NzIiIGhlaWdodD0iNDcyIiBmaWxsPSIjMDBBM0M0IiByeD0iNDAiLz4KICA8cGF0aCBkPSJNMzQwIDEyMGgtMTYwdjYwaDQwdjE4MGgtNDB2NjBoMTAwdi0yNDBoNjB6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPg==" 
               alt="JTC Logo" 
-              className="w-auto h-12 object-contain invert brightness-200"
+              className="w-auto h-12 object-contain"
               referrerPolicy="no-referrer"
             />
             <span className="text-2xl font-bold text-white tracking-tight">JurisTech</span>
@@ -280,31 +280,36 @@ export default function App() {
 
           {/* Dashboard Preview */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            initial={{ opacity: 0, scale: 0.8, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: false, margin: "-100px" }}
             transition={{ 
               type: "spring",
-              stiffness: 80,
+              stiffness: 100,
               damping: 15,
-              delay: 0.2
+              delay: 0.1
             }}
-            className="relative max-w-4xl mx-auto group"
+            className="relative max-w-5xl mx-auto group mt-16"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-            <div className="relative rounded-xl overflow-hidden border border-white/10 bg-dark-900 shadow-2xl">
-              <div className="h-10 bg-dark-800 border-b border-white/5 flex items-center px-4 space-x-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/20"></div>
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20"></div>
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/20"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-10 group-hover:opacity-25 transition duration-500"></div>
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-2xl">
+              <div className="h-12 bg-dark-800 border-b border-white/10 flex items-center px-6 justify-between">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/20"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/20"></div>
+                </div>
+                <div className="text-[10px] text-gray-500 font-mono tracking-widest uppercase">JurisTech Dashboard</div>
+                <div className="w-12"></div>
               </div>
-              <img 
-                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ebf4daec-cb55-4545-bb9e-edcf15559ba5_3840w.png?w=800&q=80" 
-                alt="Dashboard" 
-                className="opacity-90 w-full object-cover bg-center"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-dark-950 to-transparent"></div>
+              <div className="bg-dark-900 min-h-[200px] flex items-center justify-center">
+                <img 
+                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200" 
+                  alt="JurisTech AI Drafting Interface" 
+                  className="w-full h-auto block opacity-100"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -636,9 +641,9 @@ export default function App() {
             {/* Footer Logo */}
             <div className="mb-8">
               <img 
-                src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0acbc128-f2dc-469c-aed5-8cb8db34385b_320w.png" 
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSI0NzIiIGhlaWdodD0iNDcyIiBmaWxsPSIjMDBBM0M0IiByeD0iNDAiLz4KICA8cGF0aCBkPSJNMzQwIDEyMGgtMTYwdjYwaDQwdjE4MGgtNDB2NjBoMTAwdi0yNDBoNjB6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPg==" 
                 alt="JTC Logo" 
-                className="w-auto h-16 object-contain invert opacity-80"
+                className="w-auto h-16 object-contain opacity-80"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -675,9 +680,9 @@ export default function App() {
               <div className="p-8 flex items-center justify-between border-b border-white/5">
                 <div className="flex items-center gap-3">
                   <img 
-                    src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0acbc128-f2dc-469c-aed5-8cb8db34385b_320w.png" 
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB4PSIyMCIgeT0iMjAiIHdpZHRoPSI0NzIiIGhlaWdodD0iNDcyIiBmaWxsPSIjMDBBM0M0IiByeD0iNDAiLz4KICA8cGF0aCBkPSJNMzQwIDEyMGgtMTYwdjYwaDQwdjE4MGgtNDB2NjBoMTAwdi0yNDBoNjB6IiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPg==" 
                     alt="JTC Logo" 
-                    className="w-auto h-10 object-contain invert brightness-200"
+                    className="w-auto h-10 object-contain"
                     referrerPolicy="no-referrer"
                   />
                   <span className="text-xl font-bold text-white tracking-tight">JurisTech</span>
