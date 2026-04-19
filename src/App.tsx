@@ -648,8 +648,8 @@ export default function App() {
               />
             </div>
             <div className="flex gap-8 text-sm text-gray-500">
+              <a href="#" className="hover:text-white transition-colors">About</a>
               <a href="#" className="hover:text-white transition-colors">Contact</a>
-              <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
               <a href="#" className="hover:text-white transition-colors">Terms</a>
             </div>
