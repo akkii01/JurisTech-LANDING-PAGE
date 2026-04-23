@@ -38,35 +38,78 @@ const stagger = {
   }
 };
 
-const InfoModal = ({ isOpen, onClose, children }: { isOpen: boolean, onClose: () => void, children: ReactNode }) => (
+const InfoModal = ({ isOpen, onClose, children, lang, setLang }: { 
+  isOpen: boolean, 
+  onClose: () => void, 
+  children: ReactNode,
+  lang: 'en' | 'hi',
+  setLang: (l: 'en' | 'hi') => void
+}) => (
   <AnimatePresence>
     {isOpen && (
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-        onClick={onClose}
+        className="fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-sm"
+        onClick={() => {
+          setLang('en');
+          onClose();
+        }}
       >
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          onClick={(e) => e.stopPropagation()}
-          className="relative w-[90%] max-w-2xl max-h-[80vh] overflow-y-auto p-6 bg-gray-900 text-gray-200 rounded-xl shadow-2xl"
-        >
-          {/* Close button */}
-          <button 
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors z-20"
+        <div className="flex min-h-full p-4 py-12 sm:p-6">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-xl shadow-2xl"
           >
-            <X className="w-5 h-5" />
-          </button>
-          
-          <div className="selection:bg-blue-500/30">
-            {children}
-          </div>
-        </motion.div>
+            {/* Area A (Header) */}
+            <div className="p-6 border-b border-gray-800">
+              <div className="flex justify-between items-start w-full mb-4">
+                <img 
+                  src="https://i.ibb.co/zWYNn82b/logo-png.png" 
+                  alt="JurisTech Logo" 
+                  className="h-16 w-auto object-contain"
+                  referrerPolicy="no-referrer"
+                />
+                <button 
+                  onClick={() => {
+                    setLang('en');
+                    onClose();
+                  }}
+                  className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Toggle UI */}
+              <div className="flex justify-center space-x-2 bg-gray-800 p-1.5 rounded-lg w-fit mx-auto shadow-inner">
+                <button 
+                  onClick={() => setLang('en')} 
+                  className={`px-6 py-2 rounded-md text-sm font-bold transition-all ${lang === 'en' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
+                >
+                  English
+                </button>
+                <button 
+                  onClick={() => setLang('hi')} 
+                  className={`px-6 py-2 rounded-md text-sm font-bold transition-all ${lang === 'hi' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
+                >
+                  हिंदी
+                </button>
+              </div>
+            </div>
+            
+            {/* Area B (Content) */}
+            <div className="p-6 selection:bg-blue-500/30">
+              <div key={lang} className="animate-[fadeIn_0.5s_ease-in-out]">
+                {children}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
     )}
   </AnimatePresence>
@@ -77,6 +120,7 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Modal states for footer links
+  const [lang, setLang] = useState<'en' | 'hi'>('en');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
@@ -704,226 +748,500 @@ export default function App() {
       {/* FOOTER MODALS */}
       <InfoModal 
         isOpen={isAboutOpen} 
-        onClose={() => setIsAboutOpen(false)} 
+        onClose={() => setIsAboutOpen(false)}
+        lang={lang}
+        setLang={setLang}
       >
-        <h2 className="font-bold text-white text-xl mt-6 mb-3">About</h2>
-        <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Our Vision</span> To democratize legal access in India by blending deep legal expertise with cutting-edge artificial intelligence.</p>
-        <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Who We Are</span> JurisTech is an innovative legal-tech startup proudly built in India. We recognized a fundamental challenge in the Indian legal system: drafting high-quality, legally sound documents is often a time-consuming, repetitive, and expensive process. Whether you are a seasoned advocate managing multiple cases or an everyday citizen seeking basic legal recourse, the drafting process shouldn't be a bottleneck.</p>
-        <p className="mb-4 leading-relaxed">That’s why we built JurisTech.</p>
-        <p className="mb-4 leading-relaxed"><span className="font-bold text-white">What We Do</span> We provide a lightning-fast, AI-driven Legal Drafting Studio tailored specifically for the Indian legal framework. Powered by advanced Generative AI, JurisTech empowers users to generate professional, court-ready documents in a matter of seconds, not hours.</p>
-        <p className="mb-4 leading-relaxed">From completely free Legal Notices to affordable, pay-per-use agreements and deeds, we have structured our platform to be accessible to everyone. We believe that technology should empower legal professionals to focus on strategy and advocacy, while handling the heavy lifting of procedural drafting.</p>
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">Our Core Values</h3>
-        <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accessibility:</span> Making essential legal tools affordable and available to all.</p>
-        <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accuracy:</span> Delivering precise, highly customizable drafts that respect the nuances of Indian law.</p>
-        <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Innovation:</span> Continuously evolving our AI to stay ahead of the curve in legal technology.</p>
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">Our Commitment</h3>
-        <p className="mb-4 leading-relaxed">While JurisTech is powered by AI, it is built for humans. We are committed to maintaining the highest standards of data privacy and user security. We are not a replacement for professional legal counsel, but rather a powerful toolkit designed to assist, accelerate, and simplify your legal journey.</p>
-        <p className="mb-4 leading-relaxed">Join us as we write the future of legal technology in India.</p>
+        {lang === 'en' ? (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">About</h2>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Our Vision</span> To democratize legal access in India by blending deep legal expertise with cutting-edge artificial intelligence.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Who We Are</span> JurisTech is an innovative legal-tech startup proudly built in India. We recognized a fundamental challenge in the Indian legal system: drafting high-quality, legally sound documents is often a time-consuming, repetitive, and expensive process. Whether you are a seasoned advocate managing multiple cases or an everyday citizen seeking basic legal recourse, the drafting process shouldn't be a bottleneck.</p>
+            <p className="mb-4 leading-relaxed">That’s why we built JurisTech.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">What We Do</span> We provide a lightning-fast, AI-driven Legal Drafting Studio tailored specifically for the Indian legal framework. Powered by advanced Generative AI, JurisTech empowers users to generate professional, court-ready documents in a matter of seconds, not hours.</p>
+            <p className="mb-4 leading-relaxed">From completely free Legal Notices to affordable, pay-per-use agreements and deeds, we have structured our platform to be accessible to everyone. We believe that technology should empower legal professionals to focus on strategy and advocacy, while handling the heavy lifting of procedural drafting.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">Our Core Values</h3>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accessibility:</span> Making essential legal tools affordable and available to all.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accuracy:</span> Delivering precise, highly customizable drafts that respect the nuances of Indian law.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Innovation:</span> Continuously evolving our AI to stay ahead of the curve in legal technology.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">Our Commitment</h3>
+            <p className="mb-4 leading-relaxed">While JurisTech is powered by AI, it is built for humans. We are committed to maintaining the highest standards of data privacy and user security. We are not a replacement for professional legal counsel, but rather a powerful toolkit designed to assist, accelerate, and simplify your legal journey.</p>
+            <p className="mb-4 leading-relaxed">Join us as we write the future of legal technology in India.</p>
+          </>
+        ) : (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">हमारे बारे में</h2>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हमारा विज़न:</span> गहरी कानूनी जानकारी को लेटेस्ट आर्टिफिशियल इंटेलिजेंस के साथ मिलाकर भारत में कानूनी पहुँच को आसान बनाना।</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हम कौन हैं?</span> JurisTech एक इनोवेटिव लीगल-टेक स्टार्टअप है जिसे गर्व से भारत में बनाया गया है। हमने भारतीय कानूनी सिस्टम में एक बुनियादी चुनौती को पहचाना: अच्छी क्वालिटी वाले, कानूनी तौर पर सही डॉक्यूमेंट्स बनाना अक्सर समय लेने वाला, बार-बार होने वाला और महंगा प्रोसेस होता है। चाहे आप एक अनुभवी वकील हों जो कई केस मैनेज कर रहे हों या एक आम नागरिक जो बेसिक कानूनी मदद ढूंढ रहा हो, ड्राफ्टिंग प्रोसेस में कोई रुकावट नहीं आनी चाहिए।</p>
+            <p className="mb-4 leading-relaxed">इसलिए हमने JurisTech बनाया।</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हम क्या करते हैं?</span> हम एक बहुत तेज़, AI से चलने वाला लीगल ड्राफ्टिंग स्टूडियो देते हैं जो खास तौर पर भारतीय कानूनी फ्रेमवर्क के लिए बनाया गया है। एडवांस्ड जेनरेटिव AI से चलने वाला, JurisTech यूज़र्स को घंटों में नहीं, बल्कि कुछ ही सेकंड में प्रोफेशनल, कोर्ट के लिए तैयार डॉक्यूमेंट्स बनाने में मदद करता है।</p>
+            <p className="mb-4 leading-relaxed">पूरी तरह से फ्री लीगल नोटिस से लेकर सस्ते, पे-पर-यूज़ एग्रीमेंट और डीड तक, हमने अपने प्लेटफॉर्म को इस तरह से बनाया है कि वह सभी के लिए आसान हो। हमारा मानना है कि टेक्नोलॉजी को लीगल प्रोफेशनल्स को स्ट्रैटेजी और एडवोकेसी पर फोकस करने में मदद करनी चाहिए, साथ ही प्रोसिजरल ड्राफ्टिंग का भारी काम भी संभालना चाहिए।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">हमारी मुख्य वैल्यूज़</h3>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">एक्सेसिबिलिटी:</span> ज़रूरी लीगल टूल्स को सभी के लिए सस्ता और उपलब्ध कराना।</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">एक्यूरेसी:</span> सटीक, बहुत ज़्यादा कस्टमाइज़ेबल ड्राफ्ट देना जो भारतीय कानून की बारीकियों का सम्मान करते हों।</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">इनोवेशन:</span> लीगल टेक्नोलॉजी में सबसे आगे रहने के लिए अपने AI को लगातार बेहतर बनाना।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">हमारा कमिटमेंट</h3>
+            <p className="mb-4 leading-relaxed">हालांकि JurisTech AI से चलता है, लेकिन इसे इंसानों के लिए बनाया गया है। हम डेटा प्राइवेसी और यूज़र सिक्योरिटी के सबसे ऊंचे स्टैंडर्ड बनाए रखने के लिए कमिटेड हैं। हम प्रोफेशनल लीगल काउंसिल की जगह नहीं ले रहे हैं, बल्कि आपकी लीगल यात्रा में मदद करने, उसे तेज़ करने और आसान बनाने के लिए डिज़ाइन किया गया एक पावरफुल टूलकिट हैं।</p>
+            <p className="mb-4 leading-relaxed">भारत में लीगल टेक्नोलॉजी का भविष्य लिखने के लिए हमसे जुड़ें।</p>
+          </>
+        )}
       </InfoModal>
 
       <InfoModal 
         isOpen={isContactOpen} 
-        onClose={() => setIsContactOpen(false)} 
+        onClose={() => setIsContactOpen(false)}
+        lang={lang}
+        setLang={setLang}
       >
-        <h2 className="font-bold text-white text-xl mt-6 mb-3">Contact</h2>
-        <p className="mb-4 leading-relaxed">We're here to help! For any questions, support requests, or feedback, please reach out to us.</p>
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">Email</h3>
-        <p className="mb-4 leading-relaxed"><a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> We typically respond within 24-48 hours.</p>
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">Support</h3>
-        <p className="mb-4 leading-relaxed">For technical issues, billing questions, or general inquiries, email us at the address above.</p>
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">Feedback</h3>
-        <p className="mb-4 leading-relaxed">We value your feedback and suggestions! Share your thoughts to help us improve JurisTech by clicking the button below:</p>
-        <div className="mb-6">
-          <a href="https://forms.gle/DcZ7BvkdL6bqdydA7" target="_blank" className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg uppercase tracking-wider text-sm">FEEDBACK</a>
-        </div>
-        <p className="mb-4 text-xs text-gray-500">JurisTech - AI-Powered Legal Document Generation</p>
+        {lang === 'en' ? (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">Contact</h2>
+            <p className="mb-4 leading-relaxed">We're here to help! For any questions, support requests, or feedback, please reach out to us.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">Email</h3>
+            <p className="mb-4 leading-relaxed"><a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> We typically respond within 24-48 hours.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">Support</h3>
+            <p className="mb-4 leading-relaxed">For technical issues, billing questions, or general inquiries, email us at the address above.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">Feedback</h3>
+            <p className="mb-4 leading-relaxed">We value your feedback and suggestions! Share your thoughts to help us improve JurisTech by clicking the button below:</p>
+            <div className="mb-6">
+              <a href="https://forms.gle/DcZ7BvkdL6bqdydA7" target="_blank" className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg uppercase tracking-wider text-sm">FEEDBACK</a>
+            </div>
+            <p className="mb-4 text-xs text-gray-500">JurisTech - AI-Powered Legal Document Generation</p>
+          </>
+        ) : (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">संपर्क (Contact)</h2>
+            <p className="mb-4 leading-relaxed">हम मदद के लिए यहाँ हैं! किसी भी प्रश्न, सहायता अनुरोध या फ़ीडबैक के लिए, कृपया हमसे संपर्क करें।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">ईमेल</h3>
+            <p className="mb-4 leading-relaxed"><a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> हम आम तौर पर 24-48 घंटों के भीतर जवाब देते हैं।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">सहायता (Support)</h3>
+            <p className="mb-4 leading-relaxed">तकनीकी समस्याओं, बिलिंग प्रश्नों या सामान्य पूछताछ के लिए, ऊपर दिए गए पते पर हमें ईमेल करें।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">फ़ीडबैक</h3>
+            <p className="mb-4 leading-relaxed">हम आपके फ़ीडबैक और सुझावों को महत्व देते हैं! नीचे दिए गए बटन पर क्लिक करके JurisTech को बेहतर बनाने में हमारी मदद करने के लिए अपने विचार साझा करें:</p>
+            <div className="mb-6">
+              <a href="https://forms.gle/DcZ7BvkdL6bqdydA7" target="_blank" className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg uppercase tracking-wider text-sm">फ़ीडबैक (FEEDBACK)</a>
+            </div>
+            <p className="mb-4 text-xs text-gray-500">JurisTech - AI-संचालित कानूनी दस्तावेज़ निर्माण</p>
+          </>
+        )}
       </InfoModal>
 
       <InfoModal 
         isOpen={isPrivacyOpen} 
-        onClose={() => setIsPrivacyOpen(false)} 
+        onClose={() => setIsPrivacyOpen(false)}
+        lang={lang}
+        setLang={setLang}
       >
-        <h2 className="font-bold text-white text-xl mt-6 mb-3">Privacy Policy</h2>
-        <p className="mb-4 leading-relaxed">Last Updated: April 19, 2026</p>
-        <p className="mb-4 leading-relaxed">Welcome to JurisTech. Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your data when you use our AI-powered legal document generation platform.</p>
-        
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">1. Information We Collect</h3>
-        <p className="mb-4 leading-relaxed font-bold text-white">Personal Information:</p>
-        <p className="mb-4 leading-relaxed">Name, email address, and encrypted password when you create an account</p>
-        <p className="mb-4 leading-relaxed">Feedback and suggestions (name and email are optional)</p>
-        
-        <p className="mb-4 leading-relaxed font-bold text-white">Document Data:</p>
-        <p className="mb-4 leading-relaxed">Information you enter to generate documents (processed by Google Gemini AI, not permanently stored)</p>
-        
-        <p className="mb-4 leading-relaxed font-bold text-white">Usage Data:</p>
-        <p className="mb-4 leading-relaxed">IP address, device type, browser type, and Service interaction</p>
-        <p className="mb-4 leading-relaxed">Document types generated and download history</p>
-        
-        <p className="mb-4 leading-relaxed font-bold text-white">Payment Information:</p>
-        <p className="mb-4 leading-relaxed">Transaction details processed by Razorpay (we do not store card/bank details)</p>
+        {lang === 'en' ? (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">Privacy Policy</h2>
+            <p className="mb-4 leading-relaxed">Last Updated: April 19, 2026</p>
+            <p className="mb-4 leading-relaxed">Welcome to JurisTech. Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your data when you use our AI-powered legal document generation platform.</p>
+            
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">1. Information We Collect</h3>
+            <p className="mb-4 leading-relaxed font-bold text-white">Personal Information:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Name, email address, and encrypted password when you create an account</li>
+              <li>Feedback and suggestions (name and email are optional)</li>
+            </ul>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">Document Data:</p>
+            <p className="mb-4 leading-relaxed">Information you enter to generate documents (processed by Google Gemini AI, not permanently stored)</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">Usage Data:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>IP address, device type, browser type, and Service interaction</li>
+              <li>Document types generated and download history</li>
+            </ul>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">Payment Information:</p>
+            <p className="mb-4 leading-relaxed">Transaction details processed by Razorpay (we do not store card/bank details)</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">2. How We Use Your Information</h3>
-        <p className="mb-4 leading-relaxed">We use your data to:</p>
-        <p className="mb-4 leading-relaxed">Provide and improve our Service</p>
-        <p className="mb-4 leading-relaxed">Process payments and send receipts</p>
-        <p className="mb-4 leading-relaxed">Respond to inquiries and feedback</p>
-        <p className="mb-4 leading-relaxed">Comply with legal obligations</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">2. How We Use Your Information</h3>
+            <p className="mb-4 leading-relaxed">We use your data to:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Provide and improve our Service</li>
+              <li>Process payments and send receipts</li>
+              <li>Respond to inquiries and feedback</li>
+              <li>Comply with legal obligations</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">3. Data Sharing</h3>
-        <p className="mb-4 leading-relaxed">We do not sell your personal information.</p>
-        <p className="mb-4 leading-relaxed">We share data only with:</p>
-        <p className="mb-4 leading-relaxed">Razorpay (payment processing)</p>
-        <p className="mb-4 leading-relaxed">Google Gemini AI (document generation)</p>
-        <p className="mb-4 leading-relaxed">Law enforcement (if required by law)</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">3. Data Sharing</h3>
+            <p className="mb-4 leading-relaxed">We do not sell your personal information.</p>
+            <p className="mb-4 leading-relaxed">We share data only with:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Razorpay (payment processing)</li>
+              <li>Google Gemini AI (document generation)</li>
+              <li>Law enforcement (if required by law)</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">4. Cookies</h3>
-        <p className="mb-4 leading-relaxed">We use cookies to keep you logged in, remember preferences, and analyze usage. You can manage cookies through your browser settings.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">4. Cookies</h3>
+            <p className="mb-4 leading-relaxed">We use cookies to keep you logged in, remember preferences, and analyze usage. You can manage cookies through your browser settings.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">5. Data Security</h3>
-        <p className="mb-4 leading-relaxed">We use SSL encryption, password protection, and secure payment processing. However, no internet transmission is 100% secure.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">5. Data Security</h3>
+            <p className="mb-4 leading-relaxed">We use SSL encryption, password protection, and secure payment processing. However, no internet transmission is 100% secure.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">6. Data Retention</h3>
-        <p className="mb-4 leading-relaxed">Account info: While account is active</p>
-        <p className="mb-4 leading-relaxed">Transactions: 7 years (legal requirement)</p>
-        <p className="mb-3">Document inputs: Processed temporarily, not stored permanently</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">6. Data Retention</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Account info: While account is active</li>
+              <li>Transactions: 7 years (legal requirement)</li>
+              <li>Document inputs: Processed temporarily, not stored permanently</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">7. Your Rights</h3>
-        <p className="mb-4 leading-relaxed">You can:</p>
-        <p className="mb-4 leading-relaxed">Access your data</p>
-        <p className="mb-4 leading-relaxed">Correct inaccurate information</p>
-        <p className="mb-4 leading-relaxed">Delete your account</p>
-        <p className="mb-4 leading-relaxed">Opt out of marketing</p>
-        <p className="mb-4 leading-relaxed">Withdraw consent</p>
-        <p className="mb-4 leading-relaxed">Contact us at <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> to exercise these rights.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">7. Your Rights</h3>
+            <p className="mb-4 leading-relaxed">You can:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Access your data</li>
+              <li>Correct inaccurate information</li>
+              <li>Delete your account</li>
+              <li>Opt out of marketing</li>
+              <li>Withdraw consent</li>
+            </ul>
+            <p className="mb-4 leading-relaxed">Contact us at <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> to exercise these rights.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">8. Third-Party Services</h3>
-        <p className="mb-4 leading-relaxed">We integrate with Google Gemini AI and Razorpay, which have their own privacy policies.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">8. Third-Party Services</h3>
+            <p className="mb-4 leading-relaxed">We integrate with Google Gemini AI and Razorpay, which have their own privacy policies.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">9. Children's Privacy</h3>
-        <p className="mb-4 leading-relaxed">Our Service is not for individuals under 18.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">9. Children's Privacy</h3>
+            <p className="mb-4 leading-relaxed">Our Service is not for individuals under 18.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">10. Changes to This Policy</h3>
-        <p className="mb-4 leading-relaxed">We may update this policy. Continued use after changes means you accept the updates.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">10. Changes to This Policy</h3>
+            <p className="mb-4 leading-relaxed">We may update this policy. Continued use after changes means you accept the updates.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">11. Contact Us</h3>
-        <p className="mb-4 leading-relaxed">Email: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">11. Contact Us</h3>
+            <p className="mb-4 leading-relaxed">Email: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">12. Governing Law</h3>
-        <p className="mb-4 leading-relaxed">This policy is governed by Indian law.</p>
-        <p className="mb-4 leading-relaxed">By using JurisTech, you agree to this Privacy Policy.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">12. Governing Law</h3>
+            <p className="mb-4 leading-relaxed">This policy is governed by Indian law.</p>
+            <p className="mb-4 leading-relaxed">By using JurisTech, you agree to this Privacy Policy.</p>
+          </>
+        ) : (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">प्राइवेसी पॉलिसी (Privacy Policy)</h2>
+            <p className="mb-4 leading-relaxed">पिछला अपडेट: 19 अप्रैल, 2026</p>
+            <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है। आपकी प्राइवेसी हमारे लिए महत्वपूर्ण है। यह प्राइवेसी पॉलिसी बताती है कि जब आप हमारे AI-संचालित कानूनी दस्तावेज़ निर्माण प्लेटफ़ॉर्म का उपयोग करते हैं तो हम आपका डेटा कैसे एकत्र, उपयोग और सुरक्षित करते हैं।</p>
+            
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">1. जानकारी जो हम एकत्र करते हैं</h3>
+            <p className="mb-4 leading-relaxed font-bold text-white">व्यक्तिगत जानकारी:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>जब आप खाता बनाते हैं तो नाम, ईमेल पता और एन्क्रिप्टेड पासवर्ड</li>
+              <li>फ़ीडबैक और सुझाव (नाम और ईमेल वैकल्पिक हैं)</li>
+            </ul>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">दस्तावेज़ डेटा:</p>
+            <p className="mb-4 leading-relaxed">दस्तावेज़ जेनरेट करने के लिए आपके द्वारा दर्ज की गई जानकारी (Google Gemini AI द्वारा संसाधित, स्थायी रूप से संग्रहीत नहीं)</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">उपयोग डेटा:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>IP पता, डिवाइस का प्रकार, ब्राउज़र का प्रकार और सेवा के साथ इंटरैक्शन</li>
+              <li>जेनरेट किए गए दस्तावेज़ों के प्रकार और डाउनलोड इतिहास</li>
+            </ul>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">डेटा का उपयोग निम्न के लिए करते हैं:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>हमारी सेवा प्रदान करने और सुधारने के लिए</li>
+              <li>भुगतान संसाधित करने और रसीदें भेजने के लिए</li>
+              <li>पूछताछ और फ़ीडबैक का जवाब देने के लिए</li>
+              <li>कानूनी दायित्वों का पालन करने के लिए</li>
+            </ul>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">3. डेटा साझा करना</h3>
+            <p className="mb-4 leading-relaxed">हम आपकी व्यक्तिगत जानकारी बेचते नहीं हैं।</p>
+            <p className="mb-4 leading-relaxed">हम डेटा केवल इनके साथ साझा करते हैं:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Razorpay (पेमेंट प्रोसेसिंग)</li>
+              <li>Google Gemini AI (डॉक्यूमेंट जेनरेशन)</li>
+              <li>कानून प्रवर्तन (यदि कानून द्वारा आवश्यक हो)</li>
+            </ul>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">4. कुकीज़ (Cookies)</h3>
+            <p className="mb-4 leading-relaxed">हम आपको लॉग इन रखने, प्राथमिकताओं को याद रखने और उपयोग का विश्लेषण करने के लिए कुकीज़ का उपयोग करते हैं। आप अपनी ब्राउज़र सेटिंग्स के माध्यम से कुकीज़ प्रबंधित कर सकते हैं।</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">5. डेटा सुरक्षा</h3>
+            <p className="mb-4 leading-relaxed">हम SSL एन्क्रिप्शन, पासवर्ड सुरक्षा और सुरक्षित पेमेंट प्रोसेसिंग का उपयोग करते हैं। हालांकि, कोई भी इंटरनेट ट्रांसमिशन 100% सुरक्षित नहीं है।</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">6. डेटा रिटेंशन</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>खाता जानकारी: जब तक खाता सक्रिय है</li>
+              <li>लेनदेन: 7 वर्ष (कानूनी आवश्यकता)</li>
+              <li>डॉक्यूमेंट इनपुट: अस्थायी रूप से संसाधित, स्थायी रूप से संग्रहीत नहीं</li>
+            </ul>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">7. आपके अधिकार</h3>
+            <p className="mb-4 leading-relaxed">आप ये कर सकते हैं:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>अपना डेटा एक्सेस करें</li>
+              <li>गलत जानकारी को सही करें</li>
+              <li>अपना खाता हटाएँ</li>
+              <li>मार्केटिंग से बाहर निकलें</li>
+              <li>सहमति वापस लें</li>
+            </ul>
+            <p className="mb-4 leading-relaxed">इन अधिकारों का उपयोग करने के लिए <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> पर हमसे संपर्क करें।</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">8. तृतीय-पक्ष सेवाएँ</h3>
+            <p className="mb-4 leading-relaxed">हम Google Gemini AI और Razorpay के साथ एकीकृत हैं, जिनकी अपनी गोपनीयता नीतियां हैं।</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">9. बच्चों की गोपनीयता</h3>
+            <p className="mb-4 leading-relaxed">हमारी सेवा 18 वर्ष से कम उम्र के लोगों के लिए नहीं है।</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">10. इस नीति में बदलाव</h3>
+            <p className="mb-4 leading-relaxed">हम इस नीति को अपडेट कर सकते हैं। बदलावों के बाद निरंतर उपयोग का अर्थ है कि आप अपडेट स्वीकार करते हैं।</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">11. हमसे संपर्क करें</h3>
+            <p className="mb-4 leading-relaxed">ईमेल: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">12. शासी कानून (Governing Law)</h3>
+            <p className="mb-4 leading-relaxed">यह नीति भारतीय कानून द्वारा शासित है।</p>
+            <p className="mb-4 leading-relaxed">JurisTech का उपयोग करके, आप इस प्राइवेसी पॉलिसी से सहमत हैं।</p>
+          </>
+        )}
       </InfoModal>
 
       <InfoModal 
         isOpen={isTermsOpen} 
-        onClose={() => setIsTermsOpen(false)} 
+        onClose={() => setIsTermsOpen(false)}
+        lang={lang}
+        setLang={setLang}
       >
-        <h2 className="font-bold text-white text-xl mt-6 mb-3">Terms and Conditions</h2>
-        <p className="mb-4 leading-relaxed">Last Updated: April 19, 2026 </p>
-        <p className="mb-4 leading-relaxed">Welcome to JurisTech! These Terms govern your use of our AI-powered legal document generation platform. By using our Service, you agree to these Terms.</p>
-        
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">1. Definitions</h3>
-        <p className="mb-4 leading-relaxed">"JurisTech," "we," "our," "us": Provider of AI legal document generation services</p>
-        <p className="mb-4 leading-relaxed">"User," "you," "your": Anyone using our Service</p>
-        <p className="mb-4 leading-relaxed">"Service": JurisTech platform and features</p>
+        {lang === 'en' ? (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">Terms and Conditions</h2>
+            <p className="mb-4 leading-relaxed">Last Updated: April 19, 2026</p>
+            <p className="mb-4 leading-relaxed">Welcome to JurisTech! These Terms govern your use of our AI-powered legal document generation platform. By using our Service, you agree to these Terms.</p>
+            
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">1. Definitions</h3>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">"JurisTech," "we," "our," "us":</span> Provider of AI legal document generation services</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">"User," "you," "your":</span> Anyone using our Service</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">"Service":</span> JurisTech platform and features</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">2. Eligibility</h3>
-        <p className="mb-4 leading-relaxed">You must be at least 18 years old</p>
-        <p className="mb-4 leading-relaxed">You must provide a valid email and password</p>
-        <p className="mb-4 leading-relaxed">You are responsible for your account security</p>
-        <p className="mb-4 leading-relaxed">One account per person</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">2. Eligibility</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>You must be at least 18 years old</li>
+              <li>You must provide a valid email and password</li>
+              <li>You are responsible for your account security</li>
+              <li>One account per person</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">3. Service Description</h3>
-        <p className="mb-4 leading-relaxed">JurisTech provides:</p>
-        <p className="mb-4 leading-relaxed">AI-powered document generation (Google Gemini AI)</p>
-        <p className="mb-4 leading-relaxed">12+ document types</p>
-        <p className="mb-4 leading-relaxed">Customizable version and tone</p>
-        <p className="mb-4 leading-relaxed">Download in Text, Word, PDF formats</p>
-        <p className="mb-4 leading-relaxed">Pricing: Legal Notice is 100% Free. All other premium documents are ₹99 for up to 4 generation attempts.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">3. Service Description</h3>
+            <p className="mb-4 leading-relaxed">JurisTech provides:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>AI-powered document generation (Google Gemini AI)</li>
+              <li>12+ document types</li>
+              <li>Customizable version and tone</li>
+              <li>Download in Text, Word, PDF formats</li>
+              <li>Pricing: Legal Notice is 100% Free. All other premium documents are ₹99 for up to 4 generation attempts.</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">4. Acceptable Use</h3>
-        <p className="mb-4 leading-relaxed">You agree to:</p>
-        <p className="mb-4 leading-relaxed">Use the Service lawfully</p>
-        <p className="mb-4 leading-relaxed">Provide accurate information</p>
-        <p className="mb-4 leading-relaxed">Not misuse or interfere with functionality</p>
-        <p className="mb-4 leading-relaxed">Not create fraudulent documents</p>
-        <p className="mb-4 leading-relaxed">Not use bots or automated tools</p>
-        <p className="mb-4 leading-relaxed">Not reverse-engineer our Service</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">4. Acceptable Use</h3>
+            <p className="mb-4 leading-relaxed">You agree to:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Use the Service lawfully</li>
+              <li>Provide accurate information</li>
+              <li>Not misuse or interfere with functionality</li>
+              <li>Not create fraudulent documents</li>
+              <li>Not use bots or automated tools</li>
+              <li>Not reverse-engineer our Service</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">5. Payment Terms</h3>
-        <p className="mb-4 leading-relaxed">Price: Legal Notice is 100% Free. All other premium documents are ₹99 for up to 4 generation attempts.</p>
-        <p className="mb-4 leading-relaxed">Payment: Via Razorpay (Card, UPI, Net Banking)</p>
-        <p className="mb-4 leading-relaxed">Timing: Payment is required strictly before the document generation process begins. The payment gateway will be triggered immediately upon selecting a premium document type.</p>
-        <p className="mb-4 leading-relaxed">Taxes: Inclusive</p>
-        <p className="mb-4 leading-relaxed">Receipt: Upon successful payment, a digital transaction receipt will be instantly displayed on your screen with an option to download it directly to your device. We do not send automated email receipts.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">5. Payment Terms</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li><span className="font-bold text-white">Price:</span> Legal Notice is 100% Free. All other premium documents are ₹99 for up to 4 generation attempts.</li>
+              <li><span className="font-bold text-white">Payment:</span> Via Razorpay (Card, UPI, Net Banking)</li>
+              <li><span className="font-bold text-white">Timing:</span> Payment is required strictly before the document generation process begins. The payment gateway will be triggered immediately upon selecting a premium document type.</li>
+              <li><span className="font-bold text-white">Taxes:</span> Inclusive</li>
+              <li><span className="font-bold text-white">Receipt:</span> Upon successful payment, a digital transaction receipt will be instantly displayed on your screen with an option to download it directly to your device. We do not send automated email receipts.</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">6. Refund and Cancellation Policy</h3>
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">6.1 When Refunds Are Provided</h4>
-        <p className="mb-4 leading-relaxed">Refund if:</p>
-        <p className="mb-4 leading-relaxed">Duplicate Payment: If you are charged multiple times for a single transaction. (Note: Verification is strictly performed against our internal Payment Gateway Dashboard. If our records indicate only one successful transaction, no refund shall be granted, and you are advised to coordinate with your bank).</p>
-        <p className="mb-4 leading-relaxed font-bold">No refund if:</p>
-        <p className="mb-4 leading-relaxed">Document is successfully generated and displayed on your screen (Generation constitutes full delivery of service).</p>
-        <p className="mb-4 leading-relaxed">If a document fails to generate due to a temporary technical error on our platform, your generation credit will not be deducted. You can simply attempt to generate the document again. We do not issue cash refunds for temporary server errors or downtime.</p>
-        <p className="mb-4 leading-relaxed">You entered incorrect information or inputs.</p>
-        <p className="mb-4 leading-relaxed">You are dissatisfied with the content (you can use your remaining attempts to regenerate with corrected inputs).</p>
-        <p className="mb-4 leading-relaxed">You changed your mind after the document has been generated.</p>
-        
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">6.2 Refund Process</h4>
-        <p className="mb-4 leading-relaxed">Email <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> within 7 days with your transaction ID.</p>
-        <p className="mb-4 leading-relaxed">We will review the request within 2 business days.</p>
-        <p className="mb-4 leading-relaxed">If approved, the refund will be processed to the original payment method within 7-10 days.</p>
-        
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">6.3 Cancellation</h4>
-        <p className="mb-4 leading-relaxed">Before payment: You can cancel or abandon the process anytime without any charge.</p>
-        <p className="mb-4 leading-relaxed">After document generation: Once the AI generates the document and it appears on your screen, the service is considered fully consumed. Therefore, no cancellations or refunds are permitted under any circumstances at this stage.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">6. Refund and Cancellation Policy</h3>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">6.1 When Refunds Are Provided</h4>
+            <p className="mb-4 leading-relaxed">Refund if:</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Duplicate Payment:</span> If you are charged multiple times for a single transaction. (Note: Verification is strictly performed against our internal Payment Gateway Dashboard. If our records indicate only one successful transaction, no refund shall be granted, and you are advised to coordinate with your bank).</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">No refund if:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Document is successfully generated and displayed on your screen (Generation constitutes full delivery of service).</li>
+              <li>If a document fails to generate due to a temporary technical error on our platform, your generation credit will not be deducted. You can simply attempt to generate the document again. We do not issue cash refunds for temporary server errors or downtime.</li>
+              <li>You entered incorrect information or inputs.</li>
+              <li>You are dissatisfied with the content (you can use your remaining attempts to regenerate with corrected inputs).</li>
+              <li>You changed your mind after the document has been generated.</li>
+            </ul>
+            
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">6.2 Refund Process</h4>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Email <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> within 7 days with your transaction ID.</li>
+              <li>We will review the request within 2 business days.</li>
+              <li>If approved, the refund will be processed to the original payment method within 7-10 days.</li>
+            </ul>
+            
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">6.3 Cancellation</h4>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li><span className="font-bold text-white">Before payment:</span> You can cancel or abandon the process anytime without any charge.</li>
+              <li><span className="font-bold text-white">After document generation:</span> Once the AI generates the document and it appears on your screen, the service is considered fully consumed. Therefore, no cancellations or refunds are permitted under any circumstances at this stage.</li>
+            </ul>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">7. Important Disclaimers</h3>
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">7.1 Not Legal Advice</h4>
-        <p className="mb-4 leading-relaxed">JurisTech provides document tools, NOT legal advice. We are not a law firm.</p>
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">7.2 Professional Review Required</h4>
-        <p className="mb-4 leading-relaxed">All documents MUST be reviewed by a qualified lawyer before use.</p>
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">7.3 No Guarantees</h4>
-        <p className="mb-4 leading-relaxed">We don't guarantee documents are error-free, suitable for your situation, or accepted by courts. You verify accuracy and suitability.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">7. Important Disclaimers</h3>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.1 Not Legal Advice</h4>
+            <p className="mb-4 leading-relaxed">JurisTech provides document tools, NOT legal advice. We are not a law firm.</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.2 Professional Review Required</h4>
+            <p className="mb-4 leading-relaxed">All documents MUST be reviewed by a qualified lawyer before use.</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.3 No Guarantees</h4>
+            <p className="mb-4 leading-relaxed">We don't guarantee documents are error-free, suitable for your situation, or accepted by courts. You verify accuracy and suitability.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">8. Limitation of Liability</h3>
-        <p className="mb-4 leading-relaxed">Service provided "AS IS"</p>
-        <p className="mb-4 leading-relaxed">We are not liable for indirect or consequential damages</p>
-        <p className="mb-4 leading-relaxed">Not responsible for legal outcomes</p>
-        <p className="mb-4 leading-relaxed">Maximum liability: ₹99 (amount paid) You use the Service at your own risk.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">8. Limitation of Liability</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>Service provided "AS IS"</li>
+              <li>We are not liable for indirect or consequential damages</li>
+              <li>Not responsible for legal outcomes</li>
+              <li>Maximum liability: ₹99 (amount paid)</li>
+            </ul>
+            <p className="mb-4 leading-relaxed font-bold">You use the Service at your own risk.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">9. Intellectual Property</h3>
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">9.1 Your Documents</h4>
-        <p className="mb-4 leading-relaxed">You own generated documents and can use them freely.</p>
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">9.2 Our Platform</h4>
-        <p className="mb-4 leading-relaxed">JurisTech platform, code, and trademarks belong to us. Do not copy or reverse-engineer.</p>
-        <h4 className="font-bold text-white text-lg mt-6 mb-3">9.3 AI Technology</h4>
-        <p className="mb-4 leading-relaxed">We use Google Gemini AI (owned by Google).</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">9. Intellectual Property</h3>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">9.1 Your Documents</h4>
+            <p className="mb-4 leading-relaxed">You own generated documents and can use them freely.</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">9.2 Our Platform</h4>
+            <p className="mb-4 leading-relaxed">JurisTech platform, code, and trademarks belong to us. Do not copy or reverse-engineer.</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">9.3 AI Technology</h4>
+            <p className="mb-4 leading-relaxed">We use Google Gemini AI (owned by Google).</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">10. Privacy</h3>
-        <p className="mb-4 leading-relaxed">See our Privacy Policy for how we handle your data.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">10. Privacy</h3>
+            <p className="mb-4 leading-relaxed">See our Privacy Policy for how we handle your data.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">11. Third-Party Services</h3>
-        <p className="mb-4 leading-relaxed">We integrate with Razorpay and Google Gemini AI. We're not responsible for their practices.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">11. Third-Party Services</h3>
+            <p className="mb-4 leading-relaxed">We integrate with Razorpay and Google Gemini AI. We're not responsible for their practices.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">12. Account Termination</h3>
-        <p className="mb-4 leading-relaxed">We may suspend/terminate accounts for Terms violations. You may close your account anytime.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">12. Account Termination</h3>
+            <p className="mb-4 leading-relaxed">We may suspend/terminate accounts for Terms violations. You may close your account anytime.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">13. Changes to Terms</h3>
-        <p className="mb-4 leading-relaxed">We may update these Terms. Continued use means acceptance.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">13. Changes to Terms</h3>
+            <p className="mb-4 leading-relaxed">We may update these Terms. Continued use means acceptance.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">14. Dispute Resolution</h3>
-        <p className="mb-4 leading-relaxed">Contact us first: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
-        <p className="mb-4 leading-relaxed">Unresolved disputes: Arbitration under Indian law</p>
-        <p className="mb-4 leading-relaxed">Jurisdiction: Indian courts</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">14. Dispute Resolution</h3>
+            <p className="mb-4 leading-relaxed">Contact us first: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
+            <p className="mb-4 leading-relaxed">Unresolved disputes: Arbitration under Indian law</p>
+            <p className="mb-4 leading-relaxed">Jurisdiction: Indian courts</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">15. Severability</h3>
-        <p className="mb-4 leading-relaxed">If any provision is invalid, remaining provisions continue.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">15. Severability</h3>
+            <p className="mb-4 leading-relaxed">If any provision is invalid, remaining provisions continue.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">16. Entire Agreement</h3>
-        <p className="mb-4 leading-relaxed">These Terms and our Privacy Policy constitute the complete agreement.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">16. Entire Agreement</h3>
+            <p className="mb-4 leading-relaxed">These Terms and our Privacy Policy constitute the complete agreement.</p>
 
-        <h3 className="font-bold text-white text-lg mt-6 mb-3">17. Contact</h3>
-        <p className="mb-4 leading-relaxed">Email: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
-        <p className="mb-4 leading-relaxed">By using JurisTech, you agree to these Terms and Conditions.</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">17. Contact</h3>
+            <p className="mb-4 leading-relaxed">Email: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
+            <p className="mb-4 leading-relaxed">By using JurisTech, you agree to these Terms and Conditions.</p>
+          </>
+        ) : (
+          <>
+            <h2 className="font-bold text-white text-xl mt-6 mb-3">नियम और शर्तें</h2>
+            <p className="mb-4 leading-relaxed">पिछला अपडेट: 19 अप्रैल, 2026</p>
+            <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है! ये शर्तें हमारे AI-पावर्ड लीगल डॉक्यूमेंट जेनरेशन प्लेटफ़ॉर्म के आपके इस्तेमाल को गाइड करती हैं। हमारी सर्विस का इस्तेमाल करके, आप इन शर्तों से सहमत होते हैं।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">1. परिभाषाएँ</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li><span className="font-bold text-white">"JurisTech," "हम," "हमारे," "हमें":</span> AI लीगल डॉक्यूमेंट जेनरेशन सर्विसेज़ देने वाले</li>
+              <li><span className="font-bold text-white">"यूज़र," "आप," "आपका":</span> हमारी सर्विस का इस्तेमाल करने वाला कोई भी व्यक्ति</li>
+              <li><span className="font-bold text-white">"सर्विस":</span> JurisTech प्लेटफ़ॉर्म और इसके फ़ीचर्स</li>
+            </ul>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">2. पात्रता (Eligibility)</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>आपकी उम्र कम से कम 18 साल होनी चाहिए</li>
+              <li>आपको एक मान्य ईमेल और पासवर्ड देना होगा</li>
+              <li>आप अपने अकाउंट की सिक्योरिटी के लिए ज़िम्मेदार हैं</li>
+              <li>एक व्यक्ति के लिए एक ही अकाउंट</li>
+            </ul>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">3. सर्विस का विवरण</h3>
+            <p className="mb-4 leading-relaxed">JurisTech देता है:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>AI-पावर्ड डॉक्यूमेंट जेनरेशन (Google Gemini AI)</li>
+              <li>12+ तरह के डॉक्यूमेंट्स</li>
+              <li>कस्टमाइज़ेबल वर्ज़न और टोन</li>
+              <li>Text, Word, PDF फॉर्मेट में डाउनलोड</li>
+              <li>कीमत: लीगल नोटिस 100% फ्री है। बाकी सभी प्रीमियम डॉक्यूमेंट्स के लिए 4 बार जेनरेट करने की कोशिश के लिए ₹99 शुल्क है।</li>
+            </ul>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">4. इस्तेमाल करने के सही तरीके</h3>
+            <p className="mb-4 leading-relaxed">आप इस बात से सहमत हैं:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>सर्विस का कानूनी रूप से इस्तेमाल करना</li>
+              <li>सटीक जानकारी देना</li>
+              <li>सर्विस का गलत इस्तेमाल न करना या उसके काम में रुकावट न डालना</li>
+              <li>धोखाधड़ी वाले डॉक्यूमेंट्स न बनाना</li>
+              <li>बोट्स या ऑटोमेटेड टूल्स का इस्तेमाल न करना</li>
+              <li>हमारी सर्विस की रिवर्स-इंजीनियरिंग न करना</li>
+            </ul>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">5. पेमेंट की शर्तें</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li><span className="font-bold text-white">कीमत:</span> लीगल नोटिस 100% फ्री है। बाकी सभी प्रीमियम डॉक्यूमेंट्स के लिए 4 बार जेनरेट करने की कोशिश के लिए ₹99 शुल्क है।</li>
+              <li><span className="font-bold text-white">पेमेंट:</span> Razorpay (कार्ड, UPI, नेट बैंकिंग) के ज़रिए</li>
+              <li><span className="font-bold text-white">समय:</span> डॉक्यूमेंट जेनरेशन प्रोसेस शुरू होने से पहले पेमेंट करना ज़रूरी है। प्रीमियम डॉक्यूमेंट टाइप को चुनते ही पेमेंट गेटवे शुरू हो जाएगा।</li>
+              <li><span className="font-bold text-white">टैक्स:</span> शामिल है</li>
+              <li><span className="font-bold text-white">रसीद:</span> सफल पेमेंट होने के बाद, आपकी स्क्रीन पर तुरंत एक डिजिटल ट्रांज़ैक्शन रसीद दिखाई जाएगी जिसे आप सीधे अपने डिवाइस पर डाउनलोड कर सकते हैं। हम ऑटोमेटेड ईमेल रसीदें नहीं भेजते हैं।</li>
+            </ul>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">6. रिफंड और कैंसलेशन पॉलिसी</h3>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">6.1 रिफंड कब दिया जाता है</h4>
+            <p className="mb-4 leading-relaxed">रिफंड मिलेगा अगर:</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">डुप्लीकेट पेमेंट:</span> अगर आपसे एक ही ट्रांज़ैक्शन के लिए कई बार पैसे लिए जाते हैं। (नोट: वेरिफिकेशन सिर्फ़ हमारे इंटरनल पेमेंट गेटवे डैशबोर्ड के ज़रिए किया जाता है। अगर हमारे रिकॉर्ड में सिर्फ़ एक सफल ट्रांज़ैक्शन दिखता है, तो कोई रिफंड नहीं दिया जाएगा और आपको अपने बैंक से बात करने की सलाह दी जाती है)।</p>
+            <p className="mb-4 leading-relaxed font-bold text-white">इन मामलों में कोई रिफंड नहीं मिलेगा:</p>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>डॉक्यूमेंट सफलतापूर्वक जेनरेट होने और आपकी स्क्रीन पर दिखने के बाद (जेनरेशन का मतलब है सर्विस की पूरी डिलीवरी)।</li>
+              <li>अगर हमारे प्लेटफ़ॉर्म पर किसी टेम्पररी टेक्निकल एरर के कारण डॉक्यूमेंट जेनरेट नहीं हो पाता है, तो आपका जेनरेशन क्रेडिट नहीं काटा जाएगा। आप बस फिर से डॉक्यूमेंट जेनरेट करने की कोशिश कर सकते हैं। हम टेम्पररी सर्वर एरर या डाउनटाइम के लिए कैश रिफंड जारी नहीं करते हैं।</li>
+              <li>आपने गलत जानकारी या इनपुट डाले हैं।</li>
+              <li>आप कंटेंट से संतुष्ट नहीं हैं (आप सही इनपुट के साथ फिर से जेनरेट करने के लिए अपनी बाकी कोशिशों का इस्तेमाल कर सकते हैं)।</li>
+              <li>डॉक्यूमेंट जेनरेट होने के बाद आपने अपना मन बदल लिया है।</li>
+            </ul>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">6.2 रिफंड प्रोसेस</h4>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>अपनी ट्रांज़ैक्शन आईडी के साथ 7 दिनों के भीतर <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> पर ईमेल करें।</li>
+              <li>हम 2 वर्किंग डेज़ के भीतर रिक्वेस्ट की जांच करेंगे।</li>
+              <li>अगर एप्रूव हो जाता है, तो रिफंड 7-10 दिनों के भीतर ओरिजिनल पेमेंट मेथड में वापस आ जाएगा।</li>
+            </ul>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">6.3 कैंसलेशन</h4>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li><span className="font-bold text-white">पेमेंट से पहले:</span> आप किसी भी समय बिना किसी शुल्क के प्रोसेस को कैंसिल कर सकते हैं या बंद कर सकते हैं।</li>
+              <li><span className="font-bold text-white">डॉक्यूमेंट जेनरेशन के बाद:</span> एक बार जब AI डॉक्यूमेंट जेनरेट कर देता है और वह आपकी स्क्रीन पर दिखाई देता है, तो सर्विस को पूरी तरह से इस्तेमाल किया हुआ माना जाता है। इसलिए, इस लेवल पर किसी भी स्थिति में कैंसलेशन या रिफंड की अनुमति नहीं है।</li>
+            </ul>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">7. ज़रूरी डिस्क्लेमर</h3>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.1 कानूनी सलाह नहीं</h4>
+            <p className="mb-4 leading-relaxed">JurisTech डॉक्यूमेंट टूल्स देता है, कानूनी सलाह नहीं। हम कोई लॉ फर्म नहीं हैं।</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.2 प्रोफेशनल रिव्यू ज़रूरी</h4>
+            <p className="mb-4 leading-relaxed">इस्तेमाल से पहले सभी डॉक्यूमेंट्स का रिव्यू किसी क्वालिफाइड वकील द्वारा किया जाना चाहिए।</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.3 कोई गारंटी नहीं</h4>
+            <p className="mb-4 leading-relaxed">हम इस बात की गारंटी नहीं देते कि डॉक्यूमेंट्स एरर-फ्री हैं, आपकी स्थिति के लिए सही हैं या कोर्ट द्वारा स्वीकार किए जाएंगे। आप उनकी सटीकता और उपयोगिता को ख़ुद वेरिफाई करें।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">8. लायबिलिटी की सीमा (Limitation of Liability)</h3>
+            <ul className="list-disc pl-5 mb-4 space-y-2">
+              <li>सर्विस "AS IS" लेवल पर दी जाती है</li>
+              <li>हम किसी भी तरह के नुकसान के लिए ज़िम्मेदार नहीं हैं</li>
+              <li>कानूनी परिणामों के लिए ज़िम्मेदार नहीं हैं</li>
+              <li>मैक्सिमम लायबिलिटी: ₹99 (भुगतान की गई राशि)</li>
+            </ul>
+            <p className="mb-4 leading-relaxed font-bold text-white">आप अपने जोखिम पर सर्विस का इस्तेमाल करते हैं।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">9. इंटेलेक्चुअल प्रॉपर्टी</h3>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">9.1 आपके डॉक्यूमेंट्स</h4>
+            <p className="mb-4 leading-relaxed">आपके पास जेनरेट किए गए डॉक्यूमेंट्स का मालिकाना हक है और आप उनका स्वतंत्र रूप से इस्तेमाल कर सकते हैं।</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">9.2 हमारा प्लेटफ़ॉर्म</h4>
+            <p className="mb-4 leading-relaxed">JurisTech प्लेटफ़ॉर्म, कोड और ट्रेडमार्क हमारे हैं। उन्हें कॉपी या रिवर्स-इंजीनियर न करें।</p>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">9.3 AI टेक्नोलॉजी</h4>
+            <p className="mb-4 leading-relaxed">हम गूगल जेमिनी AI का इस्तेमाल करते हैं (गूगल का मालिकाना हक)।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">10. प्राइवेसी</h3>
+            <p className="mb-4 leading-relaxed">हम आपका डेटा कैसे हैंडल करते हैं, इसके लिए हमारी प्राइवेसी पॉलिसी देखें।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">11. थर्ड-पार्टी सर्विसेज़</h3>
+            <p className="mb-4 leading-relaxed">हम रेज़रपे और गूगल जेमिनी AI के साथ इंटीग्रेट करते हैं। हम उनके तौर-तरीकों के लिए ज़िम्मेदार नहीं हैं।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">12. अकाउंट खत्म करना</h3>
+            <p className="mb-4 leading-relaxed">हम शर्तों के उल्लंघन के लिए अकाउंट सस्पेंड या खत्म कर सकते हैं। आप किसी भी समय अपना अकाउंट बंद कर सकते हैं।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">13. शर्तों में बदलाव</h3>
+            <p className="mb-4 leading-relaxed">हम इन शर्तों को अपडेट कर सकते हैं। लगातार इस्तेमाल का मतलब है कि आप बदलावों को स्वीकार करते हैं।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">14. विवाद सुलझाना</h3>
+            <p className="mb-4 leading-relaxed">पहले हमसे कॉन्टैक्ट करें: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
+            <p className="mb-4 leading-relaxed">अनसुलझे विवाद: भारतीय कानून के तहत आर्बिट्रेशन</p>
+            <p className="mb-4 leading-relaxed">क्षेत्राधिकार: भारतीय अदालतें</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">15. पृथक्करणीयता (Severability)</h3>
+            <p className="mb-4 leading-relaxed">यदि कोई प्रावधान अमान्य है, तो बाकी प्रावधान लागू रहेंगे।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">16. पूरा एग्रीमेंट</h3>
+            <p className="mb-4 leading-relaxed">ये शर्तें और हमारी प्राइवेसी पॉलिसी पूरा एग्रीमेंट बनाती हैं।</p>
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">17. संपर्क</h3>
+            <p className="mb-4 leading-relaxed">ईमेल: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
+            <p className="mb-4 leading-relaxed">JurisTech का इस्तेमाल करके, आप इन नियमों और शर्तों से सहमत हैं।</p>
+          </>
+        )}
       </InfoModal>
 
       {/* FEEDBACK MODAL */}
@@ -933,63 +1251,69 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-sm"
             onClick={() => setIsFeedbackOpen(false)}
           >
+            <div className="flex min-h-full items-center justify-center p-4 py-12 sm:p-6">
               <motion.div
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-xl bg-gray-900 border border-white/10 rounded-3xl shadow-2xl p-6 max-h-[85vh] overflow-y-auto"
+                className="relative w-full max-w-2xl bg-gray-900 text-gray-200 rounded-xl shadow-2xl"
               >
-                {/* Header with Logo and Close Button */}
-                <div className="flex justify-between items-start w-full">
-                  <img 
-                    src="https://i.ibb.co/zWYNn82b/logo-png.png" 
-                    alt="JurisTech Logo" 
-                    className="h-26 w-auto object-contain"
-                    referrerPolicy="no-referrer"
-                  />
-                  <button 
-                    onClick={() => setIsFeedbackOpen(false)}
-                    className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all mt-2"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
+                {/* Area A (Header) */}
+                <div className="p-6 border-b border-gray-800">
+                  <div className="flex justify-between items-start w-full">
+                    <img 
+                      src="https://i.ibb.co/zWYNn82b/logo-png.png" 
+                      alt="JurisTech Logo" 
+                      className="h-26 w-auto object-contain"
+                      referrerPolicy="no-referrer"
+                    />
+                    <button 
+                      onClick={() => setIsFeedbackOpen(false)}
+                      className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all mt-2"
+                    >
+                      <X className="w-6 h-6" />
+                    </button>
+                  </div>
                 </div>
 
-                {/* Body Content */}
-                <div className="flex flex-col items-center">
-                  <h2 className="text-2xl text-white font-extrabold text-center mt-10 mb-6 font-sans">
-                    Help Us Improve Your Experience
-                  </h2>
+                {/* Area B (Content) */}
+                <div className="p-6">
+                  <div className="flex flex-col items-center">
+                    <h2 className="text-2xl text-white font-extrabold text-center mt-10 mb-6 font-sans">
+                      Help Us Improve Your Experience
+                    </h2>
 
-                  <img 
-                    src="https://i.ibb.co/wFXScDP0/COMPANY-S-QR-Code-FOR-FEEDBACK.png" 
-                    alt="Feedback QR" 
-                    className="mx-auto w-96 h-96 aspect-square object-contain rounded-2xl bg-white p-4 shadow-2xl border-4 border-blue-500/30"
-                    referrerPolicy="no-referrer"
-                  />
+                    <img 
+                      src="https://i.ibb.co/wFXScDP0/COMPANY-S-QR-Code-FOR-FEEDBACK.png" 
+                      alt="Feedback QR" 
+                      className="mx-auto w-96 h-96 aspect-square object-contain rounded-2xl bg-white p-4 shadow-2xl border-4 border-blue-500/30"
+                      referrerPolicy="no-referrer"
+                    />
 
-                <div className="text-gray-500 font-bold my-8 text-center text-sm tracking-widest">
-                  OR
+                    <div className="text-gray-500 font-bold my-8 text-center text-sm tracking-widest">
+                      OR
+                    </div>
+
+                    <a 
+                      href="https://forms.gle/DcZ7BvkdL6bqdydA7" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block w-full py-4 bg-blue-600 text-white font-black rounded-xl hover:bg-blue-700 transition-all transform hover:scale-[1.02] shadow-xl uppercase tracking-widest text-center text-lg shadow-blue-600/20"
+                    >
+                      SHARE FEEDBACK
+                    </a>
+                    
+                    <p className="mt-8 text-gray-500 text-xs font-medium tracking-tight">
+                      JurisTech - AI-Powered Legal Document Generation
+                    </p>
+                  </div>
                 </div>
-
-                <a 
-                  href="https://forms.gle/DcZ7BvkdL6bqdydA7" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full py-4 bg-blue-600 text-white font-black rounded-xl hover:bg-blue-700 transition-all transform hover:scale-[1.02] shadow-xl uppercase tracking-widest text-center text-lg shadow-blue-600/20"
-                >
-                  SHARE FEEDBACK
-                </a>
-                
-                <p className="mt-8 text-gray-500 text-xs font-medium tracking-tight">
-                  JurisTech - AI-Powered Legal Document Generation
-                </p>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
