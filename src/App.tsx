@@ -934,7 +934,7 @@ export default function App() {
             <p className="mb-4 leading-relaxed font-bold text-white">Personal Information:</p>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>Name, email address, and encrypted password when you create an account</li>
-              <li>Feedback and suggestions (name and email are optional)</li>
+              <li>Name and email address when submitting feedback or suggestions</li>
             </ul>
             
             <p className="mb-4 leading-relaxed font-bold text-white">Document Data:</p>
@@ -1044,7 +1044,7 @@ export default function App() {
             <p className="mb-4 leading-relaxed font-bold text-white">व्यक्तिगत जानकारी:</p>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>जब आप खाता बनाते हैं तो नाम, ईमेल पता और एन्क्रिप्टेड पासवर्ड</li>
-              <li>फ़ीडबैक और सुझाव (नाम और ईमेल वैकल्पिक हैं)</li>
+              <li>फ़फ़ीडबैक और सुझाव सबमिट करते समय नाम और ईमेल पता</li>
             </ul>
             
             <p className="mb-4 leading-relaxed font-bold text-white">दस्तावेज़ डेटा:</p>
