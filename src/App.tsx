@@ -6,7 +6,8 @@
 import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
-  ArrowRight, 
+  ArrowRight,
+  ArrowLeft, 
   CheckCircle2, 
   FileText, 
   Scale, 
@@ -38,12 +39,13 @@ const stagger = {
   }
 };
 
-const InfoModal = ({ isOpen, onClose, children, lang, setLang }: { 
+const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: { 
   isOpen: boolean, 
   onClose: () => void, 
   children: ReactNode,
   lang: 'en' | 'hi',
-  setLang: (l: 'en' | 'hi') => void
+  setLang: (l: 'en' | 'hi') => void,
+  title: string
 }) => (
   <AnimatePresence>
     {isOpen && (
@@ -57,53 +59,53 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang }: {
           onClose();
         }}
       >
-        <div className="flex min-h-full p-4 py-12 sm:p-6">
+        <div className="flex min-h-full p-4 py-8 sm:py-12 sm:p-6">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-xl shadow-2xl"
+            className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-xl shadow-2xl overflow-y-auto max-h-[85vh]"
           >
-            {/* Area A (Header) */}
-            <div className="p-6 border-b border-gray-800">
-              <div className="flex justify-between items-start w-full mb-4">
+            {/* ✨ 100% TRANSPARENT FLOATING HEADER ✨ */}
+            <div className="sticky top-0 z-50 pt-6 px-4 sm:px-6 pb-2 flex items-center justify-between gap-2 pointer-events-none bg-transparent border-none shadow-none">
+              
+              {/* LEFT: Fully Transparent Logo */}
+              <div className="pointer-events-auto flex items-center shrink-0">
                 <img 
                   src="https://i.ibb.co/zWYNn82b/logo-png.png" 
-                  alt="JurisTech Logo" 
-                  className="h-16 w-auto object-contain"
+                  alt="JurisTech" 
+                  className="h-8 sm:h-10 w-auto object-contain drop-shadow-2xl"
                   referrerPolicy="no-referrer"
                 />
-                <button 
-                  onClick={() => {
-                    setLang('en');
-                    onClose();
-                  }}
-                  className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
               </div>
 
-              {/* Toggle UI */}
-              <div className="flex justify-center space-x-2 bg-gray-800 p-1.5 rounded-lg w-fit mx-auto shadow-inner">
+              {/* CENTER: Smart Flex Centered Title (Prevents Overlap) */}
+              {title && (
+                <div className="flex-1 flex justify-center pointer-events-auto min-w-0">
+                  <span className="bg-gray-900/60 backdrop-blur-xl border border-white/10 shadow-lg px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-bold text-white tracking-wide truncate max-w-full">
+                    {title}
+                  </span>
+                </div>
+              )}
+              
+              {/* RIGHT: Language Toggle & Close */}
+              <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto shrink-0">
+                <div className="flex space-x-1 bg-gray-900/60 backdrop-blur-xl border border-white/10 p-1 rounded-xl shadow-lg">
+                  <button onClick={() => setLang('en')} className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold transition-all ${lang === 'en' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}>EN</button>
+                  <button onClick={() => setLang('hi')} className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold transition-all ${lang === 'hi' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}>HI</button>
+                </div>
                 <button 
-                  onClick={() => setLang('en')} 
-                  className={`px-6 py-2 rounded-md text-sm font-bold transition-all ${lang === 'en' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
+                  onClick={() => { setLang('en'); onClose(); }}
+                  className="p-2 sm:p-3 rounded-full bg-gray-900/60 backdrop-blur-xl border border-white/10 text-gray-400 hover:text-white transition-all shadow-lg"
                 >
-                  English
-                </button>
-                <button 
-                  onClick={() => setLang('hi')} 
-                  className={`px-6 py-2 rounded-md text-sm font-bold transition-all ${lang === 'hi' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
-                >
-                  हिंदी
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>
             
             {/* Area B (Content) */}
-            <div className="p-6 selection:bg-blue-500/30">
+            <div className="p-6 sm:p-8 pt-2 selection:bg-blue-500/30">
               <div key={lang} className="animate-[fadeIn_0.5s_ease-in-out]">
                 {children}
               </div>
@@ -131,21 +133,23 @@ export default function App() {
       {/* NAVIGATION */}
       <nav className="fixed w-full z-50 top-0 pt-6 px-6 pb-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo Container */}
           <motion.a 
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4 }}
             href="#" 
-            className="flex-shrink-0 group hover:opacity-80 transition-opacity flex items-center gap-2"
+            className="flex-shrink-0 group hover:opacity-80 transition-opacity flex items-center gap-2.5"
           >
             <img 
               src="https://i.ibb.co/zWYNn82b/logo-png.png" 
               alt="JTC Logo" 
-              className="w-auto h-26 object-contain"
+              className="h-12 lg:h-16 w-auto object-contain"
               referrerPolicy="no-referrer"
             />
-            <span className="text-2xl font-bold text-white tracking-tight">JurisTech</span>
+            <span className={`text-xl lg:text-2xl font-bold text-white tracking-tight transition-all duration-300 ${isMobileMenuOpen ? 'block' : 'hidden lg:block'}`}>
+              JurisTech
+            </span>
           </motion.a>
 
           {/* Central Navigation */}
@@ -185,19 +189,22 @@ export default function App() {
             </motion.button>
           </motion.div>
 
-          {/* CTA */}
-          <motion.button 
+          {/* CTA BUTTON 1: HEADER SECTION */}
+          <motion.a 
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
+            href="https://juristech-v1.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden lg:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-dark-900 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.6)] hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.8)] group relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors"></div>
             <span className="relative z-10">Try Now</span>
             <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 transition-transform" />
-          </motion.button>
+          </motion.a>
 
           {/* Mobile Menu Toggle */}
           <button 
@@ -248,13 +255,18 @@ export default function App() {
                 >
                   Your Feedback
                 </button>
-                <button 
+                
+                {/* CTA BUTTON 1b: HEADER MOBILE MENU */}
+                <a 
+                  href="https://juristech-v1.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="mt-2 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-lg shadow-blue-600/20"
                 >
                   Try Now
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
               </div>
             </motion.div>
           )}
@@ -262,7 +274,7 @@ export default function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="relative pt-48 pb-20 overflow-hidden">
+      <section className="relative pt-28 sm:pt-32 lg:pt-48 pb-20 overflow-hidden">
         {/* Background decorative grid */}
         <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-30"></div>
         
@@ -296,7 +308,7 @@ export default function App() {
           {/* Headline */}
           <motion.h1 
             {...fadeIn}
-            className="text-5xl sm:text-6xl md:text-7xl font-semibold text-white tracking-tight mb-6 leading-[1.1]"
+           className="text-4xl sm:text-5xl lg:text-7xl font-semibold text-white tracking-tight mb-4 lg:mb-6 leading-[1.1]"
           >
             Smarter Legal Drafting,<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Real Results</span>
@@ -305,7 +317,7 @@ export default function App() {
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
-            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+           className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-8 lg:mb-10 font-light leading-relaxed px-2"
           >
             AI-powered legal document generation built specifically for Indian advocates. 
             Draft court-ready documents in minutes, not hours.
@@ -317,9 +329,15 @@ export default function App() {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
           >
-            <button className="inline-flex items-center justify-center hover:bg-blue-500 transition-all text-sm font-semibold text-white bg-blue-600 rounded-full py-4 px-8 shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)]">
+            {/* CTA BUTTON 2: HERO SECTION */}
+            <a 
+              href="https://juristech-v1.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center hover:bg-blue-500 transition-all text-sm font-semibold text-white bg-blue-600 rounded-full py-4 px-8 shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)]"
+            >
               Try JurisTech Now
-            </button>
+            </a>
             <p className="text-xs text-gray-500 flex items-center gap-1">
               <IndianRupee className="w-3 h-3" />99 per document • No hidden fees
             </p>
@@ -388,8 +406,8 @@ export default function App() {
               </div>
               <div className="bg-dark-900 min-h-[200px] flex items-center justify-center">
                 <img 
-                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200" 
-                  alt="JurisTech AI Drafting Interface" 
+                  src="https://i.ibb.co/QvhSNC7j/868shots-so.png" 
+                  alt="JurisTech Dashboard Interface" 
                   className="w-full h-auto block opacity-100"
                   referrerPolicy="no-referrer"
                 />
@@ -688,9 +706,15 @@ export default function App() {
                 ))}
               </ul>
 
-              <button className="block w-full py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">
+              {/* CTA BUTTON 3: PRICING SECTION */}
+              <a 
+                href="https://juristech-v1.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center w-full py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+              >
                 Start Generating
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -710,9 +734,15 @@ export default function App() {
               <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6">Ready to do drafting the right way?</h2>
               <p className="text-gray-400 max-w-xl mx-auto mb-10">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
 
-              <button className="inline-flex items-center justify-center hover:bg-blue-500 transition-all hover:shadow-blue-500/25 text-sm font-semibold text-white bg-blue-600 rounded-full py-4 px-8 shadow-lg">
+              {/* CTA BUTTON 4: FOOTER SECTION */}
+              <a 
+                href="https://juristech-v1.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center hover:bg-blue-500 transition-all hover:shadow-blue-500/25 text-sm font-semibold text-white bg-blue-600 rounded-full py-4 px-8 shadow-lg"
+              >
                 Try JurisTech
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -722,12 +752,12 @@ export default function App() {
       <footer className="bg-dark-950 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col mb-12 items-center justify-center">
-            {/* Footer Logo */}
+            {/* Minimalist Footer Logo */}
             <div className="mb-8">
               <img 
                 src="https://i.ibb.co/zWYNn82b/logo-png.png" 
                 alt="JTC Logo" 
-                className="w-auto h-26 object-contain opacity-80"
+                className="h-12 sm:h-16 w-auto object-contain opacity-80"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -751,10 +781,10 @@ export default function App() {
         onClose={() => setIsAboutOpen(false)}
         lang={lang}
         setLang={setLang}
+        title={lang === 'en' ? 'About Us' : 'हमारे बारे में'}
       >
         {lang === 'en' ? (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">About</h2>
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Our Vision</span> To democratize legal access in India by blending deep legal expertise with cutting-edge artificial intelligence.</p>
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Who We Are</span> JurisTech is an innovative legal-tech startup proudly built in India. We recognized a fundamental challenge in the Indian legal system: drafting high-quality, legally sound documents is often a time-consuming, repetitive, and expensive process. Whether you are a seasoned advocate managing multiple cases or an everyday citizen seeking basic legal recourse, the drafting process shouldn't be a bottleneck.</p>
             <p className="mb-4 leading-relaxed">That’s why we built JurisTech.</p>
@@ -767,10 +797,25 @@ export default function App() {
             <h3 className="font-bold text-white text-lg mt-6 mb-3">Our Commitment</h3>
             <p className="mb-4 leading-relaxed">While JurisTech is powered by AI, it is built for humans. We are committed to maintaining the highest standards of data privacy and user security. We are not a replacement for professional legal counsel, but rather a powerful toolkit designed to assist, accelerate, and simplify your legal journey.</p>
             <p className="mb-4 leading-relaxed">Join us as we write the future of legal technology in India.</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsAboutOpen(false); setIsTermsOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: Terms' : 'पिछला: नियम और शर्तें'}
+              </button>
+              <button 
+                onClick={() => { setIsAboutOpen(false); setIsContactOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: Contact' : 'अगला: संपर्क करें'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         ) : (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">हमारे बारे में</h2>
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हमारा विज़न:</span> गहरी कानूनी जानकारी को लेटेस्ट आर्टिफिशियल इंटेलिजेंस के साथ मिलाकर भारत में कानूनी पहुँच को आसान बनाना।</p>
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हम कौन हैं?</span> JurisTech एक इनोवेटिव लीगल-टेक स्टार्टअप है जिसे गर्व से भारत में बनाया गया है। हमने भारतीय कानूनी सिस्टम में एक बुनियादी चुनौती को पहचाना: अच्छी क्वालिटी वाले, कानूनी तौर पर सही डॉक्यूमेंट्स बनाना अक्सर समय लेने वाला, बार-बार होने वाला और महंगा प्रोसेस होता है। चाहे आप एक अनुभवी वकील हों जो कई केस मैनेज कर रहे हों या एक आम नागरिक जो बेसिक कानूनी मदद ढूंढ रहा हो, ड्राफ्टिंग प्रोसेस में कोई रुकावट नहीं आनी चाहिए।</p>
             <p className="mb-4 leading-relaxed">इसलिए हमने JurisTech बनाया।</p>
@@ -783,6 +828,22 @@ export default function App() {
             <h3 className="font-bold text-white text-lg mt-6 mb-3">हमारा कमिटमेंट</h3>
             <p className="mb-4 leading-relaxed">हालांकि JurisTech AI से चलता है, लेकिन इसे इंसानों के लिए बनाया गया है। हम डेटा प्राइवेसी और यूज़र सिक्योरिटी के सबसे ऊंचे स्टैंडर्ड बनाए रखने के लिए कमिटेड हैं। हम प्रोफेशनल लीगल काउंसिल की जगह नहीं ले रहे हैं, बल्कि आपकी लीगल यात्रा में मदद करने, उसे तेज़ करने और आसान बनाने के लिए डिज़ाइन किया गया एक पावरफुल टूलकिट हैं।</p>
             <p className="mb-4 leading-relaxed">भारत में लीगल टेक्नोलॉजी का भविष्य लिखने के लिए हमसे जुड़ें।</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsAboutOpen(false); setIsTermsOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: Terms' : 'पिछला: नियम और शर्तें'}
+              </button>
+              <button 
+                onClick={() => { setIsAboutOpen(false); setIsContactOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: Contact' : 'अगला: संपर्क करें'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         )}
       </InfoModal>
@@ -792,10 +853,10 @@ export default function App() {
         onClose={() => setIsContactOpen(false)}
         lang={lang}
         setLang={setLang}
+        title={lang === 'en' ? 'Contact Support' : 'संपर्क करें'}
       >
         {lang === 'en' ? (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">Contact</h2>
             <p className="mb-4 leading-relaxed">We're here to help! For any questions, support requests, or feedback, please reach out to us.</p>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">Email</h3>
             <p className="mb-4 leading-relaxed"><a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> We typically respond within 24-48 hours.</p>
@@ -807,10 +868,25 @@ export default function App() {
               <a href="https://forms.gle/DcZ7BvkdL6bqdydA7" target="_blank" className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg uppercase tracking-wider text-sm">FEEDBACK</a>
             </div>
             <p className="mb-4 text-xs text-gray-500">JurisTech - AI-Powered Legal Document Generation</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsContactOpen(false); setIsAboutOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: About Us' : 'पिछला: हमारे बारे में'}
+              </button>
+              <button 
+                onClick={() => { setIsContactOpen(false); setIsPrivacyOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: Privacy' : 'अगला: प्राइवेसी'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         ) : (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">संपर्क (Contact)</h2>
             <p className="mb-4 leading-relaxed">हम मदद के लिए यहाँ हैं! किसी भी प्रश्न, सहायता अनुरोध या फ़ीडबैक के लिए, कृपया हमसे संपर्क करें।</p>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">ईमेल</h3>
             <p className="mb-4 leading-relaxed"><a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a> हम आम तौर पर 24-48 घंटों के भीतर जवाब देते हैं।</p>
@@ -822,6 +898,22 @@ export default function App() {
               <a href="https://forms.gle/DcZ7BvkdL6bqdydA7" target="_blank" className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all shadow-lg uppercase tracking-wider text-sm">फ़ीडबैक (FEEDBACK)</a>
             </div>
             <p className="mb-4 text-xs text-gray-500">JurisTech - AI-संचालित कानूनी दस्तावेज़ निर्माण</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsContactOpen(false); setIsAboutOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: About Us' : 'पिछला: हमारे बारे में'}
+              </button>
+              <button 
+                onClick={() => { setIsContactOpen(false); setIsPrivacyOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: Privacy' : 'अगला: प्राइवेसी'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         )}
       </InfoModal>
@@ -831,10 +923,10 @@ export default function App() {
         onClose={() => setIsPrivacyOpen(false)}
         lang={lang}
         setLang={setLang}
+        title={lang === 'en' ? 'Privacy Policy' : 'प्राइवेसी पॉलिसी'}
       >
         {lang === 'en' ? (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">Privacy Policy</h2>
             <p className="mb-4 leading-relaxed">Last Updated: April 19, 2026</p>
             <p className="mb-4 leading-relaxed">Welcome to JurisTech. Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your data when you use our AI-powered legal document generation platform.</p>
             
@@ -847,6 +939,12 @@ export default function App() {
             
             <p className="mb-4 leading-relaxed font-bold text-white">Document Data:</p>
             <p className="mb-4 leading-relaxed">Information you enter to generate documents (processed by Google Gemini AI, not permanently stored)</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">Local Storage & Auto-Fill:</p>
+            <p className="mb-4 leading-relaxed">To enhance your experience, we use your browser's Local Storage to save your 'Advocate Profile' preferences (e.g., Name, Bar Council Number, Court Name) for auto-filling forms. This specific profile data remains securely on your device and is not permanently saved to our cloud databases.</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">Reference Files & Uploads:</p>
+            <p className="mb-4 leading-relaxed">To enhance the accuracy of generated legal drafts, users may voluntarily upload reference documents (PDFs, Word files, Images). These files are strictly used as context for our AI engine.</p>
             
             <p className="mb-4 leading-relaxed font-bold text-white">Usage Data:</p>
             <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -875,6 +973,9 @@ export default function App() {
               <li>Law enforcement (if required by law)</li>
             </ul>
 
+            <p className="mb-4 leading-relaxed font-bold text-white">Third-Party AI Processors:</p>
+            <p className="mb-4 leading-relaxed">We utilize advanced third-party AI models (e.g., Google Gemini API) to process your uploaded reference files and form data. By uploading documents, you consent to this data being securely transmitted to our AI partners solely for the purpose of generating your requested draft.</p>
+
             <h3 className="font-bold text-white text-lg mt-6 mb-3">4. Cookies</h3>
             <p className="mb-4 leading-relaxed">We use cookies to keep you logged in, remember preferences, and analyze usage. You can manage cookies through your browser settings.</p>
 
@@ -887,6 +988,9 @@ export default function App() {
               <li>Transactions: 7 years (legal requirement)</li>
               <li>Document inputs: Processed temporarily, not stored permanently</li>
             </ul>
+
+            <p className="mb-4 leading-relaxed font-bold text-white">No Permanent Storage of Uploaded Files:</p>
+            <p className="mb-4 leading-relaxed">Uploaded reference files (PDFs, Images, etc.) are processed in real-time or memory and are not permanently stored in our databases. Only the final generated text and input form data are saved in your history for your future access.</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">7. Your Rights</h3>
             <p className="mb-4 leading-relaxed">You can:</p>
@@ -914,10 +1018,25 @@ export default function App() {
             <h3 className="font-bold text-white text-lg mt-6 mb-3">12. Governing Law</h3>
             <p className="mb-4 leading-relaxed">This policy is governed by Indian law.</p>
             <p className="mb-4 leading-relaxed">By using JurisTech, you agree to this Privacy Policy.</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsPrivacyOpen(false); setIsContactOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: Contact' : 'पिछला: संपर्क करें'}
+              </button>
+              <button 
+                onClick={() => { setIsPrivacyOpen(false); setIsTermsOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: Terms' : 'अगला: नियम और शर्तें'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         ) : (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">प्राइवेसी पॉलिसी (Privacy Policy)</h2>
             <p className="mb-4 leading-relaxed">पिछला अपडेट: 19 अप्रैल, 2026</p>
             <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है। आपकी प्राइवेसी हमारे लिए महत्वपूर्ण है। यह प्राइवेसी पॉलिसी बताती है कि जब आप हमारे AI-संचालित कानूनी दस्तावेज़ निर्माण प्लेटफ़ॉर्म का उपयोग करते हैं तो हम आपका डेटा कैसे एकत्र, उपयोग और सुरक्षित करते हैं।</p>
             
@@ -930,6 +1049,12 @@ export default function App() {
             
             <p className="mb-4 leading-relaxed font-bold text-white">दस्तावेज़ डेटा:</p>
             <p className="mb-4 leading-relaxed">दस्तावेज़ जेनरेट करने के लिए आपके द्वारा दर्ज की गई जानकारी (Google Gemini AI द्वारा संसाधित, स्थायी रूप से संग्रहीत नहीं)</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">लोकल स्टोरेज और ऑटो-फिल:</p>
+            <p className="mb-4 leading-relaxed">आपके अनुभव को बेहतर बनाने के लिए, हम फॉर्म को ऑटो-फिल करने के लिए आपके 'एडवोकेट प्रोफाइल' (जैसे नाम, बार काउंसिल नंबर, कोर्ट का नाम) को आपके ब्राउज़र के लोकल स्टोरेज में सेव करते हैं। यह डेटा सुरक्षित रूप से आपके डिवाइस पर ही रहता है और हमारे क्लाउड डेटाबेस में परमानेंट रूप से सेव नहीं होता है।</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">रेफरेंस फ़ाइलें और अपलोड:</p>
+            <p className="mb-4 leading-relaxed">बनाये गए कानूनी ड्राफ़्ट की सटीकता बढ़ाने के लिए, यूज़र अपनी मर्ज़ी से रेफ़रेंस डॉक्यूमेंट (PDF, वर्ड फ़ाइलें, इमेज) अपलोड कर सकते हैं। इन फ़ाइलों का इस्तेमाल सिर्फ़ हमारे AI इंजन के लिए कॉन्टेक्स्ट के तौर पर किया जाता है।</p>
             
             <p className="mb-4 leading-relaxed font-bold text-white">उपयोग डेटा:</p>
             <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -954,6 +1079,9 @@ export default function App() {
               <li>कानून प्रवर्तन (यदि कानून द्वारा आवश्यक हो)</li>
             </ul>
 
+            <p className="mb-4 leading-relaxed font-bold text-white">थर्ड-पार्टी AI प्रोसेसर:</p>
+            <p className="mb-4 leading-relaxed">हम आपकी अपलोड की गई रेफ़रेंस फ़ाइलों और फ़ॉर्म डेटा को प्रोसेस करने के लिए एडवांस्ड थर्ड-पार्टी AI मॉडल (जैसे, Google Gemini API) का इस्तेमाल करते हैं। डॉक्यूमेंट अपलोड करके, आप इस डेटा को सिर्फ़ आपके रिक्वेस्ट किए गए ड्राफ़्ट को बनाने के मकसद से हमारे AI पार्टनर को सुरक्षित रूप से भेजने की मंज़ूरी देते हैं।</p>
+
             <h3 className="font-bold text-white text-lg mt-6 mb-3">4. कुकीज़ (Cookies)</h3>
             <p className="mb-4 leading-relaxed">हम आपको लॉग इन रखने, प्राथमिकताओं को याद रखने और उपयोग का विश्लेषण करने के लिए कुकीज़ का उपयोग करते हैं। आप अपनी ब्राउज़र सेटिंग्स के माध्यम से कुकीज़ प्रबंधित कर सकते हैं।</p>
 
@@ -966,6 +1094,9 @@ export default function App() {
               <li>लेनदेन: 7 वर्ष (कानूनी आवश्यकता)</li>
               <li>डॉक्यूमेंट इनपुट: अस्थायी रूप से संसाधित, स्थायी रूप से संग्रहीत नहीं</li>
             </ul>
+
+            <p className="mb-4 leading-relaxed font-bold text-white">अपलोड की गई फ़ाइलों का कोई परमानेंट स्टोरेज नहीं:</p>
+            <p className="mb-4 leading-relaxed">अपलोड की गई रेफ़रेंस फ़ाइलें (PDF, इमेज, वगैरह) रियल-टाइम या मेमोरी में प्रोसेस की जाती हैं और हमारे डेटाबेस में परमानेंट रूप से स्टोर नहीं की जाती हैं। सिर्फ़ फ़ाइनल बनाया गया टेक्स्ट और इनपुट फ़ॉर्म डेटा ही आपके भविष्य के एक्सेस के लिए आपकी हिस्ट्री में सेव किया जाता है।</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">7. आपके अधिकार</h3>
             <p className="mb-4 leading-relaxed">आप ये कर सकते हैं:</p>
@@ -993,6 +1124,22 @@ export default function App() {
             <h3 className="font-bold text-white text-lg mt-6 mb-3">12. शासी कानून (Governing Law)</h3>
             <p className="mb-4 leading-relaxed">यह नीति भारतीय कानून द्वारा शासित है।</p>
             <p className="mb-4 leading-relaxed">JurisTech का उपयोग करके, आप इस प्राइवेसी पॉलिसी से सहमत हैं।</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsPrivacyOpen(false); setIsContactOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: Contact' : 'पिछला: संपर्क करें'}
+              </button>
+              <button 
+                onClick={() => { setIsPrivacyOpen(false); setIsTermsOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: Terms' : 'अगला: नियम और शर्तें'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         )}
       </InfoModal>
@@ -1002,10 +1149,10 @@ export default function App() {
         onClose={() => setIsTermsOpen(false)}
         lang={lang}
         setLang={setLang}
+        title={lang === 'en' ? 'Terms and Conditions' : 'नियम और शर्तें'}
       >
         {lang === 'en' ? (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">Terms and Conditions</h2>
             <p className="mb-4 leading-relaxed">Last Updated: April 19, 2026</p>
             <p className="mb-4 leading-relaxed">Welcome to JurisTech! These Terms govern your use of our AI-powered legal document generation platform. By using our Service, you agree to these Terms.</p>
             
@@ -1041,6 +1188,7 @@ export default function App() {
               <li>Not create fraudulent documents</li>
               <li>Not use bots or automated tools</li>
               <li>Not reverse-engineer our Service</li>
+              <li><span className="font-bold text-white">User Responsibility for Uploaded Content:</span> You represent and warrant that you have the necessary rights, permissions, and client consent to upload any reference documents to our platform. You agree not to upload highly sensitive, unredacted personal identifiers (like exact Aadhaar, PAN, or Bank Account numbers) unless absolutely necessary, and you bear sole responsibility for any data breach arising from your failure to anonymize such data.</li>
             </ul>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">5. Payment Terms</h3>
@@ -1087,6 +1235,12 @@ export default function App() {
             <h4 className="font-bold text-white text-lg mt-6 mb-3">7.3 No Guarantees</h4>
             <p className="mb-4 leading-relaxed">We don't guarantee documents are error-free, suitable for your situation, or accepted by courts. You verify accuracy and suitability.</p>
 
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.4 AI Interpretation & Handwriting</h4>
+            <p className="mb-4 leading-relaxed">While our AI aims to accurately transcribe and interpret uploaded documents, including handwritten notes via images, we do not guarantee 100% accuracy. Poor image quality or illegible handwriting may lead to omissions or errors in the generated draft. The user must thoroughly review, edit, and verify the final document before legal use.</p>
+
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.5 Auto-Fill Accuracy</h4>
+            <p className="mb-4 leading-relaxed">If you utilize the 'Advocate Profile' auto-fill feature, it is your sole responsibility to review and verify the pre-filled information in the drafting form before generating the final legal document. JurisTech is not liable for any errors arising from outdated or incorrect auto-filled data.</p>
+
             <h3 className="font-bold text-white text-lg mt-6 mb-3">8. Limitation of Liability</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>Service provided "AS IS"</li>
@@ -1130,10 +1284,25 @@ export default function App() {
             <h3 className="font-bold text-white text-lg mt-6 mb-3">17. Contact</h3>
             <p className="mb-4 leading-relaxed">Email: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
             <p className="mb-4 leading-relaxed">By using JurisTech, you agree to these Terms and Conditions.</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsTermsOpen(false); setIsPrivacyOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: Privacy' : 'पिछला: प्राइवेसी'}
+              </button>
+              <button 
+                onClick={() => { setIsTermsOpen(false); setIsAboutOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: About Us' : 'अगला: हमारे बारे में'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         ) : (
           <>
-            <h2 className="font-bold text-white text-xl mt-6 mb-3">नियम और शर्तें</h2>
             <p className="mb-4 leading-relaxed">पिछला अपडेट: 19 अप्रैल, 2026</p>
             <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है! ये शर्तें हमारे AI-पावर्ड लीगल डॉक्यूमेंट जेनरेशन प्लेटफ़ॉर्म के आपके इस्तेमाल को गाइड करती हैं। हमारी सर्विस का इस्तेमाल करके, आप इन शर्तों से सहमत होते हैं।</p>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">1. परिभाषाएँ</h3>
@@ -1167,11 +1336,12 @@ export default function App() {
               <li>धोखाधड़ी वाले डॉक्यूमेंट्स न बनाना</li>
               <li>बोट्स या ऑटोमेटेड टूल्स का इस्तेमाल न करना</li>
               <li>हमारी सर्विस की रिवर्स-इंजीनियरिंग न करना</li>
+              <li><span className="font-bold text-white">अपलोड किए गए कंटेंट के लिए यूज़र की ज़िम्मेदारी:</span> आप बताते हैं और गारंटी देते हैं कि हमारे प्लेटफ़ॉर्म पर कोई भी रेफरेंस डॉक्यूमेंट अपलोड करने के लिए आपके पास ज़रूरी अधिकार, परमिशन और क्लाइंट की सहमति है। आप सहमत हैं कि जब तक बहुत ज़रूरी न हो, आप बहुत सेंसिटिव, बिना बदलाव वाले पर्सनल आइडेंटिफ़ायर (जैसे सटीक आधार, पैन, या बैंक अकाउंट नंबर) अपलोड नहीं करेंगे, और ऐसे डेटा को एनॉनिमाइज़ न करने से होने वाले किसी भी डेटा ब्रीच के लिए पूरी तरह से आप ज़िम्मेदार होंगे।</li>
             </ul>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">5. पेमेंट की शर्तें</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li><span className="font-bold text-white">कीमत:</span> लीगल नोटिस 100% फ्री है। बाकी सभी प्रीमियम डॉक्यूमेंट्स के लिए 4 बार जेनरेट करने की कोशिश के लिए ₹99 शुल्क है।</li>
-              <li><span className="font-bold text-white">पेमेंट:</span> Razorpay (कार्ड, UPI, नेट बैंकिंग) के ज़रिए</li>
+              <li><span className="font-bold text-white">पेमेंट:</span> Razorpay (कार्ड, UPI, नेट बैंकिंग) के ज़रिए</li>
               <li><span className="font-bold text-white">समय:</span> डॉक्यूमेंट जेनरेशन प्रोसेस शुरू होने से पहले पेमेंट करना ज़रूरी है। प्रीमियम डॉक्यूमेंट टाइप को चुनते ही पेमेंट गेटवे शुरू हो जाएगा।</li>
               <li><span className="font-bold text-white">टैक्स:</span> शामिल है</li>
               <li><span className="font-bold text-white">रसीद:</span> सफल पेमेंट होने के बाद, आपकी स्क्रीन पर तुरंत एक डिजिटल ट्रांज़ैक्शन रसीद दिखाई जाएगी जिसे आप सीधे अपने डिवाइस पर डाउनलोड कर सकते हैं। हम ऑटोमेटेड ईमेल रसीदें नहीं भेजते हैं।</li>
@@ -1206,6 +1376,13 @@ export default function App() {
             <p className="mb-4 leading-relaxed">इस्तेमाल से पहले सभी डॉक्यूमेंट्स का रिव्यू किसी क्वालिफाइड वकील द्वारा किया जाना चाहिए।</p>
             <h4 className="font-bold text-white text-lg mt-6 mb-3">7.3 कोई गारंटी नहीं</h4>
             <p className="mb-4 leading-relaxed">हम इस बात की गारंटी नहीं देते कि डॉक्यूमेंट्स एरर-फ्री हैं, आपकी स्थिति के लिए सही हैं या कोर्ट द्वारा स्वीकार किए जाएंगे। आप उनकी सटीकता और उपयोगिता को ख़ुद वेरिफाई करें।</p>
+
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.4 AI इंटरप्रिटेशन और हैंडराइटिंग</h4>
+            <p className="mb-4 leading-relaxed">हालांकि हमारा AI अपलोड किए गए डॉक्यूमेंट, जिसमें इमेज के ज़रिए हाथ से लिखे नोट्स भी शामिल हैं, को सही ढंग से ट्रांसक्राइब और इंटरप्रेट करने का लक्ष्य रखता है, हम 100% एक्यूरेसी की गारंटी नहीं देते हैं। खराब इमेज क्वालिटी या साफ़ न होने वाली हैंडराइटिंग से जेनरेट किए गए ड्राफ़्ट में चूक या गलतियाँ हो सकती हैं। यूज़र को कानूनी इस्तेमाल से पहले फ़ाइनल डॉक्यूमेंट को अच्छी तरह से रिव्यू, एडिट और वेरिफ़ाई करना होगा।</p>
+
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.5 ऑटो-फिल की सटीकता</h4>
+            <p className="mb-4 leading-relaxed">यदि आप 'एडवोकेट प्रोफाइल' ऑटो-फिल फीचर का उपयोग करते हैं, तो अंतिम कानूनी दस्तावेज़ जेनरेट करने से पहले फॉर्म में भरी गई जानकारी को जाँचना और वेरिफाई करना पूरी तरह से आपकी ज़िम्मेदारी है। पुराने या गलत ऑटो-फिल किए गए डेटा से होने वाली किसी भी गलती के लिए JurisTech ज़िम्मेदार नहीं होगा।</p>
+
             <h3 className="font-bold text-white text-lg mt-6 mb-3">8. लायबिलिटी की सीमा (Limitation of Liability)</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>सर्विस "AS IS" लेवल पर दी जाती है</li>
@@ -1240,6 +1417,22 @@ export default function App() {
             <h3 className="font-bold text-white text-lg mt-6 mb-3">17. संपर्क</h3>
             <p className="mb-4 leading-relaxed">ईमेल: <a href="mailto:contact.jtc.co@gmail.com" className="text-blue-400 hover:underline">contact.jtc.co@gmail.com</a></p>
             <p className="mb-4 leading-relaxed">JurisTech का इस्तेमाल करके, आप इन नियमों और शर्तों से सहमत हैं।</p>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
+              <button 
+                onClick={() => { setIsTermsOpen(false); setIsPrivacyOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                {lang === 'en' ? 'Prev: Privacy' : 'पिछला: प्राइवेसी'}
+              </button>
+              <button 
+                onClick={() => { setIsTermsOpen(false); setIsAboutOpen(true); }}
+                className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
+              >
+                {lang === 'en' ? 'Next: About Us' : 'अगला: हमारे बारे में'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </>
         )}
       </InfoModal>
@@ -1254,34 +1447,38 @@ export default function App() {
             className="fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-sm"
             onClick={() => setIsFeedbackOpen(false)}
           >
-            <div className="flex min-h-full items-center justify-center p-4 py-12 sm:p-6">
+            <div className="flex min-h-full items-center justify-center p-4 py-8 sm:py-12 sm:p-6">
               <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-2xl bg-gray-900 text-gray-200 rounded-xl shadow-2xl"
+                className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-xl shadow-2xl overflow-y-auto max-h-[85vh]"
               >
-                {/* Area A (Header) */}
-                <div className="p-6 border-b border-gray-800">
-                  <div className="flex justify-between items-start w-full">
-                    <img 
-                      src="https://i.ibb.co/zWYNn82b/logo-png.png" 
-                      alt="JurisTech Logo" 
-                      className="h-26 w-auto object-contain"
-                      referrerPolicy="no-referrer"
-                    />
-                    <button 
-                      onClick={() => setIsFeedbackOpen(false)}
-                      className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all mt-2"
-                    >
-                      <X className="w-6 h-6" />
+              {/* ✨ 100% TRANSPARENT FLOATING HEADER ✨ */}
+                <div className="sticky top-0 z-50 pt-6 px-4 sm:px-6 pb-2 flex items-center justify-between gap-2 pointer-events-none bg-transparent border-none shadow-none">
+                  
+                  {/* LEFT: Fully Transparent Logo */}
+                  <div className="pointer-events-auto flex items-center shrink-0">
+                    <img src="https://i.ibb.co/zWYNn82b/logo-png.png" alt="JurisTech" className="h-8 sm:h-10 w-auto object-contain drop-shadow-2xl" referrerPolicy="no-referrer" />
+                  </div>
+
+                  {/* CENTER: Smart Flex Centered Title */}
+                  <div className="flex-1 flex justify-center pointer-events-auto min-w-0">
+                    <span className="bg-gray-900/60 backdrop-blur-xl border border-white/10 shadow-lg px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-bold text-white tracking-wide truncate max-w-full">
+                      Feedback
+                    </span>
+                  </div>
+                  
+                  {/* RIGHT: Close Button Only */}
+                  <div className="flex items-center pointer-events-auto shrink-0">
+                    <button onClick={() => setIsFeedbackOpen(false)} className="p-2 sm:p-3 rounded-full bg-gray-900/60 backdrop-blur-xl border border-white/10 text-gray-400 hover:text-white transition-all shadow-lg">
+                      <X className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   </div>
                 </div>
 
-                {/* Area B (Content) */}
-                <div className="p-6">
+                <div className="p-6 sm:p-8 pt-2">
                   <div className="flex flex-col items-center">
                     <h2 className="text-2xl text-white font-extrabold text-center mt-10 mb-6 font-sans">
                       Help Us Improve Your Experience
