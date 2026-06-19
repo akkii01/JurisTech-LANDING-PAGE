@@ -1484,10 +1484,11 @@ export default function App() {
                       Help Us Improve Your Experience
                     </h2>
 
+                    {/* 🔥 FIX: Changed white background to dark transparent bg-white/5 and made it responsive */}
                     <img 
                       src="https://i.ibb.co/wFXScDP0/COMPANY-S-QR-Code-FOR-FEEDBACK.png" 
                       alt="Feedback QR" 
-                      className="mx-auto w-96 h-96 aspect-square object-contain rounded-2xl bg-white p-4 shadow-2xl border-4 border-blue-500/30"
+                      className="mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square object-contain rounded-2xl bg-white/5 p-4 sm:p-6 shadow-2xl border border-white/10 hover:border-blue-500/30 transition-colors"
                       referrerPolicy="no-referrer"
                     />
 
