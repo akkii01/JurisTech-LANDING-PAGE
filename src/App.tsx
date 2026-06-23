@@ -39,6 +39,34 @@ const stagger = {
   }
 };
 
+// Extracted Workflow Steps Array for Duplication (Marquee Loop)
+const workflowSteps = [
+  {
+    step: 1,
+    title: "Choose Type",
+    desc: "Select from 12+ essential legal documents including Legal Notices, Rent Agreements, and Affidavits.",
+    icon: <FileText className="w-5 h-5" />,
+    img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=800",
+    color: "blue"
+  },
+  {
+    step: 2,
+    title: "Fill Details",
+    desc: "Answer simple prompts. Select your preferred version (Concise to Exhaustive) and tone (Professional to Formal).",
+    icon: <PenSquare className="w-5 h-5" />,
+    img: "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80&w=800",
+    color: "purple"
+  },
+  {
+    step: 3,
+    title: "Download",
+    desc: "Receive your court-ready document instantly. Download as Editable Word, PDF, or Plain Text.",
+    icon: <Download className="w-5 h-5" />,
+    img: "https://images.unsplash.com/photo-1618044733300-9472054094ee?auto=format&fit=crop&q=80&w=800",
+    color: "green"
+  }
+];
+
 const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: { 
   isOpen: boolean, 
   onClose: () => void, 
@@ -457,7 +485,7 @@ export default function App() {
                 whileHover={{ scale: 1.05 }}
                 className="glass-card p-8 rounded-2xl group hover:bg-white/[0.02] transition-colors"
               >
-                <div className={`mb-6 w-12 h-12 rounded-lg bg-${card.color}-500/10 border border-${card.color}-500/20 flex items-center justify-center text-${card.color}-400 group-hover:scale-110 transition-transform`}>
+                <div className={`w-12 h-12 rounded-lg bg-${card.color}-500/10 border border-${card.color}-500/20 flex items-center justify-center text-${card.color}-400 group-hover:scale-110 transition-transform mb-6`}>
                   {card.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-3">{card.title}</h3>
@@ -468,91 +496,50 @@ export default function App() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
+      {/* 🔥 HOW IT WORKS: UPDATED TO INFINITE RESPONSIVE MARQUEE 🔥 */}
       <section id="how-it-works" className="py-24 bg-dark-900 border-y border-white/5 relative overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-[0.03]"></div>
+        <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16 px-6">
             <span className="text-blue-500 font-semibold tracking-wider text-xs uppercase mb-2 block">Workflow</span>
             <h2 className="text-3xl font-semibold text-white tracking-tight">How It Works</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                step: 1,
-                title: "Choose Type",
-                desc: "Select from 12+ essential legal documents including Legal Notices, Rent Agreements, and Affidavits.",
-                icon: <FileText className="w-5 h-5" />,
-                img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=800",
-                color: "blue"
-              },
-              {
-                step: 2,
-                title: "Fill Details",
-                desc: "Answer simple prompts. Select your preferred version (Concise to Exhaustive) and tone (Professional to Formal).",
-                icon: <PenSquare className="w-5 h-5" />,
-                img: "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80&w=800",
-                color: "purple"
-              },
-              {
-                step: 3,
-                title: "Download",
-                desc: "Receive your court-ready document instantly. Download as Editable Word, PDF, or Plain Text.",
-                icon: <Download className="w-5 h-5" />,
-                img: "https://images.unsplash.com/photo-1618044733300-9472054094ee?auto=format&fit=crop&q=80&w=800",
-                color: "green"
-              }
-            ].map((step, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                whileInView={{ 
-                  opacity: 1, 
-                  scale: [1, 1.03, 1], 
-                  y: [0, -8, 0] 
-                }}
-                viewport={{ once: false, margin: "-50px" }}
-                transition={{ 
-                  opacity: { duration: 0.5, delay: i * 0.1 },
-                  scale: { 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: i * 0.8
-                  },
-                  y: { 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: i * 0.8
-                  },
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15
-                }}
-                className="bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-colors group"
-              >
-                <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
-                  <img 
-                    src={step.img} 
-                    className={`w-full h-full object-cover ${i === 0 ? 'opacity-100 relative z-10' : 'opacity-60'} group-hover:scale-105 transition-transform duration-700`} 
-                    alt={step.title}
-                  />
-                  {i !== 0 && <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent"></div>}
-                  <div className={`absolute bottom-4 left-4 w-10 h-10 rounded-full bg-${step.color}-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-${step.color}-400 shadow-lg`}>
-                    {step.icon}
+          {/* Marquee Outer Container */}
+          <div className="marquee-container w-full overflow-hidden relative py-6">
+            {/* Inner Scrolling Track with Pause on Hover */}
+            <div className="marquee-track flex flex-row gap-6 w-max items-stretch [animation-play-state:running] hover:[animation-play-state:paused] px-4">
+              
+              {/* Loop over the array TWICE to establish an uninterrupted loops sequence */}
+              {[...workflowSteps, ...workflowSteps].map((step, i) => (
+                <div 
+                  key={i}
+                  className="marquee-item w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group"
+                >
+                  <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
+                    <img 
+                      src={step.img} 
+                      className="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700" 
+                      alt={step.title}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
+                    <div className={`absolute bottom-4 left-4 w-10 h-10 rounded-full bg-${step.color}-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-${step.color}-400 shadow-lg`}>
+                      {step.icon}
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-3 mb-2">
-                  <span className={`flex items-center justify-center w-6 h-6 rounded-full bg-${step.color}-600 text-white text-[10px] font-bold`}>{step.step}</span>
-                  <h3 className="text-lg font-medium text-white">{step.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className={`flex items-center justify-center w-6 h-6 rounded-full bg-${step.color}-600 text-white text-[10px] font-bold`}>
+                      {step.step}
+                    </span>
+                    <h3 className="text-lg font-medium text-white">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-400 text-sm pl-9 leading-relaxed">{step.desc}</p>
                 </div>
-                <p className="text-gray-500 text-sm pl-9">{step.desc}</p>
-              </motion.div>
-            ))}
+              ))}
+
+            </div>
           </div>
         </div>
       </section>
@@ -1080,13 +1067,13 @@ export default function App() {
             </ul>
 
             <p className="mb-4 leading-relaxed font-bold text-white">थर्ड-पार्टी AI प्रोसेसर:</p>
-            <p className="mb-4 leading-relaxed">हम आपकी अपलोड की गई रेफ़रेंस फ़ाइलों और फ़ॉर्म डेटा को प्रोसेस करने के लिए एडवांस्ड थर्ड-पार्टी AI मॉडल (जैसे, Google Gemini API) का इस्तेमाल करते हैं। डॉक्यूमेंट अपलोड करके, आप इस डेटा को सिर्फ़ आपके रिक्वेस्ट किए गए ड्राफ़्ट को बनाने के मकसद से हमारे AI पार्टनर को सुरक्षित रूप से भेजने की मंज़ूरी देते हैं।</p>
+            <p className="mb-4 leading-relaxed">हम आपकी अपलोड की गई रेफ़रेंस फ़ाइलों और फ़ॉर्म डेटा को प्रोसेस करने के लिए एडवांस्ड协同 AI मॉडल (जैसे, Google Gemini API) का इस्तेमाल करते हैं। डॉक्यूमेंट अपलोड करके, आप इस डेटा को सिर्फ़ आपके रिक्वेस्ट किए गए ड्राफ़्ट को बनाने के मकसद से हमारे AI पार्टनर को सुरक्षित रूप से भेजने की मंज़ूरी देते हैं।</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">4. कुकीज़ (Cookies)</h3>
             <p className="mb-4 leading-relaxed">हम आपको लॉग इन रखने, प्राथमिकताओं को याद रखने और उपयोग का विश्लेषण करने के लिए कुकीज़ का उपयोग करते हैं। आप अपनी ब्राउज़र सेटिंग्स के माध्यम से कुकीज़ प्रबंधित कर सकते हैं।</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">5. डेटा सुरक्षा</h3>
-            <p className="mb-4 leading-relaxed">हम SSL एन्क्रिप्शन, पासवर्ड सुरक्षा और सुरक्षित पेमेंट प्रोसेसिंग का उपयोग करते हैं। हालांकि, कोई भी इंटरनेट ट्रांसमिशन 100% सुरक्षित नहीं है।</p>
+            <p className="mb-4 leading-relaxed">हम SSL एन्क्रिप्शन, पासवर्ड सुरक्षा और सुरक्षित पेमेंट प्रोसेसिंग का उपयोग करते हैं। हालांकि, कोई भी internet ट्रांसमिशन 100% सुरक्षित नहीं है।</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">6. डेटा रिटेंशन</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -1303,13 +1290,13 @@ export default function App() {
           </>
         ) : (
           <>
-            <p className="mb-4 leading-relaxed">पिछला अपडेट: 19 अप्रैल, 2026</p>
+            <p className="mb-4 leading-relaxed"> पिछला अपडेट: 19 अप्रैल, 2026</p>
             <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है! ये शर्तें हमारे AI-पावर्ड लीगल डॉक्यूमेंट जेनरेशन प्लेटफ़ॉर्म के आपके इस्तेमाल को गाइड करती हैं। हमारी सर्विस का इस्तेमाल करके, आप इन शर्तों से सहमत होते हैं।</p>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">1. परिभाषाएँ</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li><span className="font-bold text-white">"JurisTech," "हम," "हमारे," "हमें":</span> AI लीगल डॉक्यूमेंट जेनरेशन सर्विसेज़ देने वाले</li>
               <li><span className="font-bold text-white">"यूज़र," "आप," "आपका":</span> हमारी सर्विस का इस्तेमाल करने वाला कोई भी व्यक्ति</li>
-              <li><span className="font-bold text-white">"सर्विस":</span> JurisTech प्लेटफ़ॉर्म और इसके फ़ीचर्स</li>
+              <li><span className="font-bold text-white">"सर्विस":</span> JurisTech प्लेटफ़ॉर्म and इसके फ़ीचर्स</li>
             </ul>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">2. पात्रता (Eligibility)</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -1367,12 +1354,12 @@ export default function App() {
             <h4 className="font-bold text-white text-lg mt-6 mb-3">6.3 कैंसलेशन</h4>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li><span className="font-bold text-white">पेमेंट से पहले:</span> आप किसी भी समय बिना किसी शुल्क के प्रोसेस को कैंसिल कर सकते हैं या बंद कर सकते हैं।</li>
-              <li><span className="font-bold text-white">डॉक्यूमेंट जेनरेशन के बाद:</span> एक बार जब AI डॉक्यूमेंट जेनरेट कर देता है और वह आपकी स्क्रीन पर दिखाई देता है, तो सर्विस को पूरी तरह से इस्तेमाल किया हुआ माना जाता है। इसलिए, इस लेवल पर किसी भी स्थिति में कैंसलेशन या रिफंड की अनुमति नहीं है।</li>
+              <li><span className="font-bold text-white">डॉक्यूमेंट जेनरेशन के बाद:</span> एक बार जब AI डॉक्यूमेंट जेनरेट कर देता है और वह आपकी स्क्रीन पर दिखाई देता है, तो service को पूरी तरह से इस्तेमाल किया हुआ माना जाता है। इसलिए, इस लेवल पर किसी भी स्थिति में कैंसलेशन या रिफंड की अनुमति नहीं है।</li>
             </ul>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">7. ज़रूरी डिस्क्लेमर</h3>
             <h4 className="font-bold text-white text-lg mt-6 mb-3">7.1 कानूनी सलाह नहीं</h4>
             <p className="mb-4 leading-relaxed">JurisTech डॉक्यूमेंट टूल्स देता है, कानूनी सलाह नहीं। हम कोई लॉ फर्म नहीं हैं।</p>
-            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.2 प्रोफेशनल रिव्यू ज़रूरी</h4>
+            <h4 className="font-bold text-white text-lg mt-6 mb-3">7.2 Professional रिव्यू ज़रूरी</h4>
             <p className="mb-4 leading-relaxed">इस्तेमाल से पहले सभी डॉक्यूमेंट्स का रिव्यू किसी क्वालिफाइड वकील द्वारा किया जाना चाहिए।</p>
             <h4 className="font-bold text-white text-lg mt-6 mb-3">7.3 कोई गारंटी नहीं</h4>
             <p className="mb-4 leading-relaxed">हम इस बात की गारंटी नहीं देते कि डॉक्यूमेंट्स एरर-फ्री हैं, आपकी स्थिति के लिए सही हैं या कोर्ट द्वारा स्वीकार किए जाएंगे। आप उनकी सटीकता और उपयोगिता को ख़ुद वेरिफाई करें।</p>
@@ -1381,7 +1368,7 @@ export default function App() {
             <p className="mb-4 leading-relaxed">हालांकि हमारा AI अपलोड किए गए डॉक्यूमेंट, जिसमें इमेज के ज़रिए हाथ से लिखे नोट्स भी शामिल हैं, को सही ढंग से ट्रांसक्राइब और इंटरप्रेट करने का लक्ष्य रखता है, हम 100% एक्यूरेसी की गारंटी नहीं देते हैं। खराब इमेज क्वालिटी या साफ़ न होने वाली हैंडराइटिंग से जेनरेट किए गए ड्राफ़्ट में चूक या गलतियाँ हो सकती हैं। यूज़र को कानूनी इस्तेमाल से पहले फ़ाइनल डॉक्यूमेंट को अच्छी तरह से रिव्यू, एडिट और वेरिफ़ाई करना होगा।</p>
 
             <h4 className="font-bold text-white text-lg mt-6 mb-3">7.5 ऑटो-फिल की सटीकता</h4>
-            <p className="mb-4 leading-relaxed">यदि आप 'एडवोकेट प्रोफाइल' ऑटो-फिल फीचर का उपयोग करते हैं, तो अंतिम कानूनी दस्तावेज़ जेनरेट करने से पहले फॉर्म में भरी गई जानकारी को जाँचना और वेरिफाई करना पूरी तरह से आपकी ज़िम्मेदारी है। पुराने या गलत ऑटो-फिल किए गए डेटा से होने वाली किसी भी गलती के लिए JurisTech ज़िम्मेदार नहीं होगा।</p>
+            <p className="mb-4 leading-relaxed">यदि आप 'एडवोकेट प्रोफाइल' ऑटो-fill फीचर का उपयोग करते हैं, तो अंतिम कानूनी दस्तावेज़ जेनरेट करने से पहले फॉर्म में भरी गई जानकारी को जाँचना और वेरिफाई करना पूरी तरह से आपकी ज़िम्मेदारी है। पुराने या गलत ऑटो-फिल किए गए डेटा से होने वाली किसी भी गलती के लिए JurisTech ज़िम्मेदार नहीं होगा।</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">8. लायबिलिटी की सीमा (Limitation of Liability)</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
@@ -1484,7 +1471,7 @@ export default function App() {
                       Help Us Improve Your Experience
                     </h2>
 
-                    {/* 🔥 FIX: Changed white background to dark transparent bg-white/5 and made it responsive */}
+                    {/* QR Code Container */}
                     <img 
                       src="https://i.ibb.co/wFXScDP0/COMPANY-S-QR-Code-FOR-FEEDBACK.png" 
                       alt="Feedback QR" 
