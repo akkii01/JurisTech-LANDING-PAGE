@@ -54,22 +54,12 @@ body {
 }
 
 
-/* 🔥 PURE CSS SEAMLESS MARQUEE 🔥 */
-.marquee-wrapper {
-  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+/* 🔥 THE ONLY CSS NEEDED FOR SEAMLESS MARQUEE 🔥 */
+.animate-marquee {
+  animation: marquee 25s linear infinite;
 }
 
-.marquee-track {
-  animation: marqueeScroll 25s linear infinite;
-}
-
-/* जब कंटेनर पर माउस आएगा, तो अंदर के दोनों ट्रैक एक साथ रुक जाएंगे */
-.marquee-wrapper:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); } /* 50% की जगह 100% कर दिया गया है जिससे गणित एकदम पर्फेक्ट बैठेगा */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
 }
