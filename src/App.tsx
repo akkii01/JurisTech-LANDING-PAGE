@@ -496,7 +496,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 🔥 HOW IT WORKS: UPDATED TO INFINITE RESPONSIVE MARQUEE 🔥 */}
+      {/* 🔥 HOW IT WORKS: PERFECT SEAMLESS MARQUEE 🔥 */}
       <section id="how-it-works" className="py-24 bg-dark-900 border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
@@ -506,21 +506,20 @@ export default function App() {
             <h2 className="text-3xl font-semibold text-white tracking-tight">How It Works</h2>
           </div>
 
-          {/* Marquee Outer Container */}
-          <div className="marquee-container w-full overflow-hidden relative py-6">
-            {/* Inner Scrolling Track with Pause on Hover */}
-            <div className="marquee-track flex flex-row gap-6 w-max items-stretch px-4">
-              
-              {/* Loop over the array TWICE to establish an uninterrupted loops sequence */}
-              {[...workflowSteps, ...workflowSteps].map((step, i) => (
+          {/* Marquee Outer Wrapper */}
+          <div className="marquee-wrapper w-full overflow-hidden relative py-6 flex group">
+            
+            {/* Track 1 (Original) */}
+            <div className="marquee-track flex flex-row gap-6 px-3 shrink-0 w-max items-stretch">
+              {workflowSteps.map((step, i) => (
                 <div 
-                  key={i}
-                  className="marquee-item w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group"
+                  key={`track1-${i}`}
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
                 >
                   <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
                     <img 
                       src={step.img} 
-                      className="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700" 
+                      className="w-full h-full object-cover opacity-75 group-hover/card:scale-105 transition-transform duration-700" 
                       alt={step.title}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
@@ -538,8 +537,38 @@ export default function App() {
                   <p className="text-gray-400 text-sm pl-9 leading-relaxed">{step.desc}</p>
                 </div>
               ))}
-
             </div>
+
+            {/* Track 2 (Clone for seamless loop) */}
+            <div className="marquee-track flex flex-row gap-6 px-3 shrink-0 w-max items-stretch" aria-hidden="true">
+              {workflowSteps.map((step, i) => (
+                <div 
+                  key={`track2-${i}`}
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
+                >
+                  <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
+                    <img 
+                      src={step.img} 
+                      className="w-full h-full object-cover opacity-75 group-hover/card:scale-105 transition-transform duration-700" 
+                      alt={step.title}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
+                    <div className={`absolute bottom-4 left-4 w-10 h-10 rounded-full bg-${step.color}-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-${step.color}-400 shadow-lg`}>
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className={`flex items-center justify-center w-6 h-6 rounded-full bg-${step.color}-600 text-white text-[10px] font-bold`}>
+                      {step.step}
+                    </span>
+                    <h3 className="text-lg font-medium text-white">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-400 text-sm pl-9 leading-relaxed">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
