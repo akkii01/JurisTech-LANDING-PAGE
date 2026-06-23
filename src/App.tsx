@@ -509,7 +509,7 @@ export default function App() {
           {/* Marquee Outer Container */}
           <div className="marquee-container w-full overflow-hidden relative py-6">
             {/* Inner Scrolling Track with Pause on Hover */}
-            <div className="marquee-track flex flex-row gap-6 w-max items-stretch [animation-play-state:running] hover:[animation-play-state:paused] px-4">
+            <div className="marquee-track flex flex-row gap-6 w-max items-stretch px-4">
               
               {/* Loop over the array TWICE to establish an uninterrupted loops sequence */}
               {[...workflowSteps, ...workflowSteps].map((step, i) => (
