@@ -33,6 +33,33 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* ️ INFINITE HORIZONTAL MARQUEE UTILITIES ️ */
+  .marquee-container {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    /* दोनों किनारों पर स्मूथ फेडिंग इफेक्ट के लिए */
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    /* 25s स्पीड एकदम परफेक्ट और रीडेबल है, इसे आप चाहें तो कम-ज्यादा कर सकते हैं */
+    animation: marquee-scroll 25s linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* calc(-50% - 12px) Tailwind के gap-6 (24px) को बैलेंस करके एकदम परफेक्ट लूप बनाता है */
+      transform: translateX(calc(-50% - 12px));
+    }
+  }
 }
 
 body {
