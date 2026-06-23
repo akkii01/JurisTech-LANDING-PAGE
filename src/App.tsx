@@ -496,7 +496,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 🔥 HOW IT WORKS: 100% SEAMLESS MARQUEE 🔥 */}
+    {/* 🔥 HOW IT WORKS: 100% FOOLPROOF SEAMLESS MARQUEE 🔥 */}
       <section id="how-it-works" className="py-24 bg-dark-900 border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
@@ -506,9 +506,9 @@ export default function App() {
             <h2 className="text-3xl font-semibold text-white tracking-tight">How It Works</h2>
           </div>
 
-          {/* Marquee Wrapper - Using Inline Mask for smooth fading */}
+          {/* 🔥 FOOLPROOF WRAPPER 🔥 */}
           <div 
-            className="flex w-full overflow-hidden group py-6"
+            className="flex w-full overflow-hidden py-6 cursor-pointer custom-marquee-wrapper"
             style={{ 
               maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", 
               WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" 
@@ -516,11 +516,11 @@ export default function App() {
           >
             
             {/* Track 1 */}
-            <div className="flex shrink-0 gap-6 pr-6 animate-marquee group-hover:[animation-play-state:paused]">
+            <div className="flex shrink-0 gap-6 pr-6 custom-marquee-track">
               {workflowSteps.map((step, i) => (
                 <div 
                   key={`track1-${i}`}
-                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card cursor-pointer"
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
                 >
                   <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
                     <img 
@@ -545,12 +545,12 @@ export default function App() {
               ))}
             </div>
 
-            {/* Track 2 (Clone for perfect seamless loop) */}
-            <div className="flex shrink-0 gap-6 pr-6 animate-marquee group-hover:[animation-play-state:paused]" aria-hidden="true">
+            {/* Track 2 (Clone for seamless loop) */}
+            <div className="flex shrink-0 gap-6 pr-6 custom-marquee-track" aria-hidden="true">
               {workflowSteps.map((step, i) => (
                 <div 
                   key={`track2-${i}`}
-                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card cursor-pointer"
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
                 >
                   <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
                     <img 
