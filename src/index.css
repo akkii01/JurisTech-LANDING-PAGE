@@ -53,13 +53,19 @@ body {
   border-radius: 20px;
 }
 
+/* 🔥 100% FOOLPROOF SEAMLESS MARQUEE 🔥 */
+/* Tailwind के क्लैश से बचने के लिए कस्टम क्लास नाम इस्तेमाल किये गए हैं */
 
-/* 🔥 THE ONLY CSS NEEDED FOR SEAMLESS MARQUEE 🔥 */
-.animate-marquee {
-  animation: marquee 25s linear infinite;
+.custom-marquee-track {
+  animation: seamlessScroll 25s linear infinite;
 }
 
-@keyframes marquee {
+/* होवर करने पर एनीमेशन एकदम सही तरीके से रुकेगा */
+.custom-marquee-wrapper:hover .custom-marquee-track {
+  animation-play-state: paused !important;
+}
+
+@keyframes seamlessScroll {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-100%); }
 }
