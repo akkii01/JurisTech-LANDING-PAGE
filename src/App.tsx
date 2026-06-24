@@ -498,37 +498,56 @@ export default function App() {
                 icon: <Zap className="w-6 h-6" />, 
                 title: "Save Time", 
                 desc: "Generate in 2 minutes what typically takes 3 hours of manual drafting. Focus on strategy, not typing.",
-                color: "blue"
+                color: "blue",
+                animConfig: { rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] },
+                animTransition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
               },
               { 
                 icon: <Scale className="w-6 h-6" />, 
                 title: "Legally Sound", 
                 desc: "Follows standard Indian legal formats, provisions, and stylistic requirements.",
-                color: "green"
+                color: "green",
+                animConfig: { rotate: [-10, 10, -10] },
+                animTransition: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
               },
               { 
                 icon: <IndianRupee className="w-6 h-6" />, 
                 title: "Affordable", 
                 desc: "Pay only ₹99 per document. No hidden fees. Pay only for what you use.",
-                color: "purple"
+                color: "purple",
+                animConfig: { y: [0, -8, 0] },
+                animTransition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
               },
               { 
                 icon: <ShieldCheck className="w-6 h-6" />, 
                 title: "Court-Ready", 
                 desc: "Professional formatting with proper spacing and indentation, ready to download, review and file.",
-                color: "amber"
+                color: "amber",
+                animConfig: { scale: [1, 1.15, 1] },
+                animTransition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
               }
             ].map((card, i) => (
               <motion.div 
                 key={i}
                 whileHover={{ scale: 1.05 }}
-                className="glass-card p-8 rounded-2xl group hover:bg-white/[0.02] transition-colors"
+                className="glass-card p-8 rounded-2xl group hover:bg-white/[0.03] transition-colors relative overflow-hidden"
               >
-                <div className={`w-12 h-12 rounded-lg bg-${card.color}-500/10 border border-${card.color}-500/20 flex items-center justify-center text-${card.color}-400 group-hover:scale-110 transition-transform mb-6`}>
-                  {card.icon}
+                {/* Optional Hover Glow Effect behind the text */}
+                <div className={`absolute inset-0 bg-${card.color}-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
+                
+                <div className={`relative z-10 w-12 h-12 rounded-lg bg-${card.color}-500/10 border border-${card.color}-500/20 flex items-center justify-center text-${card.color}-400 mb-6`}>
+                  
+                  {/* ✨ MAGIC HAPPENS HERE: Individual Icon Animation ✨ */}
+                  <motion.div
+                    animate={card.animConfig}
+                    transition={card.animTransition}
+                  >
+                    {card.icon}
+                  </motion.div>
+
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{card.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{card.desc}</p>
+                <h3 className="relative z-10 text-xl font-semibold text-white mb-3">{card.title}</h3>
+                <p className="relative z-10 text-gray-400 text-sm leading-relaxed">{card.desc}</p>
               </motion.div>
             ))}
           </div>
