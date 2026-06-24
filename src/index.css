@@ -60,13 +60,12 @@ body {
   animation: seamlessScroll 15s linear infinite;
 }
 
-/* Hover pause */
 .custom-marquee-wrapper:hover .custom-marquee-track {
   animation-play-state: paused !important;
 }
 
 @keyframes seamlessScroll {
-  0% { transform: translateX(0); }
-  /* -50% shifts it perfectly halfway, and -12px balances the gap-6 */
-  100% { transform: translateX(calc(-50% - 12px)); }
+  0% { transform: translateX(0%); }
+  /* -100% moves exactly the width of one track, perfectly syncing with the second track */
+  100% { transform: translateX(-100%); }
 }
