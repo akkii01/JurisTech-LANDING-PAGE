@@ -496,7 +496,7 @@ export default function App() {
         </div>
       </section>
 
-    {/* 🔥 HOW IT WORKS: 100% SEAMLESS MARQUEE (DESKTOP & MOBILE) 🔥 */}
+    {/* 🔥 HOW IT WORKS: THE ULTIMATE SEAMLESS MARQUEE (DESKTOP + MOBILE) 🔥 */}
       <section id="how-it-works" className="py-24 bg-dark-900 border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
@@ -506,20 +506,49 @@ export default function App() {
             <h2 className="text-3xl font-semibold text-white tracking-tight">How It Works</h2>
           </div>
 
-          {/* Wrapper */}
           <div 
-            className="w-full overflow-hidden py-6 cursor-pointer custom-marquee-wrapper"
+            className="flex w-full overflow-hidden py-6 cursor-pointer custom-marquee-wrapper"
             style={{ 
               maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)", 
               WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" 
             }}
           >
             
-            {/* 🔥 एक सिंगल ट्रैक जिसमें 12 कार्ड्स (3x4) हैं ताकी डेस्कटॉप भी पूरा भर जाए 🔥 */}
-            <div className="flex w-max gap-6 custom-marquee-track">
-              {[...workflowSteps, ...workflowSteps, ...workflowSteps, ...workflowSteps].map((step, i) => (
+            {/* 🔥 TRACK 1: 6 Cards (2 Sets) - Ensures full desktop width coverage 🔥 */}
+            <div className="flex shrink-0 gap-6 pr-6 custom-marquee-track">
+              {[...workflowSteps, ...workflowSteps].map((step, i) => (
                 <div 
-                  key={i}
+                  key={`t1-${i}`}
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
+                >
+                  <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
+                    <img 
+                      src={step.img} 
+                      className="w-full h-full object-cover opacity-75 group-hover/card:scale-105 transition-transform duration-700" 
+                      alt={step.title}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
+                    <div className={`absolute bottom-4 left-4 w-10 h-10 rounded-full bg-${step.color}-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-${step.color}-400 shadow-lg`}>
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className={`flex items-center justify-center w-6 h-6 rounded-full bg-${step.color}-600 text-white text-[10px] font-bold`}>
+                      {step.step}
+                    </span>
+                    <h3 className="text-lg font-medium text-white">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-400 text-sm pl-9 leading-relaxed">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* 🔥 TRACK 2: 6 Cards (Identical Clone for perfect continuous loop) 🔥 */}
+            <div className="flex shrink-0 gap-6 pr-6 custom-marquee-track" aria-hidden="true">
+              {[...workflowSteps, ...workflowSteps].map((step, i) => (
+                <div 
+                  key={`t2-${i}`}
                   className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
                 >
                   <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
@@ -548,7 +577,6 @@ export default function App() {
           </div>
         </div>
       </section>
-
       {/* FEATURES SHOWCASE */}
       <section id="features" className="py-24 bg-dark-950">
         <div className="max-w-6xl mx-auto px-6 space-y-24">
