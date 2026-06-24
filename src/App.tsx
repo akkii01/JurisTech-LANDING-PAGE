@@ -371,43 +371,62 @@ export default function App() {
             </p>
           </motion.div>
 
-          {/* Floating Visual Elements */}
+         {/* 🔥 HERO SECTION CHIPS: SEAMLESS REVERSE MARQUEE (LEFT TO RIGHT) 🔥 */}
           <motion.div 
-            variants={stagger}
-            initial="initial"
-            animate="animate"
-            className="flex flex-wrap justify-center gap-4 mb-20 opacity-80"
+            {...fadeIn}
+            transition={{ delay: 0.4 }}
+            className="mb-20 opacity-80"
           >
-            {[
-              { icon: <FileText className="w-4 h-4" />, label: "Legal Notices", color: "blue" },
-              { icon: <Scale className="w-4 h-4" />, label: "Affidavits", color: "purple" },
-              { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" }
-            ].map((item, i) => (
-              <motion.div 
-                key={i}
-                variants={fadeIn}
-                animate={{
-                  opacity: 1,
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  y: {
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.3
-                  }
-                }}
-                className="glass-card px-4 py-3 rounded-xl flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div className={`w-8 h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
-                  {item.icon}
-                </div>
-                <span className="text-sm font-medium text-gray-300">{item.label}</span>
-              </motion.div>
-            ))}
-          </motion.div>
+            <div 
+              className="flex w-full overflow-hidden py-4 cursor-pointer custom-marquee-wrapper"
+              style={{ 
+                maskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)", 
+                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)" 
+              }}
+            >
+              {/* TRACK 1 (Reverse Track) */}
+              <div className="flex shrink-0 gap-4 pr-4 custom-marquee-track-reverse">
+                {[
+                  ...Array(6).fill([
+                    { icon: <FileText className="w-4 h-4" />, label: "Legal Notices", color: "blue" },
+                    { icon: <Scale className="w-4 h-4" />, label: "Affidavits", color: "purple" },
+                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" }
+                  ]).flat()
+                ].map((item, i) => (
+                  <div 
+                    key={`hero-t1-${i}`}
+                    className="glass-card px-5 py-3 rounded-xl flex items-center gap-3 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300 shrink-0"
+                  >
+                    <div className={`w-8 h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
+                      {item.icon}
+                    </div>
+                    <span className="text-sm font-medium text-gray-300 whitespace-nowrap">{item.label}</span>
+                  </div>
+                ))}
+              </div>
 
+              {/* TRACK 2 (Identical Clone for seamless loop) */}
+              <div className="flex shrink-0 gap-4 pr-4 custom-marquee-track-reverse" aria-hidden="true">
+                {[
+                  ...Array(6).fill([
+                    { icon: <FileText className="w-4 h-4" />, label: "Legal Notices", color: "blue" },
+                    { icon: <Scale className="w-4 h-4" />, label: "Affidavits", color: "purple" },
+                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" }
+                  ]).flat()
+                ].map((item, i) => (
+                  <div 
+                    key={`hero-t2-${i}`}
+                    className="glass-card px-5 py-3 rounded-xl flex items-center gap-3 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300 shrink-0"
+                  >
+                    <div className={`w-8 h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
+                      {item.icon}
+                    </div>
+                    <span className="text-sm font-medium text-gray-300 whitespace-nowrap">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
           {/* Dashboard Preview */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8, y: 40 }}
