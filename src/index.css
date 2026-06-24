@@ -57,7 +57,7 @@ body {
 /* Tailwind के क्लैश से बचने के लिए कस्टम क्लास नाम इस्तेमाल किये गए हैं */
 
 .custom-marquee-track {
-  animation: seamlessScroll 18s linear infinite;
+  animation: seamlessScroll 15s linear infinite;
 }
 
 /* होवर करने पर एनीमेशन एकदम सही तरीके से रुकेगा */
