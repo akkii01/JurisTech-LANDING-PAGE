@@ -54,18 +54,19 @@ body {
 }
 
 /* 🔥 100% FOOLPROOF SEAMLESS MARQUEE 🔥 */
-/* Tailwind के क्लैश से बचने के लिए कस्टम क्लास नाम इस्तेमाल किये गए हैं */
 
 .custom-marquee-track {
+  /* 15s speed for a normal, readable pace */
   animation: seamlessScroll 15s linear infinite;
 }
 
-/* होवर करने पर एनीमेशन एकदम सही तरीके से रुकेगा */
+/* Hover pause */
 .custom-marquee-wrapper:hover .custom-marquee-track {
   animation-play-state: paused !important;
 }
 
 @keyframes seamlessScroll {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+  0% { transform: translateX(0); }
+  /* -50% shifts it perfectly halfway, and -12px balances the gap-6 */
+  100% { transform: translateX(calc(-50% - 12px)); }
 }
