@@ -305,43 +305,27 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      {/* 🔥 HERO SECTION: OPTIMIZED FOR "ABOVE THE FOLD" VIEW 🔥 */}
-      <section className="relative pt-24 pb-8 sm:pt-32 overflow-hidden flex flex-col min-h-[90vh] justify-center">
+      {/* HERO SECTION - FULLY RESPONSIVE */}
+      <section className="relative pt-24 pb-8 sm:pt-32 overflow-hidden flex flex-col md:min-h-[90vh] md:justify-center items-center">
         {/* Background decorative grid */}
         <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-30"></div>
-        
-        {/* Hero Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl hero-glow pointer-events-none"></div>
 
-        <div className="z-10 text-center max-w-5xl mx-auto px-6 relative flex flex-col items-center">
+        <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center">
           
           {/* Badge */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 0 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1,
-              y: [0, -12, 0],
-            }}
-            transition={{
-              opacity: { duration: 0.5 },
-              scale: { duration: 0.5 },
-              y: {
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
-            }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-6 backdrop-blur-sm mt-8"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-medium mb-6 backdrop-blur-sm mt-8"
           >
-            <Star className="w-3 h-3" />
-            Where Accuracy Meets Innovation
+            <Star className="w-3 h-3" /> Where Accuracy Meets Innovation
           </motion.div>
 
           {/* Headline */}
           <motion.h1 
             {...fadeIn}
-           className="text-4xl sm:text-5xl lg:text-7xl font-semibold text-white tracking-tight mb-4 lg:mb-6 leading-[1.1]"
+            className="text-4xl sm:text-5xl lg:text-7xl font-semibold text-white tracking-tight mb-4 lg:mb-6 leading-[1.1] px-2"
           >
             Smarter Legal Drafting,<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Real Results</span>
@@ -350,135 +334,58 @@ export default function App() {
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
-           className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-6 lg:mb-8 font-light leading-relaxed px-2"
+            className="text-sm sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-6 lg:mb-8 font-light leading-relaxed px-4"
           >
-            AI-powered legal document generation built specifically for Indian advocates. 
-            Draft court-ready documents in minutes, not hours.
+            AI-powered legal document generation for Indian advocates.
           </motion.p>
 
-          {/* CTA Area (Reduced Margins to pull cards up) */}
+          {/* CTA Area */}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 w-full"
+            className="flex flex-col items-center gap-4 mb-10 w-full"
           >
-            {/* CTA BUTTON 2: HERO SECTION */}
             <a 
               href="https://juristech-v1.vercel.app/"
               target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center hover:bg-blue-500 transition-all text-sm font-semibold text-white bg-blue-600 rounded-full py-4 px-8 shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)]"
+              className="w-full sm:w-auto inline-flex items-center justify-center text-sm font-semibold text-white bg-blue-600 rounded-full py-3.5 px-8 hover:bg-blue-700 transition-all shadow-lg"
             >
               Try JurisTech Now
             </a>
-            <p className="text-xs text-gray-500 flex items-center gap-1">
-              <IndianRupee className="w-3 h-3" />99 per document • No hidden fees
-            </p>
+            <p className="text-xs text-gray-500">₹99 per document • No hidden fees</p>
           </motion.div>
 
-         {/* 🔥 HERO SECTION CHIPS: 10 DOCUMENTS REVERSE MARQUEE 🔥 */}
-          <motion.div 
-            {...fadeIn}
-            transition={{ delay: 0.4 }}
-            className="mb-4 mt-auto opacity-80 w-full" 
-          >
-            <div 
-              className="flex w-full overflow-hidden py-4 cursor-pointer custom-marquee-wrapper"
-              style={{ 
-                maskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)", 
-                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)" 
-              }}
-            >
-              {/* TRACK 1 */}
-              <div className="flex shrink-0 gap-4 pr-4 custom-marquee-track-reverse">
-                {[
-                  ...Array(3).fill([
-                    { icon: <FileText className="w-4 h-4" />, label: "Legal Notices", color: "blue" },
-                    { icon: <Scale className="w-4 h-4" />, label: "Affidavits", color: "purple" },
-                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" },
-                    { icon: <Briefcase className="w-4 h-4" />, label: "Sale Deed", color: "orange" },
-                    { icon: <FileText className="w-4 h-4" />, label: "Notes of Argument", color: "indigo" },
-                    { icon: <Scale className="w-4 h-4" />, label: "Power of Attorney", color: "rose" },
-                    { icon: <Shield className="w-4 h-4" />, label: "Police Complaint", color: "red" },
-                    { icon: <FileWarning className="w-4 h-4" />, label: "Eviction Notice", color: "yellow" },
-                    { icon: <Briefcase className="w-4 h-4" />, label: "Employment Agreement", color: "teal" },
-                    { icon: <Users className="w-4 h-4" />, label: "Partnership Deed", color: "cyan" }
-                  ]).flat()
-                ].map((item, i) => (
-                  <div 
-                    key={`hero-t1-${i}`}
-                    className="glass-card px-5 py-3 rounded-xl flex items-center gap-3 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300 shrink-0"
-                  >
-                    <div className={`w-8 h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
-                      {item.icon}
-                    </div>
-                    <span className="text-sm font-medium text-gray-300 whitespace-nowrap">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* TRACK 2 (Clone) */}
-              <div className="flex shrink-0 gap-4 pr-4 custom-marquee-track-reverse" aria-hidden="true">
-                {[
-                  ...Array(3).fill([
-                    { icon: <FileText className="w-4 h-4" />, label: "Legal Notices", color: "blue" },
-                    { icon: <Scale className="w-4 h-4" />, label: "Affidavits", color: "purple" },
-                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" },
-                    { icon: <Briefcase className="w-4 h-4" />, label: "Sale Deed", color: "orange" },
-                    { icon: <FileText className="w-4 h-4" />, label: "Notes of Argument", color: "indigo" },
-                    { icon: <Scale className="w-4 h-4" />, label: "Power of Attorney", color: "rose" },
-                    { icon: <Shield className="w-4 h-4" />, label: "Police Complaint", color: "red" },
-                    { icon: <FileWarning className="w-4 h-4" />, label: "Eviction Notice", color: "yellow" },
-                    { icon: <Briefcase className="w-4 h-4" />, label: "Employment Agreement", color: "teal" },
-                    { icon: <Users className="w-4 h-4" />, label: "Partnership Deed", color: "cyan" }
-                  ]).flat()
-                ].map((item, i) => (
-                  <div 
-                    key={`hero-t2-${i}`}
-                    className="glass-card px-5 py-3 rounded-xl flex items-center gap-3 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300 shrink-0"
-                  >
-                    <div className={`w-8 h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
-                      {item.icon}
-                    </div>
-                    <span className="text-sm font-medium text-gray-300 whitespace-nowrap">{item.label}</span>
+         {/* DOCUMENT CHIPS MARQUEE */}
+          <motion.div {...fadeIn} transition={{ delay: 0.4 }} className="opacity-80 w-full mb-8 sm:mb-12">
+            <div className="flex w-full overflow-hidden py-2 cursor-pointer custom-marquee-wrapper" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)" }}>
+              <div className="flex shrink-0 gap-3 pr-3 custom-marquee-track-reverse">
+                {[...Array(2).fill([
+                    { icon: <FileText className="w-3 h-3" />, label: "Legal Notices", color: "blue" },
+                    { icon: <Scale className="w-3 h-3" />, label: "Affidavits", color: "purple" },
+                    { icon: <ScrollText className="w-3 h-3" />, label: "Agreements", color: "green" },
+                    { icon: <Briefcase className="w-3 h-3" />, label: "Sale Deed", color: "orange" },
+                    { icon: <FileText className="w-3 h-3" />, label: "Notes of Argument", color: "indigo" }
+                ]).flat()].map((item: any, i: number) => (
+                  <div key={i} className="glass-card px-4 py-2 rounded-lg flex items-center gap-2 shrink-0 bg-white/5 border border-white/5">
+                    <div className={`w-6 h-6 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>{item.icon}</div>
+                    <span className="text-[10px] sm:text-xs font-medium text-gray-300 whitespace-nowrap">{item.label}</span>
                   </div>
                 ))}
               </div>
             </div>
           </motion.div>
           
-          {/* Dashboard Preview */}
+          {/* Dashboard Preview - Mobile par size manage ki hai */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8, y: 40 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ 
-              type: "spring",
-              stiffness: 100,
-              damping: 15,
-              delay: 0.1
-            }}
-            className="relative max-w-5xl mx-auto group mt-4 w-full"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="relative max-w-4xl mx-auto w-full px-4 mb-8"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-10 group-hover:opacity-25 transition duration-500"></div>
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-2xl">
-              <div className="h-12 bg-dark-800 border-b border-white/10 flex items-center px-6 justify-between">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/20"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/20"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/20"></div>
-                </div>
-                <div className="text-[10px] text-gray-500 font-mono tracking-widest uppercase">JurisTech Dashboard</div>
-                <div className="w-12"></div>
+            <div className="relative rounded-xl overflow-hidden border border-white/10 bg-dark-900 shadow-2xl">
+              <div className="h-8 bg-dark-800 border-b border-white/10 flex items-center px-4 gap-2">
+                <div className="flex gap-1.5"><div className="w-2 h-2 rounded-full bg-red-500/20"></div><div className="w-2 h-2 rounded-full bg-yellow-500/20"></div><div className="w-2 h-2 rounded-full bg-green-500/20"></div></div>
               </div>
-              <div className="bg-dark-900 min-h-[200px] flex items-center justify-center">
-                <img 
-                  src="https://i.ibb.co/QvhSNC7j/868shots-so.png" 
-                  alt="JurisTech Dashboard Interface" 
-                  className="w-full h-auto block opacity-100"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
+              <img src="https://i.ibb.co/QvhSNC7j/868shots-so.png" alt="Dashboard" className="w-full h-auto block" referrerPolicy="no-referrer" />
             </div>
           </motion.div>
         </div>
