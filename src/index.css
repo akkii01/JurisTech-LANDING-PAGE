@@ -73,7 +73,7 @@ body {
 
 .custom-marquee-track-reverse {
   /* 30s speed for elegant, slow floating */
-  animation: seamlessScrollReverse 20s linear infinite;
+  animation: seamlessScrollReverse 15s linear infinite;
 }
 
 .custom-marquee-wrapper:hover .custom-marquee-track-reverse {
