@@ -69,3 +69,18 @@ body {
   /* -100% moves exactly the width of one track, perfectly syncing with the second track */
   100% { transform: translateX(-100%); }
 }
+/* 🔥 HERO SECTION: REVERSE (LEFT TO RIGHT) MARQUEE 🔥 */
+
+.custom-marquee-track-reverse {
+  /* 30s speed for elegant, slow floating */
+  animation: seamlessScrollReverse 30s linear infinite;
+}
+
+.custom-marquee-wrapper:hover .custom-marquee-track-reverse {
+  animation-play-state: paused !important;
+}
+
+@keyframes seamlessScrollReverse {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
+}
