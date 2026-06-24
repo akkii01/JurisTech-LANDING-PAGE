@@ -779,15 +779,47 @@ export default function App() {
         </div>
       </section>
 
-      {/* FINAL CTA SECTION */}
+     {/* FINAL CTA SECTION */}
       <section className="bg-dark-950 py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="relative bg-dark-900/50 rounded-3xl p-12 overflow-hidden text-center">
             <div className="absolute inset-0 grid-pattern opacity-[0.05]"></div>
             
             <div className="relative z-10">
-              <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg shadow-blue-900/50">
-                <Zap className="w-8 h-8 text-white" />
+              
+              {/* 🔥 ELECTRIFYING ZAP BOX ANIMATION 🔥 */}
+              <div className="relative w-16 h-16 mx-auto mb-8 flex items-center justify-center">
+                
+                {/* Layer 1: Outer Pulse/Wave Effect */}
+                <motion.div
+                  animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                  className="absolute inset-0 bg-blue-500 rounded-2xl"
+                ></motion.div>
+                
+                {/* Layer 2: Glowing Box */}
+                <motion.div 
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 10px rgba(37,99,235,0.4)", 
+                      "0 0 40px rgba(37,99,235,0.9)", 
+                      "0 0 10px rgba(37,99,235,0.4)"
+                    ] 
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-blue-600 rounded-2xl flex items-center justify-center z-10"
+                >
+                  {/* Layer 3: Sparking/Jumping Icon */}
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, -15, 15, -15, 0],
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2.5 }}
+                  >
+                    <Zap className="w-8 h-8 text-white fill-white/20" />
+                  </motion.div>
+                </motion.div>
               </div>
               
               <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6">Ready to do drafting the right way?</h2>
