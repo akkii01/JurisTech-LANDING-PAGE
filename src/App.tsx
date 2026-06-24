@@ -28,6 +28,7 @@ import {
   FileWarning,
   Users
 } from "lucide-react";
+
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -304,15 +305,16 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      {/* HERO SECTION */}
-      <section className="relative pt-28 sm:pt-32 lg:pt-48 pb-20 overflow-hidden">
+      {/* 🔥 HERO SECTION: OPTIMIZED FOR "ABOVE THE FOLD" VIEW 🔥 */}
+      <section className="relative pt-24 pb-8 sm:pt-32 overflow-hidden flex flex-col min-h-[90vh] justify-center">
         {/* Background decorative grid */}
         <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-30"></div>
         
         {/* Hero Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl hero-glow pointer-events-none"></div>
 
-        <div className="z-10 text-center max-w-5xl mx-auto px-6 relative">
+        <div className="z-10 text-center max-w-5xl mx-auto px-6 relative flex flex-col items-center">
+          
           {/* Badge */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 0 }}
@@ -330,7 +332,7 @@ export default function App() {
                 ease: "easeInOut"
               }
             }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-8 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-6 backdrop-blur-sm mt-8"
           >
             <Star className="w-3 h-3" />
             Where Accuracy Meets Innovation
@@ -348,17 +350,17 @@ export default function App() {
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
-           className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-8 lg:mb-10 font-light leading-relaxed px-2"
+           className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-6 lg:mb-8 font-light leading-relaxed px-2"
           >
             AI-powered legal document generation built specifically for Indian advocates. 
             Draft court-ready documents in minutes, not hours.
           </motion.p>
 
-          {/* CTA Area */}
+          {/* CTA Area (Reduced Margins to pull cards up) */}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 w-full"
           >
             {/* CTA BUTTON 2: HERO SECTION */}
             <a 
@@ -378,7 +380,7 @@ export default function App() {
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4 }}
-            className="mb-20 opacity-80"
+            className="mb-4 mt-auto opacity-80 w-full" 
           >
             <div 
               className="flex w-full overflow-hidden py-4 cursor-pointer custom-marquee-wrapper"
@@ -444,6 +446,7 @@ export default function App() {
               </div>
             </div>
           </motion.div>
+          
           {/* Dashboard Preview */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8, y: 40 }}
@@ -455,7 +458,7 @@ export default function App() {
               damping: 15,
               delay: 0.1
             }}
-            className="relative max-w-5xl mx-auto group mt-16"
+            className="relative max-w-5xl mx-auto group mt-4 w-full"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-10 group-hover:opacity-25 transition duration-500"></div>
             <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-2xl">
