@@ -22,9 +22,12 @@ import {
   Menu,
   ShieldCheck,
   IndianRupee,
-  X
+  X,
+  Briefcase,
+  Shield,
+  FileWarning,
+  Users
 } from "lucide-react";
-
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -371,7 +374,7 @@ export default function App() {
             </p>
           </motion.div>
 
-         {/* 🔥 HERO SECTION CHIPS: SEAMLESS REVERSE MARQUEE (LEFT TO RIGHT) 🔥 */}
+         {/* 🔥 HERO SECTION CHIPS: 10 DOCUMENTS REVERSE MARQUEE 🔥 */}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4 }}
@@ -384,13 +387,20 @@ export default function App() {
                 WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)" 
               }}
             >
-              {/* TRACK 1 (Reverse Track) */}
+              {/* TRACK 1 */}
               <div className="flex shrink-0 gap-4 pr-4 custom-marquee-track-reverse">
                 {[
-                  ...Array(6).fill([
+                  ...Array(3).fill([
                     { icon: <FileText className="w-4 h-4" />, label: "Legal Notices", color: "blue" },
                     { icon: <Scale className="w-4 h-4" />, label: "Affidavits", color: "purple" },
-                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" }
+                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" },
+                    { icon: <Briefcase className="w-4 h-4" />, label: "Sale Deed", color: "orange" },
+                    { icon: <FileText className="w-4 h-4" />, label: "Notes of Argument", color: "indigo" },
+                    { icon: <Scale className="w-4 h-4" />, label: "Power of Attorney", color: "rose" },
+                    { icon: <Shield className="w-4 h-4" />, label: "Police Complaint", color: "red" },
+                    { icon: <FileWarning className="w-4 h-4" />, label: "Eviction Notice", color: "yellow" },
+                    { icon: <Briefcase className="w-4 h-4" />, label: "Employment Agreement", color: "teal" },
+                    { icon: <Users className="w-4 h-4" />, label: "Partnership Deed", color: "cyan" }
                   ]).flat()
                 ].map((item, i) => (
                   <div 
@@ -405,13 +415,20 @@ export default function App() {
                 ))}
               </div>
 
-              {/* TRACK 2 (Identical Clone for seamless loop) */}
+              {/* TRACK 2 (Clone) */}
               <div className="flex shrink-0 gap-4 pr-4 custom-marquee-track-reverse" aria-hidden="true">
                 {[
-                  ...Array(6).fill([
+                  ...Array(3).fill([
                     { icon: <FileText className="w-4 h-4" />, label: "Legal Notices", color: "blue" },
                     { icon: <Scale className="w-4 h-4" />, label: "Affidavits", color: "purple" },
-                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" }
+                    { icon: <ScrollText className="w-4 h-4" />, label: "Agreements", color: "green" },
+                    { icon: <Briefcase className="w-4 h-4" />, label: "Sale Deed", color: "orange" },
+                    { icon: <FileText className="w-4 h-4" />, label: "Notes of Argument", color: "indigo" },
+                    { icon: <Scale className="w-4 h-4" />, label: "Power of Attorney", color: "rose" },
+                    { icon: <Shield className="w-4 h-4" />, label: "Police Complaint", color: "red" },
+                    { icon: <FileWarning className="w-4 h-4" />, label: "Eviction Notice", color: "yellow" },
+                    { icon: <Briefcase className="w-4 h-4" />, label: "Employment Agreement", color: "teal" },
+                    { icon: <Users className="w-4 h-4" />, label: "Partnership Deed", color: "cyan" }
                   ]).flat()
                 ].map((item, i) => (
                   <div 
