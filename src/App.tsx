@@ -32,7 +32,7 @@ import {
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: 0.6, ease: "easeOut" }
 };
 
 const stagger = {
@@ -85,7 +85,7 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-sm"
+        className="fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-md"
         onClick={() => {
           setLang('en');
           onClose();
@@ -93,11 +93,12 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: {
       >
         <div className="flex min-h-full p-4 py-8 sm:py-12 sm:p-6">
           <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-xl shadow-2xl overflow-y-auto max-h-[85vh]"
+            className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 overflow-y-auto max-h-[85vh]"
           >
             {/* ✨ 100% TRANSPARENT FLOATING HEADER ✨ */}
             <div className="sticky top-0 z-50 pt-6 px-4 sm:px-6 pb-2 flex items-center justify-between gap-2 pointer-events-none bg-transparent border-none shadow-none">
@@ -129,7 +130,7 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: {
                 </div>
                 <button 
                   onClick={() => { setLang('en'); onClose(); }}
-                  className="p-2 sm:p-3 rounded-full bg-gray-900/60 backdrop-blur-xl border border-white/10 text-gray-400 hover:text-white transition-all shadow-lg"
+                  className="p-2 sm:p-3 rounded-full bg-gray-900/60 backdrop-blur-xl border border-white/10 text-gray-400 hover:text-white transition-all shadow-lg hover:bg-white/10"
                 >
                   <X className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -161,22 +162,23 @@ export default function App() {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-dark-950 text-gray-200 selection:bg-blue-500/30 selection:text-blue-200">
-      {/* NAVIGATION */}
-      <nav className="fixed w-full z-50 top-0 pt-6 px-6 pb-4">
+    <div className="min-h-screen bg-dark-950 text-gray-200 selection:bg-blue-500/30 selection:text-blue-200 antialiased">
+      
+      {/* NAVIGATION - Premium Blur */}
+      <nav className="fixed w-full z-50 top-0 pt-4 px-6 pb-4 bg-gradient-to-b from-dark-950/90 to-transparent backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo Container */}
           <motion.a 
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             href="#" 
             className="flex-shrink-0 group hover:opacity-80 transition-opacity flex items-center gap-2.5"
           >
             <img 
               src="https://i.ibb.co/zWYNn82b/logo-png.png" 
               alt="JTC Logo" 
-              className="h-12 lg:h-16 w-auto object-contain"
+              className="h-10 lg:h-12 w-auto object-contain drop-shadow-md"
               referrerPolicy="no-referrer"
             />
             <span className={`text-xl lg:text-2xl font-bold text-white tracking-tight transition-all duration-300 ${isMobileMenuOpen ? 'block' : 'hidden lg:block'}`}>
@@ -186,62 +188,38 @@ export default function App() {
 
           {/* Central Navigation */}
           <motion.div 
-            initial={{ opacity: 0, y: -40 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="hidden lg:flex items-center bg-dark-800/80 border-white/10 border rounded-full px-10 py-4 shadow-2xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-400"
+            transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-8 py-3 shadow-xl backdrop-blur-xl gap-8 text-sm font-medium text-gray-300"
           >
-            <motion.a 
-              whileHover={{ scale: 1.1, color: "#fff" }}
-              href="#features" 
-              className="hover:text-white transition-colors"
-            >
-              Features
-            </motion.a>
-            <motion.a 
-              whileHover={{ scale: 1.1, color: "#fff" }}
-              href="#how-it-works" 
-              className="hover:text-white transition-colors"
-            >
-              How it works
-            </motion.a>
-            <motion.a 
-              whileHover={{ scale: 1.1, color: "#fff" }}
-              href="#pricing" 
-              className="hover:text-white transition-colors"
-            >
-              Pricing
-            </motion.a>
-            <motion.button 
-              whileHover={{ scale: 1.1, color: "#fff" }}
-              onClick={() => setIsFeedbackOpen(true)}
-              className="hover:text-white transition-colors focus:outline-none"
-            >
-              Your Feedback
-            </motion.button>
+            <a href="#features" className="hover:text-white hover:scale-105 transition-all">Features</a>
+            <a href="#how-it-works" className="hover:text-white hover:scale-105 transition-all">How it works</a>
+            <a href="#pricing" className="hover:text-white hover:scale-105 transition-all">Pricing</a>
+            <button onClick={() => setIsFeedbackOpen(true)} className="hover:text-white hover:scale-105 transition-all focus:outline-none">Your Feedback</button>
           </motion.div>
 
           {/* CTA BUTTON 1: HEADER SECTION */}
           <motion.a 
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             href="https://juristech-v1.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden lg:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-dark-900 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-[0_0_30px_-5px_rgba(37,99,235,0.6)] hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.8)] group relative overflow-hidden"
+            className="hidden lg:flex items-center gap-2 px-7 py-3 text-sm font-semibold text-white bg-dark-800 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-lg hover:shadow-[0_0_20px_-5px_rgba(37,99,235,0.6)] group relative overflow-hidden"
           >
-            <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors"></div>
+            <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors duration-300"></div>
             <span className="relative z-10">Try Now</span>
-            <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </motion.a>
 
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-gray-300 p-2 hover:bg-white/5 rounded-lg transition-colors"
+            className="lg:hidden text-gray-300 p-2 hover:bg-white/10 rounded-lg transition-colors"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -257,47 +235,12 @@ export default function App() {
               className="lg:hidden mt-4 overflow-hidden"
             >
               <div className="bg-dark-800/95 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl flex flex-col gap-4">
-                <a 
-                  href="#features" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
-                >
-                  Features
-                </a>
-                <a 
-                  href="#how-it-works" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
-                >
-                  How it works
-                </a>
-                <a 
-                  href="#pricing" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
-                >
-                  Pricing
-                </a>
-                <button 
-                  onClick={() => {
-                    setIsFeedbackOpen(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors"
-                >
-                  Your Feedback
-                </button>
-                
-                {/* CTA BUTTON 1b: HEADER MOBILE MENU */}
-                <a 
-                  href="https://juristech-v1.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-2 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-lg shadow-blue-600/20"
-                >
-                  Try Now
-                  <ArrowRight className="w-4 h-4" />
+                <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Features</a>
+                <a href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">How it works</a>
+                <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Pricing</a>
+                <button onClick={() => { setIsFeedbackOpen(true); setIsMobileMenuOpen(false); }} className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Your Feedback</button>
+                <a href="https://juristech-v1.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                  Try Now <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </motion.div>
@@ -305,74 +248,59 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES 🔥 */}
-      <section className="relative pt-28 pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
-        {/* Background decorative grid */}
-        <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-30"></div>
-        
-        {/* Hero Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl hero-glow pointer-events-none"></div>
+      {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES (PREMIUM DEPTH) 🔥 */}
+      <section className="relative pt-32 pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
+        {/* Deep Premium Background */}
+        <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none"></div>
 
-        <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center">
+        <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center mt-8">
           
           {/* Animated Badge */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 0 }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1,
-              y: [0, -12, 0],
-            }}
-            transition={{
-              opacity: { duration: 0.5 },
-              scale: { duration: 0.5 },
-              y: {
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
-            }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-medium mb-6 backdrop-blur-sm mt-8"
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
+            transition={{ opacity: { duration: 0.5 }, scale: { duration: 0.5 }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[10px] sm:text-xs font-semibold mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(37,99,235,0.15)]"
           >
-            <Star className="w-3 h-3" />
+            <Star className="w-3 h-3 fill-blue-500/50" />
             Where Accuracy Meets Innovation
           </motion.div>
 
-          {/* Headline */}
+          {/* Premium Headline */}
           <motion.h1 
             {...fadeIn}
-            className="text-4xl sm:text-5xl lg:text-7xl font-semibold text-white tracking-tight mb-4 lg:mb-6 leading-[1.1] px-2"
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-6 leading-[1.1] px-2"
           >
             Smarter Legal Drafting,<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Real Results</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-[0_0_30px_rgba(37,99,235,0.3)]">Real Results</span>
           </motion.h1>
 
-          {/* Full Sub-Headline */}
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
-            className="text-sm sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-8 lg:mb-10 font-light leading-relaxed px-4"
+            className="text-sm sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed px-4"
           >
             AI-powered legal document generation built specifically for Indian advocates. 
             Draft court-ready documents in minutes, not hours.
           </motion.p>
 
-          {/* CTA Area */}
+          {/* Premium CTA Area */}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 w-full px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-10 w-full px-4"
           >
             <a 
               href="https://juristech-v1.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center hover:bg-blue-500 transition-all text-sm font-semibold text-white bg-blue-600 rounded-full py-4 px-8 shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)]"
+              className="w-full sm:w-auto inline-flex items-center justify-center text-sm font-bold text-white bg-blue-600 rounded-full py-4 px-10 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300 hover:-translate-y-0.5"
             >
               Try JurisTech Now
             </a>
-            <p className="text-xs text-gray-500 flex items-center gap-1">
-              <IndianRupee className="w-3 h-3" />99 per document • No hidden fees
+            <p className="text-xs font-medium text-gray-500 flex items-center gap-1.5 bg-dark-800/50 py-2 px-4 rounded-full border border-white/5">
+              <IndianRupee className="w-3 h-3 text-blue-400" /> 99 per document <span className="mx-1">•</span> No hidden fees
             </p>
           </motion.div>
 
@@ -389,7 +317,7 @@ export default function App() {
                 WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)" 
               }}
             >
-              {/* TRACK 1 (Ensures Mobile and Desktop fill) */}
+              {/* TRACK 1 */}
               <div className="flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 custom-marquee-track-reverse">
                 {[
                   ...Array(2).fill([
@@ -407,7 +335,7 @@ export default function App() {
                 ].map((item, i) => (
                   <div 
                     key={`hero-t1-${i}`}
-                    className="glass-card px-4 py-2 sm:px-5 sm:py-3 rounded-xl flex items-center gap-2 sm:gap-3 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300 shrink-0"
+                    className="glass-card px-4 py-2 sm:px-5 sm:py-3 rounded-xl flex items-center gap-2 sm:gap-3 hover:-translate-y-1 hover:bg-white/10 hover:border-white/20 transition-all duration-300 shrink-0 border border-white/5 bg-white/[0.02]"
                   >
                     <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
                       {item.icon}
@@ -417,7 +345,7 @@ export default function App() {
                 ))}
               </div>
 
-              {/* TRACK 2 (Identical Clone for seamless loop) */}
+              {/* TRACK 2 */}
               <div className="flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 custom-marquee-track-reverse" aria-hidden="true">
                 {[
                   ...Array(2).fill([
@@ -435,7 +363,7 @@ export default function App() {
                 ].map((item, i) => (
                   <div 
                     key={`hero-t2-${i}`}
-                    className="glass-card px-4 py-2 sm:px-5 sm:py-3 rounded-xl flex items-center gap-2 sm:gap-3 hover:-translate-y-1 hover:bg-white/10 transition-all duration-300 shrink-0"
+                    className="glass-card px-4 py-2 sm:px-5 sm:py-3 rounded-xl flex items-center gap-2 sm:gap-3 hover:-translate-y-1 hover:bg-white/10 hover:border-white/20 transition-all duration-300 shrink-0 border border-white/5 bg-white/[0.02]"
                   >
                     <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-${item.color}-500/20 flex items-center justify-center text-${item.color}-400`}>
                       {item.icon}
@@ -447,28 +375,23 @@ export default function App() {
             </div>
           </motion.div>
           
-          {/* Dashboard Preview - Constrained properly for mobile */}
+          {/* Dashboard Preview */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8, y: 40 }}
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ 
-              type: "spring",
-              stiffness: 100,
-              damping: 15,
-              delay: 0.1
-            }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.1 }}
             className="relative max-w-5xl mx-auto group mt-4 w-full px-2 sm:px-4"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-10 group-hover:opacity-25 transition duration-500"></div>
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/50 to-indigo-600/50 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
             <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-2xl">
-              <div className="h-12 bg-dark-800 border-b border-white/10 flex items-center px-4 sm:px-6 justify-between">
+              <div className="h-10 sm:h-12 bg-dark-800/80 border-b border-white/10 flex items-center px-4 sm:px-6 justify-between backdrop-blur-sm">
                 <div className="flex space-x-2">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500/20"></div>
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500/20"></div>
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500/20"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/40"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/40"></div>
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/40"></div>
                 </div>
-                <div className="text-[8px] sm:text-[10px] text-gray-500 font-mono tracking-widest uppercase">JurisTech Dashboard</div>
+                <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">JurisTech Dashboard</div>
                 <div className="w-8 sm:w-12"></div>
               </div>
               <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
@@ -484,81 +407,92 @@ export default function App() {
         </div>
       </section>
 
-     {/* WHY CHOOSE US - COMPLETE SECTION */}
-<section className="py-24 bg-dark-950 relative">
-  <div className="max-w-6xl mx-auto px-6">
-    <div className="text-center mb-16">
-      <h2 className="text-3xl font-semibold text-white tracking-tight mb-4">Why Indian Advocates Choose JurisTech</h2>
-      <p className="text-gray-400">Built for efficiency, accuracy, and compliance.</p>
-    </div>
+      {/* 🔥 HIGH-ATTENTION WHY CHOOSE US SECTION 🔥 */}
+      <section className="py-24 bg-dark-950 relative border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">Why Indian Advocates Choose JurisTech</h2>
+            <p className="text-gray-400 text-lg font-light">Built for efficiency, accuracy, and compliance.</p>
+          </motion.div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {[
-        { 
-          icon: <Zap className="w-6 h-6" />, 
-          title: "Save Time", 
-          desc: "Generate in 2 minutes what typically takes 3 hours of manual drafting. Focus on strategy, not typing.",
-          color: "blue",
-          animConfig: { scale: [1, 1.3, 1], rotate: [0, -20, 20, 0] },
-          animTransition: { duration: 1.5, repeat: Infinity, repeatDelay: 2 }
-        },
-        { 
-          icon: <Scale className="w-6 h-6" />, 
-          title: "Legally Sound", 
-          desc: "Follows standard Indian legal formats, provisions, and stylistic requirements.",
-          color: "green",
-          animConfig: { rotate: [-25, 25, -25] },
-          animTransition: { duration: 0.8, repeat: Infinity, ease: "easeInOut" }
-        },
-        { 
-          icon: <IndianRupee className="w-6 h-6" />, 
-          title: "Affordable", 
-          desc: "Pay only ₹99 per document. No hidden fees. Pay only for what you use.",
-          color: "purple",
-          animConfig: { y: [0, -15, 0], scale: [1, 1.1, 1] },
-          animTransition: { duration: 1.2, repeat: Infinity, ease: "bounceOut" }
-        },
-        { 
-          icon: <ShieldCheck className="w-6 h-6" />, 
-          title: "Court-Ready", 
-          desc: "Professional formatting with proper spacing and indentation, ready to download, review and file.",
-          color: "amber",
-          animConfig: { scale: [1, 1.4, 1], opacity: [1, 0.8, 1] },
-          animTransition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
-        }
-      ].map((card, i) => (
-        <div 
-          key={i}
-          className="glass-card p-8 rounded-2xl group hover:bg-white/[0.03] transition-colors relative overflow-hidden"
-        >
-          <div className={`relative z-10 w-14 h-14 rounded-xl bg-${card.color}-500/20 border border-${card.color}-500/40 flex items-center justify-center text-${card.color}-400 mb-6 shadow-[0_0_15px_rgba(0,0,0,0.3)]`}>
-            
-            {/* HIGH-ATTENTION ANIMATION */}
-            <motion.div
-              animate={card.animConfig}
-              transition={card.animTransition}
-            >
-              {card.icon}
-            </motion.div>
-
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { 
+                icon: <Zap className="w-6 h-6" />, 
+                title: "Save Time", 
+                desc: "Generate in 2 minutes what typically takes 3 hours of manual drafting. Focus on strategy, not typing.",
+                color: "blue",
+                animConfig: { scale: [1, 1.3, 1], rotate: [0, -20, 20, 0] },
+                animTransition: { duration: 1.5, repeat: Infinity, repeatDelay: 2 }
+              },
+              { 
+                icon: <Scale className="w-6 h-6" />, 
+                title: "Legally Sound", 
+                desc: "Follows standard Indian legal formats, provisions, and stylistic requirements.",
+                color: "green",
+                animConfig: { rotate: [-25, 25, -25] },
+                animTransition: { duration: 0.8, repeat: Infinity, ease: "easeInOut" }
+              },
+              { 
+                icon: <IndianRupee className="w-6 h-6" />, 
+                title: "Affordable", 
+                desc: "Pay only ₹99 per document. No hidden fees. Pay only for what you use.",
+                color: "purple",
+                animConfig: { y: [0, -15, 0], scale: [1, 1.1, 1] },
+                animTransition: { duration: 1.2, repeat: Infinity, ease: "bounceOut" }
+              },
+              { 
+                icon: <ShieldCheck className="w-6 h-6" />, 
+                title: "Court-Ready", 
+                desc: "Professional formatting with proper spacing and indentation, ready to download, review and file.",
+                color: "amber",
+                animConfig: { scale: [1, 1.4, 1], opacity: [1, 0.8, 1] },
+                animTransition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+              }
+            ].map((card, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+                className="glass-card p-8 rounded-3xl group hover:bg-white/[0.04] transition-all duration-300 relative overflow-hidden border border-white/5"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br from-${card.color}-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                <div className={`relative z-10 w-14 h-14 rounded-xl bg-${card.color}-500/10 border border-${card.color}-500/30 flex items-center justify-center text-${card.color}-400 mb-6 shadow-[0_0_20px_rgba(0,0,0,0.3)] group-hover:shadow-[0_0_25px_rgba(var(--color-${card.color}-500),0.2)] transition-all`}>
+                  {/* HIGH-ATTENTION ANIMATION */}
+                  <motion.div animate={card.animConfig} transition={card.animTransition}>
+                    {card.icon}
+                  </motion.div>
+                </div>
+                <h3 className="relative z-10 text-xl font-bold text-white mb-3 tracking-tight">{card.title}</h3>
+                <p className="relative z-10 text-gray-400 text-sm leading-relaxed">{card.desc}</p>
+              </motion.div>
+            ))}
           </div>
-          <h3 className="relative z-10 text-xl font-semibold text-white mb-3">{card.title}</h3>
-          <p className="relative z-10 text-gray-400 text-sm leading-relaxed">{card.desc}</p>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
     {/* 🔥 HOW IT WORKS: THE ULTIMATE SEAMLESS MARQUEE (DESKTOP + MOBILE) 🔥 */}
       <section id="how-it-works" className="py-24 bg-dark-900 border-y border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16 px-6">
-            <span className="text-blue-500 font-semibold tracking-wider text-xs uppercase mb-2 block">Workflow</span>
-            <h2 className="text-3xl font-semibold text-white tracking-tight">How It Works</h2>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16 px-6"
+          >
+            <span className="text-blue-500 font-bold tracking-widest text-xs uppercase mb-3 block">Workflow</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">How It Works</h2>
+          </motion.div>
 
           <div 
             className="flex w-full overflow-hidden py-6 cursor-pointer custom-marquee-wrapper"
@@ -573,27 +507,27 @@ export default function App() {
               {[...workflowSteps, ...workflowSteps].map((step, i) => (
                 <div 
                   key={`t1-${i}`}
-                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-500 group/card bg-white/[0.01] hover:bg-white/[0.03]"
                 >
-                  <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
+                  <div className="aspect-video bg-dark-800 rounded-2xl mb-6 overflow-hidden relative shadow-inner">
                     <img 
                       src={step.img} 
-                      className="w-full h-full object-cover opacity-75 group-hover/card:scale-105 transition-transform duration-700" 
+                      className="w-full h-full object-cover opacity-70 group-hover/card:opacity-100 group-hover/card:scale-110 transition-all duration-700 ease-out" 
                       alt={step.title}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
-                    <div className={`absolute bottom-4 left-4 w-10 h-10 rounded-full bg-${step.color}-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-${step.color}-400 shadow-lg`}>
+                    <div className={`absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-${step.color}-500/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-${step.color}-400 shadow-xl`}>
                       {step.icon}
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className={`flex items-center justify-center w-6 h-6 rounded-full bg-${step.color}-600 text-white text-[10px] font-bold`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`flex items-center justify-center w-7 h-7 rounded-lg bg-${step.color}-600 text-white text-xs font-bold shadow-md`}>
                       {step.step}
                     </span>
-                    <h3 className="text-lg font-medium text-white">{step.title}</h3>
+                    <h3 className="text-xl font-bold text-white tracking-tight">{step.title}</h3>
                   </div>
-                  <p className="text-gray-400 text-sm pl-9 leading-relaxed">{step.desc}</p>
+                  <p className="text-gray-400 text-sm pl-10 leading-relaxed font-light">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -603,27 +537,27 @@ export default function App() {
               {[...workflowSteps, ...workflowSteps].map((step, i) => (
                 <div 
                   key={`t2-${i}`}
-                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300 group/card"
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-500 group/card bg-white/[0.01] hover:bg-white/[0.03]"
                 >
-                  <div className="aspect-video bg-dark-800 rounded-xl mb-6 overflow-hidden relative shadow-inner">
+                  <div className="aspect-video bg-dark-800 rounded-2xl mb-6 overflow-hidden relative shadow-inner">
                     <img 
                       src={step.img} 
-                      className="w-full h-full object-cover opacity-75 group-hover/card:scale-105 transition-transform duration-700" 
+                      className="w-full h-full object-cover opacity-70 group-hover/card:opacity-100 group-hover/card:scale-110 transition-all duration-700 ease-out" 
                       alt={step.title}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
-                    <div className={`absolute bottom-4 left-4 w-10 h-10 rounded-full bg-${step.color}-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-${step.color}-400 shadow-lg`}>
+                    <div className={`absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-${step.color}-500/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-${step.color}-400 shadow-xl`}>
                       {step.icon}
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className={`flex items-center justify-center w-6 h-6 rounded-full bg-${step.color}-600 text-white text-[10px] font-bold`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`flex items-center justify-center w-7 h-7 rounded-lg bg-${step.color}-600 text-white text-xs font-bold shadow-md`}>
                       {step.step}
                     </span>
-                    <h3 className="text-lg font-medium text-white">{step.title}</h3>
+                    <h3 className="text-xl font-bold text-white tracking-tight">{step.title}</h3>
                   </div>
-                  <p className="text-gray-400 text-sm pl-9 leading-relaxed">{step.desc}</p>
+                  <p className="text-gray-400 text-sm pl-10 leading-relaxed font-light">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -631,30 +565,32 @@ export default function App() {
           </div>
         </div>
       </section>
+      
       {/* FEATURES SHOWCASE */}
-      <section id="features" className="py-24 bg-dark-950">
-        <div className="max-w-6xl mx-auto px-6 space-y-24">
+      <section id="features" className="py-24 bg-dark-950 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_rgba(37,99,235,0.05)_0%,_transparent_50%)]"></div>
+        <div className="max-w-6xl mx-auto px-6 space-y-24 relative z-10">
           
           {/* Feature 1: Version Control */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="flex flex-col md:flex-row items-center gap-12 border border-white/5 bg-dark-900/50 rounded-3xl p-8 md:p-12"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 80, damping: 20 }}
+            className="flex flex-col md:flex-row items-center gap-12 border border-white/5 bg-dark-900/40 rounded-[2.5rem] p-8 md:p-12 hover:bg-dark-900/60 transition-colors duration-500"
           >
             <div className="w-full md:w-1/2">
               <div className="inline-flex items-center gap-2 mb-6">
                 <Settings className="w-4 h-4 text-blue-400" />
-                <span className="text-blue-400 font-medium text-sm">Control</span>
+                <span className="text-blue-400 font-bold text-sm tracking-wide uppercase">Control</span>
               </div>
-              <h3 className="text-3xl font-semibold text-white mb-4">Customizable Version</h3>
-              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Customizable Version</h3>
+              <p className="text-gray-400 text-lg mb-8 font-light leading-relaxed">
                 Choose exactly how detailed your document should be. Need a quick notice or an exhaustive comprehensive agreement?
               </p>
               <ul className="space-y-4">
                 {["Concise (Essential)", "Standard (Professional)", "Exhaustive (Detailed)"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-300">
+                  <li key={i} className="flex items-center gap-3 text-gray-300 font-medium">
                     <CheckCircle2 className="w-5 h-5 text-blue-500" />
                     {item}
                   </li>
@@ -662,22 +598,22 @@ export default function App() {
               </ul>
             </div>
             <div className="w-full md:w-1/2 relative">
-              <div className="bg-dark-800 rounded-xl border border-white/10 p-6 shadow-2xl relative overflow-hidden">
+              <div className="bg-dark-800 rounded-3xl border border-white/10 p-8 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <Layers className="w-32 h-32 text-white" />
+                  <Layers className="w-40 h-40 text-white" />
                 </div>
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between p-3 rounded-lg border border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
-                    <span className="text-gray-400 text-sm group-hover:text-white">Concise</span>
-                    <div className="w-4 h-4 rounded-full border border-gray-600"></div>
+                <div className="space-y-4 relative z-10">
+                  <div className="flex items-center justify-between p-4 rounded-xl border border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
+                    <span className="text-gray-400 text-sm font-medium group-hover:text-white">Concise</span>
+                    <div className="w-5 h-5 rounded-full border border-gray-600"></div>
                   </div>
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-blue-500/10 border border-blue-500/40 cursor-pointer">
-                    <span className="text-blue-400 text-sm font-medium">Standard (Selected)</span>
-                    <div className="w-4 h-4 rounded-full border-[4px] border-blue-500"></div>
+                  <div className="flex items-center justify-between p-4 rounded-xl bg-blue-500/10 border border-blue-500/40 cursor-pointer shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+                    <span className="text-blue-400 text-sm font-bold">Standard (Selected)</span>
+                    <div className="w-5 h-5 rounded-full border-[5px] border-blue-500"></div>
                   </div>
-                  <div className="flex items-center justify-between p-3 rounded-lg border border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
-                    <span className="text-gray-400 text-sm group-hover:text-white">Exhaustive</span>
-                    <div className="w-4 h-4 rounded-full border border-gray-600"></div>
+                  <div className="flex items-center justify-between p-4 rounded-xl border border-white/5 hover:bg-white/5 transition-colors cursor-pointer group">
+                    <span className="text-gray-400 text-sm font-medium group-hover:text-white">Exhaustive</span>
+                    <div className="w-5 h-5 rounded-full border border-gray-600"></div>
                   </div>
                 </div>
               </div>
@@ -686,37 +622,38 @@ export default function App() {
 
           {/* Feature 2: Tone Control */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-            className="flex flex-col md:flex-row-reverse items-center gap-12 border border-white/5 bg-dark-900/50 rounded-3xl p-8 md:p-12"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 80, damping: 20 }}
+            className="flex flex-col md:flex-row-reverse items-center gap-12 border border-white/5 bg-dark-900/40 rounded-[2.5rem] p-8 md:p-12 hover:bg-dark-900/60 transition-colors duration-500"
           >
             <div className="w-full md:w-1/2">
               <div className="inline-flex items-center gap-2 mb-6">
                 <Tally3 className="w-4 h-4 text-purple-400" />
-                <span className="text-purple-400 font-medium text-sm">Adaptability</span>
+                <span className="text-purple-400 font-bold text-sm tracking-wide uppercase">Adaptability</span>
               </div>
-              <h3 className="text-3xl font-semibold text-white mb-4">Tone Control</h3>
-              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Tone Control</h3>
+              <p className="text-gray-400 text-lg mb-8 font-light leading-relaxed">
                 Adapt the legal language to your specific situation. From aggressive demands to neutral agreements.
               </p>
               <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-gray-300">
+                <li className="flex items-center gap-3 text-gray-300 font-medium">
                   <CheckCircle2 className="w-5 h-5 text-blue-500" />
                   Balanced and clear
                 </li>
-                <li className="flex items-center gap-3 text-gray-300">
+                <li className="flex items-center gap-3 text-gray-300 font-medium">
                   <CheckCircle2 className="w-5 h-5 text-blue-500" />
                   Strong and compelling
                 </li>
               </ul>
             </div>
             <div className="w-full md:w-1/2 flex justify-center">
-              <div className="bg-dark-800 rounded-xl border border-white/10 p-6 sm:p-8 shadow-2xl w-full max-w-[280px] sm:max-w-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
-                <div className="px-4 py-2 rounded-lg bg-dark-900 border border-white/10 text-xs text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all text-center">Professional</div>
-                <div className="px-4 py-2 rounded-lg bg-purple-600 text-white text-xs font-semibold shadow-lg shadow-purple-900/50 transform scale-100 sm:scale-110 text-center">Persuasive</div>
-                <div className="px-4 py-2 rounded-lg bg-dark-900 border border-white/10 text-xs text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all text-center">Formal</div>
+              <div className="bg-dark-800 rounded-3xl border border-white/10 p-8 shadow-2xl w-full max-w-[280px] sm:max-w-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 to-transparent"></div>
+                <div className="relative z-10 px-5 py-3 rounded-xl bg-dark-900 border border-white/10 text-sm font-medium text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all text-center">Professional</div>
+                <div className="relative z-10 px-5 py-3 rounded-xl bg-purple-600 text-white text-sm font-bold shadow-[0_0_20px_rgba(147,51,234,0.4)] transform scale-100 sm:scale-110 text-center">Persuasive</div>
+                <div className="relative z-10 px-5 py-3 rounded-xl bg-dark-900 border border-white/10 text-sm font-medium text-gray-400 hover:text-white cursor-pointer hover:border-white/20 transition-all text-center">Formal</div>
               </div>
             </div>
           </motion.div>
@@ -725,56 +662,51 @@ export default function App() {
 
       {/* PRICING */}
       <section id="pricing" className="py-24 bg-dark-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(14,165,233,0.1)_0%,_transparent_70%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.08)_0%,_transparent_70%)]"></div>
         
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-          <div className="mb-12">
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="inline-block mb-4"
-            >
-              <Star className="w-10 h-10 text-blue-500" />
-            </motion.div>
-            <h2 className="text-4xl sm:text-5xl font-semibold text-white tracking-tight mb-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <motion.div className="inline-block mb-6"><Star className="w-12 h-12 text-blue-500 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]" /></motion.div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6">
               Simple, Transparent Pricing.
             </h2>
-            <p className="text-xl font-light text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl font-light text-gray-400 max-w-2xl mx-auto">
               Most lawyers waste hours on initial drafts. <br className="hidden sm:block" /> JurisTech users finish in minutes.
             </p>
-          </div>
+          </motion.div>
 
           {/* Pricing Card */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8, y: 30 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ 
-              type: "spring",
-              stiffness: 100,
-              damping: 15
-            }}
-            whileHover={{ y: -5 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            whileHover={{ y: -8 }}
             className="max-w-md mx-auto relative group"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-b from-blue-500 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
-            <div className="relative bg-dark-900 rounded-xl p-8 border border-white/10">
-              <div className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">PAY PER USE</div>
+            <div className="absolute -inset-1 bg-gradient-to-b from-blue-600 to-purple-600 rounded-[2rem] blur opacity-25 group-hover:opacity-60 transition duration-500"></div>
+            <div className="relative bg-dark-900 rounded-3xl p-10 border border-white/10 shadow-2xl">
+              <div className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-2xl rounded-tr-3xl tracking-widest">PAY PER USE</div>
               
-              <h3 className="text-gray-400 uppercase tracking-widest text-xs font-semibold mb-4">Standard License</h3>
-              <div className="flex items-baseline justify-center gap-1 mb-6">
-                <span className="text-5xl font-bold text-white">₹99</span>
-                <span className="text-gray-500">/ document</span>
+              <h3 className="text-gray-400 uppercase tracking-widest text-sm font-bold mb-4">Standard License</h3>
+              <div className="flex items-baseline justify-center gap-1.5 mb-8">
+                <span className="text-6xl font-bold text-white tracking-tighter">₹99</span>
+                <span className="text-gray-500 font-medium">/ document</span>
               </div>
 
-              <ul className="space-y-4 text-left mb-8 pl-4">
+              <ul className="space-y-5 text-left mb-10 pl-2">
                 {[
                   "Unlimited edits before download",
                   "Word, PDF & Text export",
                   "Secure & Private"
                 ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                    <CheckCircle2 className="w-5 h-5 text-blue-500" />
+                  <li key={i} className="flex items-center gap-4 text-sm font-medium text-gray-300">
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -785,7 +717,7 @@ export default function App() {
                 href="https://juristech-v1.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-center w-full py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+                className="block text-center w-full py-4 bg-white text-dark-950 font-bold rounded-xl hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
               >
                 Start Generating
               </a>
@@ -795,34 +727,39 @@ export default function App() {
       </section>
 
      {/* FINAL CTA SECTION */}
-      <section className="bg-dark-950 py-24">
+      <section className="bg-dark-950 py-24 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="relative bg-dark-900/50 rounded-3xl p-12 overflow-hidden text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative bg-dark-900/60 rounded-[3rem] p-12 sm:p-16 overflow-hidden text-center border border-white/5 shadow-2xl"
+          >
             <div className="absolute inset-0 grid-pattern opacity-[0.05]"></div>
             
             <div className="relative z-10">
               
               {/* 🔥 ELECTRIFYING ZAP BOX ANIMATION 🔥 */}
-              <div className="relative w-16 h-16 mx-auto mb-8 flex items-center justify-center">
+              <div className="relative w-20 h-20 mx-auto mb-10 flex items-center justify-center">
                 
                 {/* Layer 1: Outer Pulse/Wave Effect */}
                 <motion.div
                   animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
-                  className="absolute inset-0 bg-blue-500 rounded-2xl"
+                  className="absolute inset-0 bg-blue-500 rounded-3xl"
                 ></motion.div>
                 
                 {/* Layer 2: Glowing Box */}
                 <motion.div 
                   animate={{ 
                     boxShadow: [
-                      "0 0 10px rgba(37,99,235,0.4)", 
-                      "0 0 40px rgba(37,99,235,0.9)", 
-                      "0 0 10px rgba(37,99,235,0.4)"
+                      "0 0 15px rgba(37,99,235,0.4)", 
+                      "0 0 50px rgba(37,99,235,0.9)", 
+                      "0 0 15px rgba(37,99,235,0.4)"
                     ] 
                   }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-blue-600 rounded-2xl flex items-center justify-center z-10"
+                  className="absolute inset-0 bg-blue-600 rounded-3xl flex items-center justify-center z-10"
                 >
                   {/* Layer 3: Sparking/Jumping Icon */}
                   <motion.div
@@ -832,51 +769,53 @@ export default function App() {
                     }}
                     transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2.5 }}
                   >
-                    <Zap className="w-8 h-8 text-white fill-white/20" />
+                    <Zap className="w-10 h-10 text-white fill-white/20 drop-shadow-md" />
                   </motion.div>
                 </motion.div>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6">Ready to do drafting the right way?</h2>
-              <p className="text-gray-400 max-w-xl mx-auto mb-10">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
+              <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
 
               {/* CTA BUTTON 4: FOOTER SECTION */}
-              <a 
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="https://juristech-v1.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center hover:bg-blue-500 transition-all hover:shadow-blue-500/25 text-sm font-semibold text-white bg-blue-600 rounded-full py-4 px-8 shadow-lg"
+                className="inline-flex items-center justify-center text-sm font-bold text-white bg-blue-600 rounded-full py-4 px-10 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300"
               >
-                Try JurisTech
-              </a>
+                Try JurisTech Now
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-dark-950 pt-16 pb-8">
+      <footer className="bg-dark-950 pt-16 pb-8 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col mb-12 items-center justify-center">
             {/* Minimalist Footer Logo */}
-            <div className="mb-8">
+            <div className="mb-10">
               <img 
                 src="https://i.ibb.co/zWYNn82b/logo-png.png" 
                 alt="JTC Logo" 
-                className="h-12 sm:h-16 w-auto object-contain opacity-80"
+                className="h-12 sm:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="flex gap-8 text-sm text-gray-500">
-              <button onClick={() => setIsAboutOpen(true)} className="hover:text-white transition-colors cursor-pointer capitalize">About</button>
-              <button onClick={() => setIsContactOpen(true)} className="hover:text-white transition-colors cursor-pointer capitalize">Contact</button>
-              <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white transition-colors cursor-pointer capitalize">Privacy</button>
-              <button onClick={() => setIsTermsOpen(true)} className="hover:text-white transition-colors cursor-pointer capitalize">Terms</button>
+            <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
+              <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
+              <button onClick={() => setIsContactOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Contact</button>
+              <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Privacy</button>
+              <button onClick={() => setIsTermsOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Terms</button>
             </div>
           </div>
           
-          <div className="text-center pt-8">
-            <p className="text-xs text-gray-600">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
+          <div className="text-center pt-8 border-t border-white/5">
+            <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
           </div>
         </div>
       </footer>
@@ -1550,16 +1489,17 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] overflow-y-auto bg-black/80 backdrop-blur-md"
             onClick={() => setIsFeedbackOpen(false)}
           >
             <div className="flex min-h-full items-center justify-center p-4 py-8 sm:py-12 sm:p-6">
               <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-xl shadow-2xl overflow-y-auto max-h-[85vh]"
+                className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 overflow-y-auto max-h-[85vh]"
               >
               {/* ✨ 100% TRANSPARENT FLOATING HEADER ✨ */}
                 <div className="sticky top-0 z-50 pt-6 px-4 sm:px-6 pb-2 flex items-center justify-between gap-2 pointer-events-none bg-transparent border-none shadow-none">
@@ -1578,7 +1518,7 @@ export default function App() {
                   
                   {/* RIGHT: Close Button Only */}
                   <div className="flex items-center pointer-events-auto shrink-0">
-                    <button onClick={() => setIsFeedbackOpen(false)} className="p-2 sm:p-3 rounded-full bg-gray-900/60 backdrop-blur-xl border border-white/10 text-gray-400 hover:text-white transition-all shadow-lg">
+                    <button onClick={() => setIsFeedbackOpen(false)} className="p-2 sm:p-3 rounded-full bg-gray-900/60 backdrop-blur-xl border border-white/10 text-gray-400 hover:text-white transition-all shadow-lg hover:bg-white/10">
                       <X className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   </div>
@@ -1586,7 +1526,7 @@ export default function App() {
 
                 <div className="p-6 sm:p-8 pt-2">
                   <div className="flex flex-col items-center">
-                    <h2 className="text-2xl text-white font-extrabold text-center mt-10 mb-6 font-sans">
+                    <h2 className="text-2xl sm:text-3xl text-white font-extrabold text-center mt-10 mb-6 font-sans tracking-tight">
                       Help Us Improve Your Experience
                     </h2>
 
@@ -1594,7 +1534,7 @@ export default function App() {
                     <img 
                       src="https://i.ibb.co/wFXScDP0/COMPANY-S-QR-Code-FOR-FEEDBACK.png" 
                       alt="Feedback QR" 
-                      className="mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square object-contain rounded-2xl bg-white/5 p-4 sm:p-6 shadow-2xl border border-white/10 hover:border-blue-500/30 transition-colors"
+                      className="mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square object-contain rounded-3xl bg-white/[0.02] p-4 sm:p-6 shadow-2xl border border-white/10 hover:border-blue-500/30 transition-colors duration-500"
                       referrerPolicy="no-referrer"
                     />
 
@@ -1606,7 +1546,7 @@ export default function App() {
                       href="https://forms.gle/DcZ7BvkdL6bqdydA7" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="block w-full py-4 bg-blue-600 text-white font-black rounded-xl hover:bg-blue-700 transition-all transform hover:scale-[1.02] shadow-xl uppercase tracking-widest text-center text-lg shadow-blue-600/20"
+                      className="block w-full py-4 bg-blue-600 text-white font-black rounded-xl hover:bg-blue-500 transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-1 shadow-[0_0_20px_rgba(37,99,235,0.4)] uppercase tracking-widest text-center text-lg"
                     >
                       SHARE FEEDBACK
                     </a>
