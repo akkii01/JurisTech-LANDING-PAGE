@@ -47,7 +47,7 @@ const ScrollRevealSection = () => {
     offset: ["start start", "end end"]
   });
 
-  const companyName = "JURISTECH".split("");
+  const companyName = "JurisTech".split("");
   
   // रैंडम पोज़िशन्स (ताकि अक्षर और पेपर्स हर दिशा से आएं)
   const letterPositions = [
