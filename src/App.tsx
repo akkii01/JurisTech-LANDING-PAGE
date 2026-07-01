@@ -7,6 +7,7 @@ import { useState, type ReactNode } from "react";
 import WorkflowSection from './WorkflowSection';
 import FAQSection from './FAQSection';
 import HeroTextSection from './HeroTextSection';
+import ScrollRevealSection from './ScrollRevealSection';
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight,
@@ -802,6 +803,7 @@ export default function App() {
               <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
 
               <FAQSection/>
+              <ScrollRevealSection/>
               {/* CTA BUTTON 4: FOOTER SECTION */}
               <motion.a 
                 whileHover={{ scale: 1.05 }}
