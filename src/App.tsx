@@ -4,6 +4,7 @@
  */
 
 import { useState, type ReactNode } from "react";
+import WorkflowSection from './WorkflowSection';
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight,
@@ -425,6 +426,7 @@ export default function App() {
           </div>
         </motion.div>
       </section>
+      <WorkflowSection/>
 
       {/* 🔥 HIGH-ATTENTION WHY CHOOSE US SECTION 🔥 */}
       <section className="py-24 bg-dark-950 relative border-t border-white/5">
