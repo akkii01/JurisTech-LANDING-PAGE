@@ -5,6 +5,7 @@
 
 import { useState, type ReactNode } from "react";
 import WorkflowSection from './WorkflowSection';
+import FAQSection from './FAQSection';
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight,
@@ -798,6 +799,7 @@ export default function App() {
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
               <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
 
+              <FAQSection/>
               {/* CTA BUTTON 4: FOOTER SECTION */}
               <motion.a 
                 whileHover={{ scale: 1.05 }}
