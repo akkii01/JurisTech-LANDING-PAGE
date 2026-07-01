@@ -49,7 +49,7 @@ const FAQSection = () => {
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Questions</span>
           </h2>
           <p className="text-gray-400 text-sm md:text-base font-light max-w-2xl mx-auto">
-            Find quick answers to common questions about our AI-powered legal drafting tool and learn how it helps streamline your daily practice.
+            Find quick answers to common questions about our AI-powered legal drafting assistant and learn how it helps streamline your daily practice.
           </p>
         </div>
 
