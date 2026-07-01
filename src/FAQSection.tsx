@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: "Can I edit the generated drafts before taking a print?",
-    answer: "Yes. Once the AI generates the draft, you can easily copy the text or download it in standard formats (Word/PDF). You have full control to review and make your final tweaks before filing."
+    answer: "Yes. Once the AI generates the draft, you can easily copy the text or download it in standard formats (Word/PDF/Text). You have full control to review and make your final tweaks before filing."
   },
   {
     question: "Are there any hidden subscription charges?",
@@ -49,7 +49,7 @@ const FAQSection = () => {
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Questions</span>
           </h2>
           <p className="text-gray-400 text-sm md:text-base font-light max-w-2xl mx-auto">
-            Everything you need to know about JurisTech. Can't find the answer you're looking for? Feel free to contact our support team.
+            Find quick answers to common questions about our AI-powered legal drafting tool and learn how it helps streamline your daily practice.
           </p>
         </div>
 
