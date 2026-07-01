@@ -250,9 +250,23 @@ export default function App() {
 
       {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES (PREMIUM DEPTH) 🔥 */}
       <section className="relative pt-32 pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
+        
+        {/* 🚀 NEW VIDEO BACKGROUND ADDED HERE 🚀 */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="absolute w-full h-full object-cover opacity-60 mix-blend-screen pointer-events-none"
+          >
+            <source src="/hero-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
+
         {/* Deep Premium Background */}
-        <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none"></div>
+        <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20 z-0"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none z-0"></div>
 
         <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center mt-8">
           
