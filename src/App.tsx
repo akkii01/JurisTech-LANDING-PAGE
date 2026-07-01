@@ -6,6 +6,7 @@
 import { useState, type ReactNode } from "react";
 import WorkflowSection from './WorkflowSection';
 import FAQSection from './FAQSection';
+import HeroTextSection from './HeroTextSection';
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight,
@@ -681,6 +682,7 @@ export default function App() {
           </motion.div>
         </div>
       </section>
+      <HeroTextSection/>
 
       {/* PRICING */}
       <section id="pricing" className="py-24 bg-dark-950 relative overflow-hidden">
