@@ -6,10 +6,10 @@ const WorkflowSection = () => {
   return (
     <section className="relative w-full py-20 lg:py-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center border-t border-white/5">
       
-      {/* Section Title */}
-      <div className="text-center z-10 mb-12 lg:mb-20 px-4">
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-          How <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">JurisTech</span> Works
+     {/* Section Title */}
+      <div className="text-center z-10 mb-10 lg:mb-16 px-4">
+        <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3 tracking-wide">
+          Architecture
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base font-light">
           Our advanced semantic layer processes your inputs against vast legal databases to generate perfect, court-ready documents in real-time.
