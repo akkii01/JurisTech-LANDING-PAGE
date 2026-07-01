@@ -802,8 +802,7 @@ export default function App() {
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
               <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
 
-              <FAQSection/>
-              <ScrollRevealSection/>
+              
               {/* CTA BUTTON 4: FOOTER SECTION */}
               <motion.a 
                 whileHover={{ scale: 1.05 }}
@@ -819,6 +818,8 @@ export default function App() {
           </motion.div>
         </div>
       </section>
+      <FAQSection/>
+              <ScrollRevealSection/>
 
       {/* FOOTER */}
       <footer className="bg-dark-950 pt-16 pb-8 border-t border-white/5">
