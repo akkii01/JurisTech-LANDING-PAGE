@@ -388,37 +388,42 @@ export default function App() {
               </div>
             </div>
           </motion.div>
-          
-          {/* Dashboard Preview */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.1 }}
-            className="relative max-w-5xl mx-auto group mt-4 w-full px-2 sm:px-4"
-          >
-            <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/50 to-indigo-600/50 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-2xl">
-              <div className="h-10 sm:h-12 bg-dark-800/80 border-b border-white/10 flex items-center px-4 sm:px-6 justify-between backdrop-blur-sm">
-                <div className="flex space-x-2">
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/40"></div>
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/40"></div>
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/40"></div>
-                </div>
-                <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">JurisTech Dashboard</div>
-                <div className="w-8 sm:w-12"></div>
-              </div>
-              <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
-                <img 
-                  src="https://i.ibb.co/QvhSNC7j/868shots-so.png" 
-                  alt="JurisTech Dashboard Interface" 
-                  className="w-full h-auto block opacity-100"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          </motion.div>
         </div>
+      </section>
+      
+      {/* 🔥 DASHBOARD PREVIEW SECTION (NOW SEPARATED) 🔥 */}
+      <section className="relative z-10 w-full pb-20 pt-8 bg-transparent">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.1 }}
+          className="relative max-w-5xl mx-auto group w-full px-4 sm:px-6"
+        >
+          {/* Dashboard Glow Effect */}
+          <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/50 to-indigo-600/50 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
+          
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+            <div className="h-10 sm:h-12 bg-dark-800/80 border-b border-white/10 flex items-center px-4 sm:px-6 justify-between backdrop-blur-sm">
+              <div className="flex space-x-2">
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/40"></div>
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/40"></div>
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/40"></div>
+              </div>
+              <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">JurisTech Dashboard</div>
+              <div className="w-8 sm:w-12"></div>
+            </div>
+            
+            <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
+              <img 
+                src="https://i.ibb.co/QvhSNC7j/868shots-so.png" 
+                alt="JurisTech Dashboard Interface" 
+                className="w-full h-auto block opacity-100"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* 🔥 HIGH-ATTENTION WHY CHOOSE US SECTION 🔥 */}
