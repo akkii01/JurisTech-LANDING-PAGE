@@ -6,7 +6,6 @@ const ScatteredLetter = ({ children, progress, startX, startY, startRot }: any) 
   const x = useTransform(progress, [0.1, 0.6], [startX, 0]);
   const y = useTransform(progress, [0.1, 0.6], [startY, 0]);
   const rotate = useTransform(progress, [0.1, 0.6], [startRot, 0]);
-  // लेटर्स 20% स्क्रॉल पर ही 100% विजिबल (Solid) हो जाएंगे
   const opacity = useTransform(progress, [0.05, 0.2], [0, 1]);
 
   return (
@@ -58,7 +57,6 @@ const ScrollRevealSection = () => {
     delay: Math.random() * 0.2
   }));
 
-  // 🔥 MAIN FIX: हेडिंग की ओपेसिटी अब 90% स्क्रॉल तक एकदम 1 (Full Solid) रहेगी 🔥
   const textOpacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0]);
   const textY = useTransform(scrollYProgress, [0, 0.9, 1], [0, 0, -50]);
 
@@ -67,10 +65,10 @@ const ScrollRevealSection = () => {
       
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
         
-        {/* Creative Headings */}
+        {/* 🔥 FIX: 'absolute' हटा दिया है और mb-20 md:mb-32 का मार्जिन दे दिया है 🔥 */}
         <motion.div 
           style={{ opacity: textOpacity, y: textY }}
-          className="absolute top-[15%] md:top-[20%] text-center px-4 z-20"
+          className="relative text-center px-4 z-20 mb-20 md:mb-32 mt-[-5rem]"
         >
           <p className="text-blue-500 font-semibold tracking-wide text-sm md:text-base mb-3 uppercase drop-shadow-md">
             From chaos to clarity
@@ -84,7 +82,7 @@ const ScrollRevealSection = () => {
         </motion.div>
 
         {/* Central Animation Area */}
-        <div className="relative w-full flex items-center justify-center z-10 mt-20">
+        <div className="relative w-full flex items-center justify-center z-10">
           
           {paperParticles.map((pos, i) => (
             <PaperParticle 
