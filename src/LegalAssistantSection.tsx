@@ -8,32 +8,30 @@ const LegalAssistantSection = () => {
   return (
     <section className="relative w-full pt-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center">
       
-      {/* ---------------- MAIN ANIMATION AREA ---------------- */}
-      <div className="relative w-full flex flex-col items-center justify-center">
+      {/* ---------------- MAIN ANIMATION AREA (GRID OVERLAP FIX) ---------------- */}
+      <div className="grid place-items-center w-full py-10">
         
-        {/* 🔥 FIX: LEGAL AI के लिए एक Wrapper Div बनाया है जिसमें बहुत हाई z-index (z-[99]) है 🔥 */}
-        <div className="relative z-[99] flex justify-center w-full pointer-events-none">
-          <motion.div
-            animate={{ x: ["0%", "-35vw", "0%", "0%", "35vw", "0%", "0%"] }}
-            transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
-            className="text-6xl sm:text-8xl md:text-[10rem] font-black uppercase leading-none tracking-tight"
-            style={{ WebkitTextStroke: "2px rgba(255, 255, 255, 0.15)", color: "transparent", whiteSpace: "nowrap" }}
-          >
-            Legal AI
-          </motion.div>
-        </div>
+        {/* 1. BACKGROUND LAYER: ASSISTANT (यह कोड में पहले है, इसलिए पीछे रेंडर होगा) */}
+        <motion.div
+          animate={{ x: ["0%", "35vw", "0%", "0%", "-35vw", "0%", "0%"] }}
+          transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
+          // mt-12 और md:mt-24 इसे थोड़ा नीचे खिसकाएगा ताकि सही ओवरलैप बने
+          className="col-start-1 row-start-1 text-6xl sm:text-8xl md:text-[11rem] font-black text-white uppercase leading-none tracking-tight drop-shadow-2xl mt-12 md:mt-24"
+          style={{ whiteSpace: "nowrap" }}
+        >
+          Assistant
+        </motion.div>
 
-        {/* 🔥 FIX: ASSISTANT के लिए एक अलग Wrapper Div (z-[1]) है, और मार्जिन (-mt) इसी पर लगाया है 🔥 */}
-        <div className="relative z-[1] flex justify-center w-full -mt-6 md:-mt-16">
-          <motion.div
-            animate={{ x: ["0%", "35vw", "0%", "0%", "-35vw", "0%", "0%"] }}
-            transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
-            className="text-6xl sm:text-8xl md:text-[11rem] font-black text-white uppercase leading-none tracking-tight drop-shadow-2xl"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            Assistant
-          </motion.div>
-        </div>
+        {/* 2. FOREGROUND LAYER: LEGAL AI (यह कोड में बाद में है, इसलिए हमेशा ऊपर रहेगा) */}
+        <motion.div
+          animate={{ x: ["0%", "-35vw", "0%", "0%", "35vw", "0%", "0%"] }}
+          transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
+          // mb-12 और md:mb-24 इसे थोड़ा ऊपर खिसकाएगा 
+          className="col-start-1 row-start-1 text-6xl sm:text-8xl md:text-[10rem] font-black uppercase leading-none tracking-tight pointer-events-none mb-12 md:mb-24"
+          style={{ WebkitTextStroke: "2px rgba(255, 255, 255, 0.15)", color: "transparent", whiteSpace: "nowrap" }}
+        >
+          Legal AI
+        </motion.div>
 
       </div>
 
@@ -42,7 +40,7 @@ const LegalAssistantSection = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="mt-16 md:mt-24 mb-16 md:mb-24 text-gray-500 uppercase tracking-[0.3em] sm:tracking-[0.4em] text-xs sm:text-sm md:text-base font-semibold z-10 relative"
+        className="mt-16 md:mt-20 mb-16 md:mb-24 text-gray-500 uppercase tracking-[0.3em] sm:tracking-[0.4em] text-xs sm:text-sm md:text-base font-semibold z-10 relative"
       >
         A comprehensive platform
       </motion.p>
