@@ -693,7 +693,7 @@ export default function App() {
           </motion.div>
         </div>
       </section>
-      <HeroTextSection/>
+      
       <LegalAssistantSection/>
 
       {/* PRICING */}
