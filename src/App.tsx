@@ -829,7 +829,7 @@ export default function App() {
               <ScrollRevealSection/>
 
       {/* FOOTER */}
-      <footer className="bg-dark-950 pt-16 pb-8 border-t border-white/5">
+      <footer className="bg-[#030712] pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col mb-12 items-center justify-center">
             {/* Minimalist Footer Logo */}
