@@ -258,8 +258,8 @@ export default function App() {
 
     
 
-      {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES (PREMIUM DEPTH) 🔥 */}
-      <section className="relative pt-32 pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
+     {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES (PREMIUM DEPTH) 🔥 */}
+      <section className="relative pt-20 md:pt-32 pb-4 md:pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
         
         {/* 🚀 OPTIMIZED DARK VIDEO BACKGROUND 🚀 */}
         <div className="absolute inset-0 w-full h-full z-0">
@@ -281,14 +281,14 @@ export default function App() {
         <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20 z-0"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none z-0"></div>
 
-        <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center mt-8">
+        <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center mt-4 md:mt-8">
           
           {/* Animated Badge */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
             transition={{ opacity: { duration: 0.5 }, scale: { duration: 0.5 }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[10px] sm:text-xs font-semibold mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(37,99,235,0.15)]"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[10px] sm:text-xs font-semibold mb-4 md:mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(37,99,235,0.15)]"
           >
             <Star className="w-3 h-3 fill-blue-500/50" />
             Where Accuracy Meets Innovation
@@ -297,7 +297,7 @@ export default function App() {
           {/* Premium Headline */}
           <motion.h1 
             {...fadeIn}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-6 leading-[1.1] px-2"
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-4 md:mb-6 leading-[1.1] px-2"
           >
             Smarter Legal Drafting,<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-[0_0_30px_rgba(37,99,235,0.3)]">Real Results</span>
@@ -306,7 +306,7 @@ export default function App() {
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
-            className="text-sm sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed px-4"
+            className="text-sm sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-6 md:mb-10 font-light leading-relaxed px-4"
           >
             AI-powered legal document generation built specifically for Indian advocates. 
             Draft court-ready documents in minutes, not hours.
@@ -316,7 +316,7 @@ export default function App() {
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-10 w-full px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-5 mb-6 md:mb-10 w-full px-4"
           >
             <a 
               href="https://juristech-v1.vercel.app/"
@@ -335,7 +335,7 @@ export default function App() {
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4 }}
-            className="mb-8 sm:mb-12 mt-auto opacity-90 w-full" 
+            className="mb-4 sm:mb-12 mt-auto opacity-90 w-full" 
           >
             <div 
               className="flex w-full overflow-hidden py-4 cursor-pointer custom-marquee-wrapper"
