@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const LegalAssistantSection = () => {
-  // एनीमेशन का लूप 8 सेकंड का होगा
   const loopDuration = 8;
   const animationTiming = [0, 0.125, 0.25, 0.5, 0.625, 0.75, 1];
 
@@ -12,27 +11,29 @@ const LegalAssistantSection = () => {
       {/* ---------------- MAIN ANIMATION AREA ---------------- */}
       <div className="relative w-full flex flex-col items-center justify-center">
         
-        {/* LEGAL AI (Outline Text) */}
-        {/* 🔥 FIX: यहाँ z-0 को हटाकर relative z-20 कर दिया है ताकि यह हमेशा ऊपर रहे 🔥 */}
-        <motion.div
-          animate={{ x: ["0%", "-35vw", "0%", "0%", "35vw", "0%", "0%"] }}
-          transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
-          className="relative text-6xl sm:text-8xl md:text-[10rem] font-black uppercase leading-none tracking-tight z-20 pointer-events-none"
-          style={{ WebkitTextStroke: "2px rgba(255, 255, 255, 0.15)", color: "transparent", whiteSpace: "nowrap" }}
-        >
-          Legal AI
-        </motion.div>
+        {/* 🔥 FIX: LEGAL AI के लिए एक Wrapper Div बनाया है जिसमें बहुत हाई z-index (z-[99]) है 🔥 */}
+        <div className="relative z-[99] flex justify-center w-full pointer-events-none">
+          <motion.div
+            animate={{ x: ["0%", "-35vw", "0%", "0%", "35vw", "0%", "0%"] }}
+            transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
+            className="text-6xl sm:text-8xl md:text-[10rem] font-black uppercase leading-none tracking-tight"
+            style={{ WebkitTextStroke: "2px rgba(255, 255, 255, 0.15)", color: "transparent", whiteSpace: "nowrap" }}
+          >
+            Legal AI
+          </motion.div>
+        </div>
 
-        {/* ASSISTANT (Solid Text) */}
-        {/* 🔥 FIX: यह z-10 पर है, यानी LEGAL AI के ठीक पीछे रहेगा 🔥 */}
-        <motion.div
-          animate={{ x: ["0%", "35vw", "0%", "0%", "-35vw", "0%", "0%"] }}
-          transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
-          className="relative text-6xl sm:text-8xl md:text-[11rem] font-black text-white uppercase leading-none tracking-tight -mt-6 md:-mt-16 z-10 drop-shadow-2xl"
-          style={{ whiteSpace: "nowrap" }}
-        >
-          Assistant
-        </motion.div>
+        {/* 🔥 FIX: ASSISTANT के लिए एक अलग Wrapper Div (z-[1]) है, और मार्जिन (-mt) इसी पर लगाया है 🔥 */}
+        <div className="relative z-[1] flex justify-center w-full -mt-6 md:-mt-16">
+          <motion.div
+            animate={{ x: ["0%", "35vw", "0%", "0%", "-35vw", "0%", "0%"] }}
+            transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
+            className="text-6xl sm:text-8xl md:text-[11rem] font-black text-white uppercase leading-none tracking-tight drop-shadow-2xl"
+            style={{ whiteSpace: "nowrap" }}
+          >
+            Assistant
+          </motion.div>
+        </div>
 
       </div>
 
@@ -41,13 +42,13 @@ const LegalAssistantSection = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="mt-16 md:mt-24 mb-16 md:mb-24 text-gray-500 uppercase tracking-[0.3em] sm:tracking-[0.4em] text-xs sm:text-sm md:text-base font-semibold"
+        className="mt-16 md:mt-24 mb-16 md:mb-24 text-gray-500 uppercase tracking-[0.3em] sm:tracking-[0.4em] text-xs sm:text-sm md:text-base font-semibold z-10 relative"
       >
         A comprehensive platform
       </motion.p>
 
-      {/* 🔥 CONTINUOUS SCROLLING MARQUEE BANNER 🔥 */}
-      <div className="w-full border-y border-white/10 bg-white/[0.02] overflow-hidden py-4 md:py-5 flex items-center">
+      {/* ---------------- CONTINUOUS SCROLLING MARQUEE BANNER ---------------- */}
+      <div className="relative z-10 w-full border-y border-white/10 bg-white/[0.02] overflow-hidden py-4 md:py-5 flex items-center">
         <motion.div
           className="flex whitespace-nowrap"
           animate={{ x: ["0%", "-50%"] }}
