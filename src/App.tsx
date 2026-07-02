@@ -202,7 +202,7 @@ export default function App() {
             <a href="#pricing" className="hover:text-white hover:scale-105 transition-all">Pricing</a>
             {/* Naya FAQ Button Yahan Aayega */}
 <a href="#faq" className="hover:text-white hover:scale-105 transition-all">FAQ</a>
-            <button onClick={() => setIsFeedbackOpen(true)} className="hover:text-white hover:scale-105 transition-all focus:outline-none">Your Feedback</button>
+            <button onClick={() => setIsFeedbackOpen(true)} className="hover:text-white hover:scale-105 transition-all focus:outline-none">Feedback</button>
           </motion.div>
 
           {/* CTA BUTTON 1: HEADER SECTION */}
@@ -246,7 +246,7 @@ export default function App() {
                 <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Pricing</a>
                 {/* Naya FAQ Button Yahan Aayega */}
 <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">FAQ</a>
-                <button onClick={() => { setIsFeedbackOpen(true); setIsMobileMenuOpen(false); }} className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Your Feedback</button>
+                <button onClick={() => { setIsFeedbackOpen(true); setIsMobileMenuOpen(false); }} className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Feedback</button>
                 <a href="https://juristech-v1.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)]">
                   Try Now <ArrowRight className="w-4 h-4" />
                 </a>
