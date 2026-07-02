@@ -8,6 +8,7 @@ import WorkflowSection from './WorkflowSection';
 import FAQSection from './FAQSection';
 import HeroTextSection from './HeroTextSection';
 import ScrollRevealSection from './ScrollRevealSection';
+import LegalAssistantSection from './LegalAssistantSection';
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight,
@@ -693,6 +694,7 @@ export default function App() {
         </div>
       </section>
       <HeroTextSection/>
+      <LegalAssistantSection/>
 
       {/* PRICING */}
       <section id="pricing" className="py-24 bg-dark-950 relative overflow-hidden">
