@@ -2,7 +2,8 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 // ----------------- SCATTERED LETTER COMPONENT -----------------
-const ScatteredLetter = ({ children, progress, startX, startY, startRot }: any) => {
+// 🔥 FIX: यहाँ मैंने 'kerningClass' नाम का एक नया प्रॉप ऐड किया है
+const ScatteredLetter = ({ children, progress, startX, startY, startRot, kerningClass = "" }: any) => {
   const x = useTransform(progress, [0.1, 0.6], [startX, 0]);
   const y = useTransform(progress, [0.1, 0.6], [startY, 0]);
   const rotate = useTransform(progress, [0.1, 0.6], [startRot, 0]);
@@ -11,7 +12,8 @@ const ScatteredLetter = ({ children, progress, startX, startY, startRot }: any) 
   return (
     <motion.span 
       style={{ x, y, rotate, opacity, display: 'inline-block' }}
-      className="text-[12vw] md:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 drop-shadow-[0_0_30px_rgba(37,99,235,0.4)]"
+      // kerningClass को यहाँ className में डाल दिया है ताकि अक्षरों की दूरी कम हो सके
+      className={`text-[12vw] md:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 drop-shadow-[0_0_30px_rgba(37,99,235,0.4)] ${kerningClass}`}
     >
       {children}
     </motion.span>
@@ -65,7 +67,6 @@ const ScrollRevealSection = () => {
       
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
         
-        {/* 🔥 FIX: 'absolute' हटा दिया है और mb-20 md:mb-32 का मार्जिन दे दिया है 🔥 */}
         <motion.div 
           style={{ opacity: textOpacity, y: textY }}
           className="relative text-center px-4 z-20 mb-20 md:mb-32 mt-[-5rem]"
@@ -81,7 +82,6 @@ const ScrollRevealSection = () => {
           </p>
         </motion.div>
 
-        {/* Central Animation Area */}
         <div className="relative w-full flex items-center justify-center z-10">
           
           {paperParticles.map((pos, i) => (
@@ -92,18 +92,32 @@ const ScrollRevealSection = () => {
             />
           ))}
 
-          <div className="flex">
-            {companyName.map((letter, i) => (
-              <ScatteredLetter 
-                key={i} 
-                progress={scrollYProgress} 
-                startX={letterPositions[i].x} 
-                startY={letterPositions[i].y} 
-                startRot={letterPositions[i].r}
-              >
-                {letter}
-              </ScatteredLetter>
-            ))}
+          <div className="flex items-center justify-center">
+            {companyName.map((letter, i) => {
+              
+              // 🔥 MANUAL KERNING: 'T' और 'e' को पीछे खींचने का लॉजिक 🔥
+              let customKerning = "";
+              if (letter === 'T') {
+                customKerning = "-ml-[1.5vw] md:-ml-[2.5rem]"; // 'T' को 's' के पास खींचना
+              } else if (letter === 'e' && i === 6) {
+                customKerning = "-ml-[1vw] md:-ml-[1.5rem]"; // 'e' को 'T' के छज्जे के नीचे लाना
+              } else if (letter === 's') {
+                 customKerning = "-ml-[0.5vw] md:-ml-[0.5rem]"; // 's' को हल्का सा पास लाना
+              }
+
+              return (
+                <ScatteredLetter 
+                  key={i} 
+                  progress={scrollYProgress} 
+                  startX={letterPositions[i].x} 
+                  startY={letterPositions[i].y} 
+                  startRot={letterPositions[i].r}
+                  kerningClass={customKerning}
+                >
+                  {letter}
+                </ScatteredLetter>
+              );
+            })}
           </div>
           
         </div>
