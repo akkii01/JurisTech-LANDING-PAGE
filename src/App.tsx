@@ -259,17 +259,20 @@ export default function App() {
       {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES (PREMIUM DEPTH) 🔥 */}
       <section className="relative pt-32 pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
         
-        {/* 🚀 NEW VIDEO BACKGROUND ADDED HERE 🚀 */}
+        {/* 🚀 OPTIMIZED DARK VIDEO BACKGROUND 🚀 */}
         <div className="absolute inset-0 w-full h-full z-0">
           <video 
             autoPlay 
             loop 
             muted 
             playsInline
-            className="absolute w-full h-full object-cover opacity-60 mix-blend-screen pointer-events-none"
+            className="absolute w-full h-full object-cover opacity-30 pointer-events-none"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
+          
+          {/* 🔥 Dark Gradient Overlay: Ye video ko website ke base color se blend karega 🔥 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/60 via-[#030712]/70 to-[#030712] pointer-events-none"></div>
         </div>
 
         {/* Deep Premium Background */}
