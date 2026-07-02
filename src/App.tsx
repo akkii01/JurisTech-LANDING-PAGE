@@ -168,8 +168,8 @@ export default function App() {
   return (
     <div className="min-h-screen bg-dark-950 text-gray-200 selection:bg-blue-500/30 selection:text-blue-200 antialiased">
       
-      {/* NAVIGATION - Premium Blur */}
-      <nav className="fixed w-full z-50 top-0 pt-4 px-6 pb-4 bg-gradient-to-b from-dark-950/90 to-transparent backdrop-blur-md">
+      {/* NAVIGATION - Fully Transparent */}
+      <nav className="fixed w-full z-50 top-0 pt-4 px-6 pb-4 bg-transparent">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo Container */}
           <motion.a 
