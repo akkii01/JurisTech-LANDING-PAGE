@@ -9,6 +9,7 @@ import FAQSection from './FAQSection';
 import HeroTextSection from './HeroTextSection';
 import ScrollRevealSection from './ScrollRevealSection';
 import LegalAssistantSection from './LegalAssistantSection';
+import ComparisonSection from './ComparisonSection';
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight,
@@ -512,6 +513,9 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* 🔥 नया एनिमेटेड Comparison Section 🔥 */}
+  <ComparisonSection />
 
     {/* 🔥 HOW IT WORKS: THE ULTIMATE SEAMLESS MARQUEE (DESKTOP + MOBILE) 🔥 */}
       <section id="how-it-works" className="py-24 bg-dark-900 border-y border-white/5 relative overflow-hidden">
