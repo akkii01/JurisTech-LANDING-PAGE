@@ -168,7 +168,8 @@ export default function App() {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-dark-950 text-gray-200 selection:bg-blue-500/30 selection:text-blue-200 antialiased">
+    {/* 🔥 Global Background Changed to Solid Black 🔥 */}
+    <div className="min-h-screen bg-[#030712] text-gray-200 selection:bg-blue-500/30 selection:text-blue-200 antialiased">
       
       {/* NAVIGATION - Fully Transparent */}
       <nav className="fixed w-full z-50 top-0 pt-4 px-6 pb-4 bg-transparent">
@@ -261,6 +262,7 @@ export default function App() {
     
 
      {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES (PREMIUM DEPTH) 🔥 */}
+     {/* Untouched Hero Section as requested */}
       <section className="relative pt-20 md:pt-32 pb-4 md:pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
         
         {/* 🚀 OPTIMIZED DARK VIDEO BACKGROUND 🚀 */}
@@ -407,7 +409,8 @@ export default function App() {
       </section>
       
       {/* 🔥 DASHBOARD PREVIEW SECTION (NOW SEPARATED) 🔥 */}
-      <section className="relative z-10 w-full pb-20 pt-8 bg-transparent">
+      {/* BACKGROUND CHANGED TO SOLID #030712 */}
+      <section className="relative z-10 w-full pb-20 pt-8 bg-[#030712]">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -443,7 +446,8 @@ export default function App() {
       <WorkflowSection/>
 
       {/* 🔥 HIGH-ATTENTION WHY CHOOSE US SECTION 🔥 */}
-      <section className="py-24 bg-dark-950 relative border-t border-white/5">
+      {/* BORDER REMOVED AND BACKGROUND CHANGED TO SOLID #030712 */}
+      <section className="py-24 bg-[#030712] relative">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -518,7 +522,8 @@ export default function App() {
   <ComparisonSection />
 
     {/* 🔥 HOW IT WORKS: THE ULTIMATE SEAMLESS MARQUEE (DESKTOP + MOBILE) 🔥 */}
-      <section id="how-it-works" className="py-24 bg-dark-900 border-y border-white/5 relative overflow-hidden">
+    {/* BORDER REMOVED AND BACKGROUND CHANGED TO SOLID #030712 */}
+      <section id="how-it-works" className="py-24 bg-[#030712] relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -605,7 +610,8 @@ export default function App() {
       </section>
       
       {/* FEATURES SHOWCASE */}
-      <section id="features" className="py-24 bg-dark-950 relative">
+      {/* BACKGROUND CHANGED TO SOLID #030712 */}
+      <section id="features" className="py-24 bg-[#030712] relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_rgba(37,99,235,0.05)_0%,_transparent_50%)]"></div>
         <div className="max-w-6xl mx-auto px-6 space-y-24 relative z-10">
           
@@ -701,7 +707,8 @@ export default function App() {
       <LegalAssistantSection/>
 
       {/* PRICING */}
-      <section id="pricing" className="py-24 bg-dark-950 relative overflow-hidden">
+      {/* BACKGROUND CHANGED TO SOLID #030712 */}
+      <section id="pricing" className="py-24 bg-[#030712] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.08)_0%,_transparent_70%)]"></div>
         
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
@@ -767,7 +774,8 @@ export default function App() {
       </section>
 
      {/* FINAL CTA SECTION */}
-      <section className="bg-dark-950 py-24 border-t border-white/5">
+     {/* BORDER REMOVED AND BACKGROUND CHANGED TO SOLID #030712 */}
+      <section className="bg-[#030712] py-24">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -869,7 +877,7 @@ export default function App() {
         onClose={() => setIsAboutOpen(false)}
         lang={lang}
         setLang={setLang}
-        title={lang === 'en' ? 'About Us' : 'हमारे बारे में'}
+        title={lang === 'en' ? 'About Us' : 'हमारे बारे बारे में'}
       >
         {lang === 'en' ? (
           <>
@@ -1392,7 +1400,7 @@ export default function App() {
         ) : (
           <>
             <p className="mb-4 leading-relaxed"> पिछला अपडेट: 19 अप्रैल, 2026</p>
-            <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है! ये शर्तें हमारे AI-पावर्ड लीगल डॉक्यूमेंट जेनरेशन प्लेटफ़ॉर्म के आपके इस्तेमाल को गाइड करती हैं। हमारी सर्विस का इस्तेमाल करके, आप इन शर्तों से सहमत होते हैं।</p>
+            <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है! ये शर्तें हमारे AI-पावर्ड लीगल डॉक्यूमेंट जेनरेशन प्लेटफ़ॉर्म के आपके इस्तेमाल को गाइड करती हैं। हमारी सर्विस का इस्तेमाल करके, आप इन शर्तों से सहमत होते हैं。</p>
             <h3 className="font-bold text-white text-lg mt-6 mb-3">1. परिभाषाएँ</h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li><span className="font-bold text-white">"JurisTech," "हम," "हमारे," "हमें":</span> AI लीगल डॉक्यूमेंट जेनरेशन सर्विसेज़ देने वाले</li>
@@ -1607,4 +1615,3 @@ export default function App() {
     </div>
   );
 }
-// fixing video
