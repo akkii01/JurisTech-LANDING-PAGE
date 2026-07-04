@@ -9,7 +9,6 @@ const HeroTextSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[50%] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none z-0"></div>
       
       {/* ---------------- TYPOGRAPHY CONTAINER ---------------- */}
-      {/* mb-24 ensures there is space between the text and the moving marquee below */}
       <div className="flex flex-col items-center justify-center leading-none text-center relative z-10 px-4 mb-24 md:mb-32 mt-10">
         
         {/* Top Word: Outline Text */}
@@ -24,9 +23,9 @@ const HeroTextSection = () => {
         </h2>
         
         {/* Bottom Word: Solid Text */}
-        {/* 🔥 FIX: Changed -mt-2 to a dynamic -mt-[7vw] for perfect mobile overlap, and adjusted larger screens symmetrically 🔥 */}
+        {/* 🔥 FIX: Used standard guaranteed Tailwind classes (-mt-10 for mobile) instead of arbitrary values 🔥 */}
         <h2 
-          className="relative z-10 text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter -mt-[7vw] sm:-mt-[3rem] md:-mt-[4rem] lg:-mt-[5rem]"
+          className="relative z-10 text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter -mt-10 sm:-mt-16 md:-mt-20 lg:-mt-24"
           style={{ lineHeight: '0.85' }}
         >
           Assistant
@@ -40,7 +39,6 @@ const HeroTextSection = () => {
       </div>
 
       {/* ---------------- CONTINUOUS MOVING MARQUEE ---------------- */}
-      {/* This box stays at the absolute bottom of this section */}
       <div className="absolute bottom-0 w-full bg-[#080c17] border-y border-white/10 py-4 sm:py-5 overflow-hidden flex z-20">
         <motion.div
           animate={{ x: ["0%", "-50%"] }} // Moves left continuously
