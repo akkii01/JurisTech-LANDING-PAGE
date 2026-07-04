@@ -9,35 +9,39 @@ const HeroTextSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[50%] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none z-0"></div>
       
       {/* ---------------- TYPOGRAPHY CONTAINER ---------------- */}
-      {/* 🔥 FIX 1: flex-col हटाकर सिंपल block text-center किया है ताकि मोबाइल ब्राउज़र स्पेसिंग गड़बड़ न करे 🔥 */}
-      <div className="relative block text-center z-10 px-4 mb-24 md:mb-32 mt-10 w-full">
+      <div className="flex flex-col items-center justify-center relative z-10 px-4 mb-24 md:mb-32 mt-10 w-full">
         
-        {/* Top Word: Outline Text */}
-        {/* 🔥 FIX 2: lineHeight को एकदम टाइट (0.75) कर दिया है ताकि एक्स्ट्रा गैप खत्म हो जाए 🔥 */}
-        <h2 
-          className="text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-transparent uppercase tracking-tighter block w-full"
-          style={{ 
-            WebkitTextStroke: '2px rgba(255, 255, 255, 0.25)', 
-            lineHeight: '0.75' 
-          }}
-        >
-          Legal AI
-        </h2>
-        
-        {/* Bottom Word: Solid Text */}
-        {/* 🔥 FIX 3: CSS Transform लगाया है जो ब्राउज़र को मजबूर करेगा कि वो 'Assistant' को ठीक 30% ऊपर खींचकर 3D ओवरलैप बना दे 🔥 */}
-        <h2 
-          className="text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter block w-full transform -translate-y-[30%] sm:-translate-y-[22%] md:-translate-y-[28%] lg:-translate-y-[32%]"
-          style={{ 
-            lineHeight: '0.75' 
-          }}
-        >
-          Assistant
-        </h2>
+        {/* 🔥 THE MAGIC: GRID OVERLAP CONTAINER 🔥 */}
+        {/* grid-area 1/1 forces all its children to sit exactly on top of each other */}
+        <div className="grid grid-cols-1 grid-rows-1 place-items-center text-center leading-none">
+          
+          {/* Top Word: Outline Text */}
+          {/* col-start-1 row-start-1 keeps it in the same box. pb-[8%] pushes it slightly UP */}
+          <h2 
+            className="col-start-1 row-start-1 pb-[12%] sm:pb-[10%] md:pb-[8%] text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-transparent uppercase tracking-tighter z-0"
+            style={{ 
+              WebkitTextStroke: '2px rgba(255, 255, 255, 0.25)', 
+              lineHeight: '0.85' 
+            }}
+          >
+            Legal AI
+          </h2>
+          
+          {/* Bottom Word: Solid Text */}
+          {/* col-start-1 row-start-1 keeps it in the same box. pt-[12%] pushes it slightly DOWN */}
+          <h2 
+            className="col-start-1 row-start-1 pt-[12%] sm:pt-[10%] md:pt-[8%] text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter z-10"
+            style={{ 
+              lineHeight: '0.85' 
+            }}
+          >
+            Assistant
+          </h2>
+
+        </div>
         
         {/* Small Subtext */}
-        {/* 🔥 FIX 4: सब-टेक्स्ट को थोड़ा सा एडजस्ट किया है ताकि ओवरलैप के बाद यह सही जगह दिखे 🔥 */}
-        <p className="mt-2 md:mt-6 text-gray-400 text-xs sm:text-sm md:text-base font-medium tracking-[0.3em] uppercase block w-full">
+        <p className="mt-8 md:mt-12 text-gray-400 text-xs sm:text-sm md:text-base font-medium tracking-[0.3em] uppercase text-center">
           A Comprehensive Platform
         </p>
         
