@@ -3,17 +3,19 @@ import { motion } from 'framer-motion';
 
 const HeroTextSection = () => {
   return (
-    <section className="relative w-full bg-[#030712] py-20 md:py-32 flex flex-col items-center justify-center overflow-hidden border-t border-white/5">
+    <section className="relative w-full bg-[#030712] py-28 md:py-40 flex flex-col items-center justify-center overflow-hidden border-t border-white/5">
       
       {/* Subtle Background Glow for cinematic depth */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[50%] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none z-0"></div>
       
       {/* ---------------- TYPOGRAPHY CONTAINER ---------------- */}
-      <div className="flex flex-col items-center justify-center leading-none text-center relative z-10 px-4 mb-24 md:mb-32 mt-10">
+      {/* Container set to relative so absolute elements align properly inside it */}
+      <div className="relative flex flex-col items-center justify-center leading-none text-center z-10 px-4 mb-24 md:mb-32 mt-12 md:mt-20 w-full">
         
-        {/* Top Word: Outline Text */}
+        {/* Top Word: Outline Text (ABSOLUTE POSITIONING) */}
+        {/* 🔥 FIX: 'absolute' forces it to overlap no matter what. 'bottom-[55%]' ensures it consistently sits exactly halfway behind 'Assistant' across all devices 🔥 */}
         <h2 
-          className="text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-transparent uppercase tracking-tighter relative z-0"
+          className="absolute bottom-[55%] sm:bottom-[60%] left-1/2 -translate-x-1/2 whitespace-nowrap text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-transparent uppercase tracking-tighter z-0 w-full"
           style={{ 
             WebkitTextStroke: '2px rgba(255, 255, 255, 0.25)', // Creates the outline effect
             lineHeight: '0.85' 
@@ -22,17 +24,16 @@ const HeroTextSection = () => {
           Legal AI
         </h2>
         
-        {/* Bottom Word: Solid Text */}
-        {/* 🔥 FIX: Used standard guaranteed Tailwind classes (-mt-10 for mobile) instead of arbitrary values 🔥 */}
+        {/* Bottom Word: Solid Text (RELATIVE POSITIONING) */}
         <h2 
-          className="relative z-10 text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter -mt-10 sm:-mt-16 md:-mt-20 lg:-mt-24"
+          className="relative z-10 text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter w-full"
           style={{ lineHeight: '0.85' }}
         >
           Assistant
         </h2>
         
         {/* Small Subtext */}
-        <p className="mt-8 md:mt-12 text-gray-400 text-xs sm:text-sm md:text-base font-medium tracking-[0.3em] uppercase">
+        <p className="relative z-20 mt-8 md:mt-12 text-gray-400 text-xs sm:text-sm md:text-base font-medium tracking-[0.3em] uppercase">
           A Comprehensive Platform
         </p>
         
