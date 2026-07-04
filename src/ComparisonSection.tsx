@@ -39,7 +39,6 @@ const ComparisonSection = () => {
           </motion.div>
         </div>
 
-        {/* 🔥 FIX: Mobile height adjusted to 78vh to prevent cutting off the graphics 🔥 */}
         <div className="relative w-full max-w-6xl h-[78vh] sm:h-[70vh] md:h-[65vh] lg:h-[70vh] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a]">
           
           {/* ==========================================
@@ -52,7 +51,8 @@ const ComparisonSection = () => {
             ></div>
             
             <div className="relative z-10 w-full md:w-1/2 pr-0 md:pr-12 mb-5 md:mb-0">
-              <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-[10px] md:text-sm font-semibold tracking-wide mb-3 md:mb-6 uppercase">
+              {/* 🔥 FIX: Removed 'uppercase' class from here 🔥 */}
+              <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-[10px] md:text-sm font-semibold tracking-wide mb-3 md:mb-6">
                 Manual Drafting
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-gray-500 mb-3 md:mb-6 leading-tight">
@@ -63,7 +63,7 @@ const ComparisonSection = () => {
               </p>
             </div>
 
-            {/* Graphic Box - Resized for mobile */}
+            {/* Graphic Box */}
             <div className="relative z-10 w-full md:w-1/2 flex justify-center md:justify-end">
               <div className="w-[280px] md:w-[350px] h-[260px] md:h-[380px] bg-[#111] border border-gray-800 rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col shadow-2xl relative overflow-hidden">
                 
@@ -114,7 +114,8 @@ const ComparisonSection = () => {
             <div className="absolute top-1/4 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-purple-600/10 rounded-full blur-[60px] md:blur-[100px] pointer-events-none"></div>
 
             <div className="relative z-30 w-full md:w-1/2 pr-0 md:pr-12 mb-5 md:mb-0">
-              <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-400 text-[10px] md:text-sm font-semibold tracking-wide mb-3 md:mb-6 shadow-[0_0_15px_rgba(59,130,246,0.3)] uppercase">
+              {/* 🔥 FIX: Removed 'uppercase' class from here too 🔥 */}
+              <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-400 text-[10px] md:text-sm font-semibold tracking-wide mb-3 md:mb-6 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
                 With JurisTech
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-3 md:mb-6 leading-tight">
@@ -128,7 +129,6 @@ const ComparisonSection = () => {
             <div className="relative z-30 w-full md:w-1/2 flex justify-center md:justify-end">
               <div className="w-[280px] md:w-[350px] h-[260px] md:h-[380px] bg-[#0a0f1e] border border-blue-500/30 rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden">
                 
-                {/* 🔥 FIX: Changed animation to use CSS top property for dynamic height support 🔥 */}
                 <motion.div 
                   className="absolute left-0 w-full h-1 bg-blue-500/50 shadow-[0_0_10px_#3b82f6]"
                   animate={{ top: ["0%", "98%", "0%"] }}
