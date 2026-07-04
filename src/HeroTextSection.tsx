@@ -14,7 +14,7 @@ const HeroTextSection = () => {
         
         {/* Top Word: Outline Text */}
         <h2 
-          className="text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-transparent uppercase tracking-tighter"
+          className="text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-transparent uppercase tracking-tighter relative z-0"
           style={{ 
             WebkitTextStroke: '2px rgba(255, 255, 255, 0.25)', // Creates the outline effect
             lineHeight: '0.85' 
@@ -24,7 +24,11 @@ const HeroTextSection = () => {
         </h2>
         
         {/* Bottom Word: Solid Text */}
-        <h2 className="text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter -mt-2 sm:-mt-4 md:-mt-6">
+        {/* 🔥 FIX: Changed -mt-2 to a dynamic -mt-[7vw] for perfect mobile overlap, and adjusted larger screens symmetrically 🔥 */}
+        <h2 
+          className="relative z-10 text-[15vw] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] font-black text-white uppercase tracking-tighter -mt-[7vw] sm:-mt-[3rem] md:-mt-[4rem] lg:-mt-[5rem]"
+          style={{ lineHeight: '0.85' }}
+        >
           Assistant
         </h2>
         
