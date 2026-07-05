@@ -56,7 +56,7 @@ const WorkflowSection = () => {
 
         {/* ---------------- LEFT COLUMN ---------------- */}
         <div className="flex flex-col gap-6 lg:gap-24 w-full sm:w-auto relative z-10">
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] border border-blue-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_#3b82f6] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">User Prompts</h3>
@@ -69,7 +69,7 @@ const WorkflowSection = () => {
              <ArrowDown className="w-5 h-5 animate-bounce" />
           </div>
 
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] border border-blue-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_#3b82f6] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">Legal Precedents</h3>
@@ -83,10 +83,10 @@ const WorkflowSection = () => {
         <motion.div 
           animate={{ boxShadow: ['0 0 20px rgba(59,130,246,0.2)', '0 0 60px rgba(99,102,241,0.4)', '0 0 20px rgba(59,130,246,0.2)'] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="relative flex flex-col items-center bg-gradient-to-b from-[#0f172a] to-[#020617] border border-indigo-500/30 rounded-3xl p-8 sm:p-10 shadow-[0_0_40px_rgba(37,99,235,0.2)] backdrop-blur-xl w-full sm:w-[320px] z-20"
+          className="relative flex flex-col items-center bg-gradient-to-b from-[#0f172a] to-[#020617] rounded-3xl p-8 sm:p-10 shadow-[0_0_40px_rgba(37,99,235,0.2)] backdrop-blur-xl w-full sm:w-[320px] z-20"
         >
           <div className="absolute top-4 right-4 w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_15px_#4ade80] animate-pulse"></div>
-          <div className="w-16 h-16 rounded-full bg-indigo-500/20 flex items-center justify-center mb-5 border border-indigo-500/50 relative overflow-hidden">
+          <div className="w-16 h-16 rounded-full bg-indigo-500/20 flex items-center justify-center mb-5 relative overflow-hidden">
              <div className="absolute inset-0 bg-indigo-400/20 animate-ping"></div>
              <BrainCircuit className="w-8 h-8 text-indigo-400 relative z-10" />
           </div>
@@ -96,7 +96,7 @@ const WorkflowSection = () => {
 
         {/* ---------------- RIGHT COLUMN ---------------- */}
         <div className="flex flex-col gap-6 lg:gap-24 w-full sm:w-auto relative z-10">
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] border border-indigo-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 shadow-[0_0_12px_#818cf8] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">Court-Ready Drafts</h3>
@@ -105,7 +105,7 @@ const WorkflowSection = () => {
             <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 ml-auto opacity-50" />
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] border border-indigo-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 shadow-[0_0_12px_#818cf8] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">Formatting & SLA</h3>
@@ -116,7 +116,7 @@ const WorkflowSection = () => {
         </div>
       </div>
       
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-16 sm:mt-24 z-10 px-4 bg-black/30 py-3 rounded-full border border-white/5">
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-16 sm:mt-24 z-10 px-4 bg-black/30 py-3 rounded-full">
         <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-400"><div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]"></div> Sources</div>
         <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-400"><div className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_#4ade80]"></div> Active Engine</div>
         <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-400"><div className="w-2 h-2 rounded-full bg-indigo-400 shadow-[0_0_8px_#818cf8]"></div> Destinations</div>
