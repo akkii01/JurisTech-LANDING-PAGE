@@ -10,7 +10,7 @@ import HeroTextSection from './HeroTextSection';
 import ScrollRevealSection from './ScrollRevealSection';
 import LegalAssistantSection from './LegalAssistantSection';
 import ComparisonSection from './ComparisonSection';
-import { motion, AnimatePresence } from "motion";
+import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowRight,
   ArrowLeft, 
