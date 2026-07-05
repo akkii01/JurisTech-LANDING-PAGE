@@ -63,6 +63,7 @@ const ScrollRevealSection = () => {
   const textY = useTransform(scrollYProgress, [0, 0.9, 1], [0, 0, -50]);
 
   return (
+    {/* 🔥 CONFIRMED: Solid seamless background with no border dividers 🔥 */}
     <section ref={containerRef} className="relative w-full h-[250vh] bg-[#030712]">
       
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
