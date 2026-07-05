@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { FileText, Clock, AlertCircle, Zap, CheckCircle2, Sparkles, BrainCircuit, Loader2 } from 'lucide-react';
 
 // ----------------- SCATTERED LETTER COMPONENT -----------------
-// 🔥 FIX: यहाँ मैंने 'kerningClass' नाम का एक नया प्रॉप ऐड किया है
 const ScatteredLetter = ({ children, progress, startX, startY, startRot, kerningClass = "" }: any) => {
   const x = useTransform(progress, [0.1, 0.6], [startX, 0]);
   const y = useTransform(progress, [0.1, 0.6], [startY, 0]);
@@ -12,7 +12,6 @@ const ScatteredLetter = ({ children, progress, startX, startY, startRot, kerning
   return (
     <motion.span 
       style={{ x, y, rotate, opacity, display: 'inline-block' }}
-      // kerningClass को यहाँ className में डाल दिया है ताकि अक्षरों की दूरी कम हो सके
       className={`text-[12vw] md:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 drop-shadow-[0_0_30px_rgba(37,99,235,0.4)] ${kerningClass}`}
     >
       {children}
@@ -63,7 +62,6 @@ const ScrollRevealSection = () => {
   const textY = useTransform(scrollYProgress, [0, 0.9, 1], [0, 0, -50]);
 
   return (
-    {/* 🔥 CONFIRMED: Solid seamless background with no border dividers 🔥 */}
     <section ref={containerRef} className="relative w-full h-[250vh] bg-[#030712]">
       
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -96,14 +94,13 @@ const ScrollRevealSection = () => {
           <div className="flex items-center justify-center">
             {companyName.map((letter, i) => {
               
-              // 🔥 MANUAL KERNING: 'T' और 'e' को पीछे खींचने का लॉजिक 🔥
               let customKerning = "";
               if (letter === 'T') {
-                customKerning = "-ml-[1.5vw] md:-ml-[2.5rem]"; // 'T' को 's' के पास खींचना
+                customKerning = "-ml-[1.5vw] md:-ml-[2.5rem]";
               } else if (letter === 'e' && i === 6) {
-                customKerning = "-ml-[1vw] md:-ml-[1.5rem]"; // 'e' को 'T' के छज्जे के नीचे लाना
+                customKerning = "-ml-[1vw] md:-ml-[1.5rem]";
               } else if (letter === 's') {
-                 customKerning = "-ml-[0.5vw] md:-ml-[0.5rem]"; // 's' को हल्का सा पास लाना
+                 customKerning = "-ml-[0.5vw] md:-ml-[0.5rem]";
               }
 
               return (
