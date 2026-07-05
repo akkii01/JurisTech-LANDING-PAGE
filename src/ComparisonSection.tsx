@@ -18,7 +18,7 @@ const ComparisonSection = () => {
       
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-8">
         
-        {/* Title Section */}
+        
         <div className="text-center mb-4 md:mb-10 pt-2 md:pt-0">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -41,9 +41,7 @@ const ComparisonSection = () => {
 
         <div className="relative w-full max-w-6xl h-[78vh] sm:h-[70vh] md:h-[65vh] lg:h-[70vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-[#030712]">
           
-          {/* ==========================================
-              1. THE OLD WAY (BASE STATIC LAYER) 
-          ========================================== */}
+          
           <div className="absolute inset-0 z-0 flex flex-col md:flex-row items-center justify-center p-5 sm:p-8 md:p-16">
             <div 
               className="absolute inset-0 opacity-20" 
@@ -62,7 +60,7 @@ const ComparisonSection = () => {
               </p>
             </div>
 
-            {/* Graphic Box */}
+           
             <div className="relative z-10 w-full md:w-1/2 flex justify-center md:justify-end">
               <div className="w-[280px] md:w-[350px] h-[260px] md:h-[380px] bg-[#030712] rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col shadow-2xl relative overflow-hidden">
                 
@@ -102,9 +100,7 @@ const ComparisonSection = () => {
             </div>
           </div>
 
-          {/* ==========================================
-              2. THE NEW WAY (WIPING ANIMATED LAYER)
-          ========================================== */}
+         
           <motion.div 
             className="absolute inset-0 z-20 bg-[#030712] flex flex-col md:flex-row items-center justify-center p-5 sm:p-8 md:p-16"
             style={{ clipPath }}
@@ -159,9 +155,7 @@ const ComparisonSection = () => {
             </div>
           </motion.div>
 
-          {/* ==========================================
-              3. THE GLOWING DIVIDER LINE
-          ========================================== */}
+         
           <motion.div 
             className="absolute top-0 bottom-0 z-40 w-[2px] bg-gradient-to-b from-transparent via-blue-400 to-transparent shadow-[0_0_15px_#60a5fa] pointer-events-none"
             style={{ left: sliderPosition }}
