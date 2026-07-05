@@ -34,7 +34,6 @@ const FAQSection = () => {
   };
 
   return (
-    {/* 🔥 FIX: Removed 'border-t border-white/5' for seamless blending 🔥 */}
     <section id="faq" className="relative w-full py-20 lg:py-32 bg-[#030712] overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
