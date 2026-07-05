@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, MessageCircleQuestion } from 'lucide-react';
 
-// JurisTech के लिए 5 सबसे इम्पॉर्टेंट FAQs
+
 const faqs = [
   {
     question: "Is JurisTech specifically designed for Indian courts?",
@@ -35,12 +35,12 @@ const FAQSection = () => {
 
   return (
     <section id="faq" className="relative w-full py-20 lg:py-32 bg-[#030712] overflow-hidden">
-      {/* Background Glow */}
+     
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 w-full">
         
-        {/* Section Header */}
+       
         <div className="text-center mb-12 lg:mb-16">
           <div className="inline-flex items-center justify-center p-3 bg-blue-500/10 rounded-2xl mb-4 border border-blue-500/20 shadow-[0_0_15px_rgba(37,99,235,0.15)]">
             <MessageCircleQuestion className="w-6 h-6 text-blue-400" />
@@ -53,7 +53,7 @@ const FAQSection = () => {
           </p>
         </div>
 
-        {/* FAQ Accordion List */}
+       
         <div className="flex flex-col gap-4">
           {faqs.map((faq, index) => (
             <motion.div 
