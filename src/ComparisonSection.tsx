@@ -14,6 +14,7 @@ const ComparisonSection = () => {
   const sliderPosition = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
+    {/* 🔥 CONFIRMED: 100% seamless background with no border dividers 🔥 */}
     <section ref={containerRef} className="relative h-[300vh] bg-[#030712] w-full">
       
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-8">
@@ -51,7 +52,6 @@ const ComparisonSection = () => {
             ></div>
             
             <div className="relative z-10 w-full md:w-1/2 pr-0 md:pr-12 mb-5 md:mb-0">
-              {/* 🔥 FIX: Removed 'uppercase' class from here 🔥 */}
               <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-[10px] md:text-sm font-semibold tracking-wide mb-3 md:mb-6">
                 Manual Drafting
               </div>
@@ -114,7 +114,6 @@ const ComparisonSection = () => {
             <div className="absolute top-1/4 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-purple-600/10 rounded-full blur-[60px] md:blur-[100px] pointer-events-none"></div>
 
             <div className="relative z-30 w-full md:w-1/2 pr-0 md:pr-12 mb-5 md:mb-0">
-              {/* 🔥 FIX: Removed 'uppercase' class from here too 🔥 */}
               <div className="inline-block px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-400 text-[10px] md:text-sm font-semibold tracking-wide mb-3 md:mb-6 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
                 With JurisTech
               </div>
