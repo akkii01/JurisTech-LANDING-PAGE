@@ -4,10 +4,9 @@ import { BrainCircuit, Database, FileText, CheckCircle, Sparkles, ArrowDown } fr
 
 const WorkflowSection = () => {
   return (
-    {/* 🔥 FIX: Removed 'border-t border-white/5' to make it seamless 🔥 */}
     <section className="relative w-full py-20 lg:py-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center">
       
-     {/* Section Title */}
+      {/* Section Title */}
       <div className="text-center z-10 mb-10 lg:mb-16 px-4">
         <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3 tracking-wide">
           Architecture
@@ -22,7 +21,6 @@ const WorkflowSection = () => {
         
         {/* DESKTOP ONLY: Curved SVG Lines */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" style={{ zIndex: -1 }}>
-          {/* Left Top to Center */}
           <path d="M 250 100 C 400 100, 400 200, 520 200" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="2" />
           <motion.path 
             d="M 250 100 C 400 100, 400 200, 520 200" fill="none" stroke="#60A5FA" strokeWidth="2"
@@ -31,7 +29,6 @@ const WorkflowSection = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 0 }}
           />
           
-          {/* Left Bottom to Center */}
           <path d="M 250 300 C 400 300, 400 200, 520 200" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="2" />
           <motion.path 
             d="M 250 300 C 400 300, 400 200, 520 200" fill="none" stroke="#60A5FA" strokeWidth="2"
@@ -40,7 +37,6 @@ const WorkflowSection = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 0.5 }}
           />
 
-          {/* Center to Right Top */}
           <path d="M 600 200 C 750 200, 750 100, 890 100" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="2" />
           <motion.path 
             d="M 600 200 C 750 200, 750 100, 890 100" fill="none" stroke="#818CF8" strokeWidth="2"
@@ -49,7 +45,6 @@ const WorkflowSection = () => {
             transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: 1 }}
           />
 
-          {/* Center to Right Bottom */}
           <path d="M 600 200 C 750 200, 750 300, 890 300" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="2" />
           <motion.path 
             d="M 600 200 C 750 200, 750 300, 890 300" fill="none" stroke="#818CF8" strokeWidth="2"
@@ -59,12 +54,9 @@ const WorkflowSection = () => {
           />
         </svg>
 
-        {/* ---------------- LEFT COLUMN (INPUTS) ---------------- */}
+        {/* ---------------- LEFT COLUMN ---------------- */}
         <div className="flex flex-col gap-6 lg:gap-24 w-full sm:w-auto relative z-10">
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] border border-blue-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] border border-blue-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_#3b82f6] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">User Prompts</h3>
@@ -73,15 +65,11 @@ const WorkflowSection = () => {
             <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 ml-auto opacity-50" />
           </motion.div>
 
-          {/* Mobile Only Connecting Arrow */}
           <div className="flex lg:hidden justify-center text-blue-500/50 -my-2">
              <ArrowDown className="w-5 h-5 animate-bounce" />
           </div>
 
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] border border-blue-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-r from-[#0a0f1c] to-[#0f172a] border border-blue-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_#3b82f6] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">Legal Precedents</h3>
@@ -91,12 +79,7 @@ const WorkflowSection = () => {
           </motion.div>
         </div>
 
-        {/* Mobile Only Connecting Arrow */}
-        <div className="flex lg:hidden justify-center text-indigo-500/50 my-2">
-            <ArrowDown className="w-6 h-6 animate-bounce delay-100" />
-        </div>
-
-        {/* ---------------- CENTER COLUMN (ENGINE) ---------------- */}
+        {/* ---------------- CENTER COLUMN ---------------- */}
         <motion.div 
           animate={{ boxShadow: ['0 0 20px rgba(59,130,246,0.2)', '0 0 60px rgba(99,102,241,0.4)', '0 0 20px rgba(59,130,246,0.2)'] }}
           transition={{ duration: 4, repeat: Infinity }}
@@ -111,17 +94,9 @@ const WorkflowSection = () => {
           <p className="text-gray-400 text-xs sm:text-sm text-center leading-relaxed">Semantic layer • NLP drafting<br/>Real-time processing</p>
         </motion.div>
 
-        {/* Mobile Only Connecting Arrow */}
-        <div className="flex lg:hidden justify-center text-indigo-500/50 my-2">
-            <ArrowDown className="w-6 h-6 animate-bounce delay-200" />
-        </div>
-
-        {/* ---------------- RIGHT COLUMN (OUTPUTS) ---------------- */}
+        {/* ---------------- RIGHT COLUMN ---------------- */}
         <div className="flex flex-col gap-6 lg:gap-24 w-full sm:w-auto relative z-10">
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] border border-indigo-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] border border-indigo-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 shadow-[0_0_12px_#818cf8] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">Court-Ready Drafts</h3>
@@ -130,15 +105,7 @@ const WorkflowSection = () => {
             <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 ml-auto opacity-50" />
           </motion.div>
 
-          {/* Mobile Only Connecting Arrow */}
-          <div className="flex lg:hidden justify-center text-indigo-500/50 -my-2">
-             <ArrowDown className="w-5 h-5 animate-bounce delay-300" />
-          </div>
-
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] border border-indigo-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]"
-          >
+          <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4 bg-gradient-to-l from-[#0a0f1c] to-[#0f172a] border border-indigo-500/10 rounded-2xl p-4 sm:p-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md w-full sm:w-[280px]">
             <div className="w-2.5 h-2.5 rounded-full bg-indigo-400 shadow-[0_0_12px_#818cf8] animate-pulse"></div>
             <div>
               <h3 className="text-white text-sm sm:text-base font-semibold">Formatting & SLA</h3>
@@ -147,10 +114,8 @@ const WorkflowSection = () => {
             <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 ml-auto opacity-50" />
           </motion.div>
         </div>
-
       </div>
       
-      {/* Legend Area */}
       <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-16 sm:mt-24 z-10 px-4 bg-black/30 py-3 rounded-full border border-white/5">
         <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-400"><div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]"></div> Sources</div>
         <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-400"><div className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_#4ade80]"></div> Active Engine</div>
