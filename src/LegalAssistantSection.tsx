@@ -9,7 +9,6 @@ const LegalAssistantSection = () => {
     <section className="relative w-full pt-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center">
       
       {/* ---------------- MAIN ANIMATION AREA ---------------- */}
-      {/* Container को एक फिक्स्ड हाइट दी है ताकि absolute लेयर्स सही से सेट हों */}
       <div className="relative w-full h-[30vh] min-h-[300px] flex items-center justify-center">
         
         {/* 1. BACKGROUND: ASSISTANT (Solid White) */}
@@ -17,7 +16,6 @@ const LegalAssistantSection = () => {
           animate={{ x: ["0%", "35vw", "0%", "0%", "-35vw", "0%", "0%"] }}
           transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
           className="absolute text-6xl sm:text-8xl md:text-[11rem] font-black text-white uppercase leading-none tracking-tight drop-shadow-2xl mt-16 md:mt-24"
-          // zIndex को सीधा स्टाइल में डाला है ताकि Framer Motion इसे ओवरराइड ना करे
           style={{ zIndex: 10, whiteSpace: "nowrap" }}
         >
           Assistant
@@ -29,9 +27,9 @@ const LegalAssistantSection = () => {
           transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
           className="absolute text-6xl sm:text-8xl md:text-[10rem] font-black uppercase leading-none tracking-tight mb-16 md:mb-24"
           style={{ 
-            zIndex: 50, // यह हमेशा ऊपर रहेगा
+            zIndex: 50,
             WebkitTextStroke: "2px rgba(255, 255, 255, 0.25)", 
-            color: "#030712", // 🔥 MAGIC FIX: Transparent की जगह बैकग्राउंड कलर डाला है 🔥
+            color: "#030712", 
             whiteSpace: "nowrap" 
           }}
         >
@@ -51,7 +49,6 @@ const LegalAssistantSection = () => {
       </motion.p>
 
       {/* ---------------- CONTINUOUS SCROLLING MARQUEE BANNER ---------------- */}
-      {/* 🔥 FIX: Removed 'border-y border-white/10' and 'bg-white/[0.02]' for 100% seamless look 🔥 */}
       <div className="relative z-10 w-full overflow-hidden py-4 md:py-5 flex items-center">
         <motion.div
           className="flex whitespace-nowrap"
