@@ -49,7 +49,6 @@ const stagger = {
   }
 };
 
-// Extracted Workflow Steps Array for Duplication (Marquee Loop)
 const workflowSteps = [
   {
     step: 1,
@@ -106,10 +105,8 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: {
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 overflow-y-auto max-h-[85vh]"
           >
-            {/* ✨ 100% TRANSPARENT FLOATING HEADER ✨ */}
             <div className="sticky top-0 z-50 pt-6 px-4 sm:px-6 pb-2 flex items-center justify-between gap-2 pointer-events-none bg-transparent border-none shadow-none">
               
-              {/* LEFT: Fully Transparent Logo */}
               <div className="pointer-events-auto flex items-center shrink-0">
                 <img 
                   src="https://i.ibb.co/zWYNn82b/logo-png.png" 
@@ -119,7 +116,6 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: {
                 />
               </div>
 
-              {/* CENTER: Smart Flex Centered Title (Prevents Overlap) */}
               {title && (
                 <div className="flex-1 flex justify-center pointer-events-auto min-w-0">
                   <span className="bg-gray-900/60 backdrop-blur-xl border border-white/10 shadow-lg px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-bold text-white tracking-wide truncate max-w-full">
@@ -128,7 +124,6 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: {
                 </div>
               )}
               
-              {/* RIGHT: Language Toggle & Close */}
               <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto shrink-0">
                 <div className="flex space-x-1 bg-gray-900/60 backdrop-blur-xl border border-white/10 p-1 rounded-xl shadow-lg">
                   <button onClick={() => setLang('en')} className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold transition-all ${lang === 'en' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}>EN</button>
@@ -143,7 +138,6 @@ const InfoModal = ({ isOpen, onClose, children, lang, setLang, title }: {
               </div>
             </div>
             
-            {/* Area B (Content) */}
             <div className="p-6 sm:p-8 pt-2 selection:bg-blue-500/30">
               <div key={lang} className="animate-[fadeIn_0.5s_ease-in-out]">
                 {children}
@@ -160,7 +154,6 @@ export default function App() {
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // Modal states for footer links
   const [lang, setLang] = useState<'en' | 'hi'>('en');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -168,13 +161,10 @@ export default function App() {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   return (
-    {/* 🔥 Global Background Changed to Solid Black 🔥 */}
     <div className="min-h-screen bg-[#030712] text-gray-200 selection:bg-blue-500/30 selection:text-blue-200 antialiased">
       
-      {/* NAVIGATION - Fully Transparent */}
       <nav className="fixed w-full z-50 top-0 pt-4 px-6 pb-4 bg-transparent">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo Container */}
           <motion.a 
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -193,7 +183,6 @@ export default function App() {
             </span>
           </motion.a>
 
-          {/* Central Navigation */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,12 +192,10 @@ export default function App() {
             <a href="#features" className="hover:text-white hover:scale-105 transition-all">Features</a>
             <a href="#how-it-works" className="hover:text-white hover:scale-105 transition-all">How it works</a>
             <a href="#pricing" className="hover:text-white hover:scale-105 transition-all">Pricing</a>
-            {/* Naya FAQ Button Yahan Aayega */}
-<a href="#faq" className="hover:text-white hover:scale-105 transition-all">FAQ</a>
+            <a href="#faq" className="hover:text-white hover:scale-105 transition-all">FAQ</a>
             <button onClick={() => setIsFeedbackOpen(true)} className="hover:text-white hover:scale-105 transition-all focus:outline-none">Feedback</button>
           </motion.div>
 
-          {/* CTA BUTTON 1: HEADER SECTION */}
           <motion.a 
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -225,7 +212,6 @@ export default function App() {
             <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </motion.a>
 
-          {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden text-gray-300 p-2 hover:bg-white/10 rounded-lg transition-colors"
@@ -234,7 +220,6 @@ export default function App() {
           </button>
         </div>
 
-        {/* Mobile/Tablet Menu Overlay */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -247,8 +232,7 @@ export default function App() {
                 <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Features</a>
                 <a href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">How it works</a>
                 <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Pricing</a>
-                {/* Naya FAQ Button Yahan Aayega */}
-<a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">FAQ</a>
+                <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">FAQ</a>
                 <button onClick={() => { setIsFeedbackOpen(true); setIsMobileMenuOpen(false); }} className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Feedback</button>
                 <a href="https://juristech-v1.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)]">
                   Try Now <ArrowRight className="w-4 h-4" />
@@ -259,13 +243,7 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-    
-
-     {/* 🔥 HERO SECTION: OPTIMIZED FOR ALL DEVICES (PREMIUM DEPTH) 🔥 */}
-     {/* Untouched Hero Section as requested */}
       <section className="relative pt-20 md:pt-32 pb-4 md:pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
-        
-        {/* 🚀 OPTIMIZED DARK VIDEO BACKGROUND 🚀 */}
         <div className="absolute inset-0 w-full h-full z-0">
           <video 
             autoPlay 
@@ -276,18 +254,13 @@ export default function App() {
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
-          
-          {/* 🔥 Dark Gradient Overlay: Ye video ko website ke base color se blend karega 🔥 */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/60 via-[#030712]/70 to-[#030712] pointer-events-none"></div>
         </div>
 
-        {/* Deep Premium Background */}
         <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20 z-0"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none z-0"></div>
 
         <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center mt-4 md:mt-8">
-          
-          {/* Animated Badge */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
@@ -298,7 +271,6 @@ export default function App() {
             Where Accuracy Meets Innovation
           </motion.div>
 
-          {/* Premium Headline */}
           <motion.h1 
             {...fadeIn}
             className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-4 md:mb-6 leading-[1.1] px-2"
@@ -316,7 +288,6 @@ export default function App() {
             Draft court-ready documents in minutes, not hours.
           </motion.p>
 
-          {/* Premium CTA Area */}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.3 }}
@@ -335,7 +306,6 @@ export default function App() {
             </p>
           </motion.div>
 
-         {/* 🔥 HERO SECTION CHIPS: 10 DOCUMENTS SEAMLESS DUAL-TRACK MARQUEE 🔥 */}
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4 }}
@@ -348,7 +318,6 @@ export default function App() {
                 WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)" 
               }}
             >
-              {/* TRACK 1 */}
               <div className="flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 custom-marquee-track-reverse">
                 {[
                   ...Array(2).fill([
@@ -376,7 +345,6 @@ export default function App() {
                 ))}
               </div>
 
-              {/* TRACK 2 */}
               <div className="flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 custom-marquee-track-reverse" aria-hidden="true">
                 {[
                   ...Array(2).fill([
@@ -408,8 +376,6 @@ export default function App() {
         </div>
       </section>
       
-      {/* 🔥 DASHBOARD PREVIEW SECTION (NOW SEPARATED) 🔥 */}
-      {/* BACKGROUND CHANGED TO SOLID #030712 */}
       <section className="relative z-10 w-full pb-20 pt-8 bg-[#030712]">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
@@ -418,7 +384,6 @@ export default function App() {
           transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.1 }}
           className="relative max-w-5xl mx-auto group w-full px-4 sm:px-6"
         >
-          {/* Dashboard Glow Effect */}
           <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/50 to-indigo-600/50 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
           
           <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
@@ -443,10 +408,9 @@ export default function App() {
           </div>
         </motion.div>
       </section>
+      
       <WorkflowSection/>
 
-      {/* 🔥 HIGH-ATTENTION WHY CHOOSE US SECTION 🔥 */}
-      {/* BORDER REMOVED AND BACKGROUND CHANGED TO SOLID #030712 */}
       <section className="py-24 bg-[#030712] relative">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div 
@@ -505,7 +469,6 @@ export default function App() {
               >
                 <div className={`absolute inset-0 bg-gradient-to-br from-${card.color}-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                 <div className={`relative z-10 w-14 h-14 rounded-xl bg-${card.color}-500/10 border border-${card.color}-500/30 flex items-center justify-center text-${card.color}-400 mb-6 shadow-[0_0_20px_rgba(0,0,0,0.3)] group-hover:shadow-[0_0_25px_rgba(var(--color-${card.color}-500),0.2)] transition-all`}>
-                  {/* HIGH-ATTENTION ANIMATION */}
                   <motion.div animate={card.animConfig} transition={card.animTransition}>
                     {card.icon}
                   </motion.div>
@@ -518,11 +481,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* 🔥 नया एनिमेटेड Comparison Section 🔥 */}
-  <ComparisonSection />
+      <ComparisonSection />
 
-    {/* 🔥 HOW IT WORKS: THE ULTIMATE SEAMLESS MARQUEE (DESKTOP + MOBILE) 🔥 */}
-    {/* BORDER REMOVED AND BACKGROUND CHANGED TO SOLID #030712 */}
       <section id="how-it-works" className="py-24 bg-[#030712] relative overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
@@ -544,13 +504,11 @@ export default function App() {
               WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" 
             }}
           >
-            
-            {/* 🔥 TRACK 1: 6 Cards (2 Sets) - Ensures full desktop width coverage 🔥 */}
             <div className="flex shrink-0 gap-6 pr-6 custom-marquee-track">
               {[...workflowSteps, ...workflowSteps].map((step, i) => (
                 <div 
                   key={`t1-${i}`}
-                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-500 group/card bg-white/[0.01] hover:bg-white/[0.03]"
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-[#030712] border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-500 group/card hover:bg-white/[0.03]"
                 >
                   <div className="aspect-video bg-dark-800 rounded-2xl mb-6 overflow-hidden relative shadow-inner">
                     <img 
@@ -558,7 +516,7 @@ export default function App() {
                       className="w-full h-full object-cover opacity-70 group-hover/card:opacity-100 group-hover/card:scale-110 transition-all duration-700 ease-out" 
                       alt={step.title}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/20 to-transparent"></div>
                     <div className={`absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-${step.color}-500/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-${step.color}-400 shadow-xl`}>
                       {step.icon}
                     </div>
@@ -575,12 +533,11 @@ export default function App() {
               ))}
             </div>
 
-            {/* 🔥 TRACK 2: 6 Cards (Identical Clone for perfect continuous loop) 🔥 */}
             <div className="flex shrink-0 gap-6 pr-6 custom-marquee-track" aria-hidden="true">
               {[...workflowSteps, ...workflowSteps].map((step, i) => (
                 <div 
                   key={`t2-${i}`}
-                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-dark-950 border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-500 group/card bg-white/[0.01] hover:bg-white/[0.03]"
+                  className="w-[290px] sm:w-[340px] md:w-[360px] shrink-0 bg-[#030712] border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-500 group/card hover:bg-white/[0.03]"
                 >
                   <div className="aspect-video bg-dark-800 rounded-2xl mb-6 overflow-hidden relative shadow-inner">
                     <img 
@@ -588,7 +545,7 @@ export default function App() {
                       className="w-full h-full object-cover opacity-70 group-hover/card:opacity-100 group-hover/card:scale-110 transition-all duration-700 ease-out" 
                       alt={step.title}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/20 to-transparent"></div>
                     <div className={`absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-${step.color}-500/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-${step.color}-400 shadow-xl`}>
                       {step.icon}
                     </div>
@@ -609,13 +566,10 @@ export default function App() {
         </div>
       </section>
       
-      {/* FEATURES SHOWCASE */}
-      {/* BACKGROUND CHANGED TO SOLID #030712 */}
       <section id="features" className="py-24 bg-[#030712] relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_rgba(37,99,235,0.05)_0%,_transparent_50%)]"></div>
         <div className="max-w-6xl mx-auto px-6 space-y-24 relative z-10">
           
-          {/* Feature 1: Version Control */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -664,7 +618,6 @@ export default function App() {
             </div>
           </motion.div>
 
-          {/* Feature 2: Tone Control */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -706,8 +659,6 @@ export default function App() {
       
       <LegalAssistantSection/>
 
-      {/* PRICING */}
-      {/* BACKGROUND CHANGED TO SOLID #030712 */}
       <section id="pricing" className="py-24 bg-[#030712] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.08)_0%,_transparent_70%)]"></div>
         
@@ -727,7 +678,6 @@ export default function App() {
             </p>
           </motion.div>
 
-          {/* Pricing Card */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -759,7 +709,6 @@ export default function App() {
                 ))}
               </ul>
 
-              {/* CTA BUTTON 3: PRICING SECTION */}
               <a 
                 href="https://juristech-v1.vercel.app/"
                 target="_blank"
@@ -773,8 +722,6 @@ export default function App() {
         </div>
       </section>
 
-     {/* FINAL CTA SECTION */}
-     {/* BORDER REMOVED AND BACKGROUND CHANGED TO SOLID #030712 */}
       <section className="bg-[#030712] py-24">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div 
@@ -787,17 +734,14 @@ export default function App() {
             
             <div className="relative z-10">
               
-              {/* 🔥 ELECTRIFYING ZAP BOX ANIMATION 🔥 */}
               <div className="relative w-20 h-20 mx-auto mb-10 flex items-center justify-center">
                 
-                {/* Layer 1: Outer Pulse/Wave Effect */}
                 <motion.div
                   animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
                   className="absolute inset-0 bg-blue-500 rounded-3xl"
                 ></motion.div>
                 
-                {/* Layer 2: Glowing Box */}
                 <motion.div 
                   animate={{ 
                     boxShadow: [
@@ -809,7 +753,6 @@ export default function App() {
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0 bg-blue-600 rounded-3xl flex items-center justify-center z-10"
                 >
-                  {/* Layer 3: Sparking/Jumping Icon */}
                   <motion.div
                     animate={{ 
                       rotate: [0, -15, 15, -15, 0],
@@ -825,8 +768,6 @@ export default function App() {
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
               <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
 
-              
-              {/* CTA BUTTON 4: FOOTER SECTION */}
               <motion.a 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -841,14 +782,13 @@ export default function App() {
           </motion.div>
         </div>
       </section>
-      <FAQSection/>
-              <ScrollRevealSection/>
 
-      {/* FOOTER */}
+      <FAQSection/>
+      <ScrollRevealSection/>
+
       <footer className="bg-[#030712] pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col mb-12 items-center justify-center">
-            {/* Minimalist Footer Logo */}
             <div className="mb-10">
               <img 
                 src="https://i.ibb.co/zWYNn82b/logo-png.png" 
@@ -871,13 +811,12 @@ export default function App() {
         </div>
       </footer>
 
-      {/* FOOTER MODALS */}
       <InfoModal 
         isOpen={isAboutOpen} 
         onClose={() => setIsAboutOpen(false)}
         lang={lang}
         setLang={setLang}
-        title={lang === 'en' ? 'About Us' : 'हमारे बारे बारे में'}
+        title={lang === 'en' ? 'About Us' : 'हमारे बारे में'}
       >
         {lang === 'en' ? (
           <>
@@ -1533,7 +1472,6 @@ export default function App() {
         )}
       </InfoModal>
 
-      {/* FEEDBACK MODAL */}
       <AnimatePresence>
         {isFeedbackOpen && (
           <motion.div
@@ -1552,22 +1490,18 @@ export default function App() {
                 onClick={(e) => e.stopPropagation()}
                 className="relative w-full max-w-2xl m-auto bg-gray-900 text-gray-200 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 overflow-y-auto max-h-[85vh]"
               >
-              {/* ✨ 100% TRANSPARENT FLOATING HEADER ✨ */}
                 <div className="sticky top-0 z-50 pt-6 px-4 sm:px-6 pb-2 flex items-center justify-between gap-2 pointer-events-none bg-transparent border-none shadow-none">
                   
-                  {/* LEFT: Fully Transparent Logo */}
                   <div className="pointer-events-auto flex items-center shrink-0">
                     <img src="https://i.ibb.co/zWYNn82b/logo-png.png" alt="JurisTech" className="h-8 sm:h-10 w-auto object-contain drop-shadow-2xl" referrerPolicy="no-referrer" />
                   </div>
 
-                  {/* CENTER: Smart Flex Centered Title */}
                   <div className="flex-1 flex justify-center pointer-events-auto min-w-0">
                     <span className="bg-gray-900/60 backdrop-blur-xl border border-white/10 shadow-lg px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-bold text-white tracking-wide truncate max-w-full">
                       Feedback
                     </span>
                   </div>
                   
-                  {/* RIGHT: Close Button Only */}
                   <div className="flex items-center pointer-events-auto shrink-0">
                     <button onClick={() => setIsFeedbackOpen(false)} className="p-2 sm:p-3 rounded-full bg-gray-900/60 backdrop-blur-xl border border-white/10 text-gray-400 hover:text-white transition-all shadow-lg hover:bg-white/10">
                       <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -1581,7 +1515,6 @@ export default function App() {
                       Help Us Improve Your Experience
                     </h2>
 
-                    {/* QR Code Container */}
                     <img 
                       src="https://i.ibb.co/wFXScDP0/COMPANY-S-QR-Code-FOR-FEEDBACK.png" 
                       alt="Feedback QR" 
