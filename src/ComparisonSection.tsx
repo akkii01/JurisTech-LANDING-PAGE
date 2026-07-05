@@ -14,7 +14,6 @@ const ComparisonSection = () => {
   const sliderPosition = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    {/* 🔥 CONFIRMED: 100% seamless background with no border dividers 🔥 */}
     <section ref={containerRef} className="relative h-[300vh] bg-[#030712] w-full">
       
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-8">
@@ -40,7 +39,7 @@ const ComparisonSection = () => {
           </motion.div>
         </div>
 
-        <div className="relative w-full max-w-6xl h-[78vh] sm:h-[70vh] md:h-[65vh] lg:h-[70vh] rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0a0a0a]">
+        <div className="relative w-full max-w-6xl h-[78vh] sm:h-[70vh] md:h-[65vh] lg:h-[70vh] rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-[#030712]">
           
           {/* ==========================================
               1. THE OLD WAY (BASE STATIC LAYER) 
@@ -65,7 +64,7 @@ const ComparisonSection = () => {
 
             {/* Graphic Box */}
             <div className="relative z-10 w-full md:w-1/2 flex justify-center md:justify-end">
-              <div className="w-[280px] md:w-[350px] h-[260px] md:h-[380px] bg-[#111] border border-gray-800 rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col shadow-2xl relative overflow-hidden">
+              <div className="w-[280px] md:w-[350px] h-[260px] md:h-[380px] bg-[#030712] rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col shadow-2xl relative overflow-hidden">
                 
                 <div className="absolute top-10 -right-10 w-32 h-32 bg-red-900/10 rounded-full blur-xl pointer-events-none"></div>
                 
@@ -107,7 +106,7 @@ const ComparisonSection = () => {
               2. THE NEW WAY (WIPING ANIMATED LAYER)
           ========================================== */}
           <motion.div 
-            className="absolute inset-0 z-20 bg-[#020617] flex flex-col md:flex-row items-center justify-center p-5 sm:p-8 md:p-16 border-l border-blue-500/30"
+            className="absolute inset-0 z-20 bg-[#030712] flex flex-col md:flex-row items-center justify-center p-5 sm:p-8 md:p-16"
             style={{ clipPath }}
           >
             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-600/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
@@ -126,7 +125,7 @@ const ComparisonSection = () => {
             </div>
 
             <div className="relative z-30 w-full md:w-1/2 flex justify-center md:justify-end">
-              <div className="w-[280px] md:w-[350px] h-[260px] md:h-[380px] bg-[#0a0f1e] border border-blue-500/30 rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden">
+              <div className="w-[280px] md:w-[350px] h-[260px] md:h-[380px] bg-[#030712] rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden">
                 
                 <motion.div 
                   className="absolute left-0 w-full h-1 bg-blue-500/50 shadow-[0_0_10px_#3b82f6]"
