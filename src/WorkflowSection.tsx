@@ -4,7 +4,8 @@ import { BrainCircuit, Database, FileText, CheckCircle, Sparkles, ArrowDown } fr
 
 const WorkflowSection = () => {
   return (
-    <section className="relative w-full py-20 lg:py-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center border-t border-white/5">
+    {/* 🔥 FIX: Removed 'border-t border-white/5' to make it seamless 🔥 */}
+    <section className="relative w-full py-20 lg:py-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center">
       
      {/* Section Title */}
       <div className="text-center z-10 mb-10 lg:mb-16 px-4">
