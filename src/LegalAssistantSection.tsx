@@ -51,7 +51,8 @@ const LegalAssistantSection = () => {
       </motion.p>
 
       {/* ---------------- CONTINUOUS SCROLLING MARQUEE BANNER ---------------- */}
-      <div className="relative z-10 w-full border-y border-white/10 bg-white/[0.02] overflow-hidden py-4 md:py-5 flex items-center">
+      {/* 🔥 FIX: Removed 'border-y border-white/10' and 'bg-white/[0.02]' for 100% seamless look 🔥 */}
+      <div className="relative z-10 w-full overflow-hidden py-4 md:py-5 flex items-center">
         <motion.div
           className="flex whitespace-nowrap"
           animate={{ x: ["0%", "-50%"] }}
