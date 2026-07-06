@@ -1,7 +1,7 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
-*/
+ */
 
 import { useState, type ReactNode } from "react";
 import WorkflowSection from './WorkflowSection';
@@ -243,7 +243,14 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      <section className="relative pt-20 md:pt-32 pb-4 md:pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center">
+      {/* POP-UP ADDED HERE */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative pt-20 md:pt-32 pb-4 md:pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center"
+      >
         <div className="absolute inset-0 w-full h-full z-0">
           <video 
             autoPlay 
@@ -374,9 +381,16 @@ export default function App() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
       
-      <section className="relative z-10 w-full pb-20 pt-8 bg-[#030712]">
+      {/* POP-UP ADDED HERE */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-10 w-full pb-20 pt-8 bg-[#030712]"
+      >
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -407,11 +421,18 @@ export default function App() {
             </div>
           </div>
         </motion.div>
-      </section>
+      </motion.section>
       
       <WorkflowSection/>
 
-      <section className="py-24 bg-[#030712] relative">
+      {/* POP-UP ADDED HERE */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="py-24 bg-[#030712] relative"
+      >
         <div className="max-w-6xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -479,11 +500,19 @@ export default function App() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <ComparisonSection />
 
-      <section id="how-it-works" className="py-24 bg-[#030712] relative overflow-hidden">
+      {/* POP-UP ADDED HERE */}
+      <motion.section 
+        id="how-it-works"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="py-24 bg-[#030712] relative overflow-hidden"
+      >
         <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -564,9 +593,17 @@ export default function App() {
 
           </div>
         </div>
-      </section>
+      </motion.section>
       
-      <section id="features" className="py-24 bg-[#030712] relative">
+      {/* POP-UP ADDED HERE */}
+      <motion.section 
+        id="features"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="py-24 bg-[#030712] relative"
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_rgba(37,99,235,0.05)_0%,_transparent_50%)]"></div>
         <div className="max-w-6xl mx-auto px-6 space-y-24 relative z-10">
           
@@ -655,11 +692,19 @@ export default function App() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
       
       <LegalAssistantSection/>
 
-      <section id="pricing" className="py-24 bg-[#030712] relative overflow-hidden">
+      {/* POP-UP ADDED HERE */}
+      <motion.section 
+        id="pricing"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="py-24 bg-[#030712] relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.08)_0%,_transparent_70%)]"></div>
         
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
@@ -720,9 +765,16 @@ export default function App() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="bg-[#030712] py-24">
+      {/* POP-UP ADDED HERE */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="bg-[#030712] py-24"
+      >
         <div className="max-w-5xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -781,12 +833,19 @@ export default function App() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       <FAQSection/>
       <ScrollRevealSection/>
 
-      <footer className="bg-[#030712] pt-16 pb-8">
+      {/* POP-UP ADDED TO FOOTER TOO */}
+      <motion.footer 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="bg-[#030712] pt-16 pb-8"
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col mb-12 items-center justify-center">
             <div className="mb-10">
@@ -809,7 +868,7 @@ export default function App() {
             <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
 
       <InfoModal 
         isOpen={isAboutOpen} 
@@ -1072,7 +1131,7 @@ export default function App() {
           </>
         ) : (
           <>
-            <p className="mb-4 leading-relaxed">पिछला अपडेट: 19 अप्रैल, 2026</p>
+            <p className="mb-4 leading-relaxed"> पिछला अपडेट: 19 अप्रैल, 2026</p>
             <p className="mb-4 leading-relaxed">JurisTech में आपका स्वागत है। आपकी प्राइवेसी हमारे लिए महत्वपूर्ण है। यह प्राइवेसी पॉलिसी बताती है कि जब आप हमारे AI-संचालित कानूनी दस्तावेज़ निर्माण प्लेटफ़ॉर्म का उपयोग करते हैं तो हम आपका डेटा कैसे एकत्र, उपयोग और सुरक्षित करते हैं।</p>
             
             <h3 className="font-bold text-white text-lg mt-6 mb-3">1. जानकारी जो हम एकत्र करते हैं</h3>
