@@ -243,7 +243,7 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      {/* POP-UP ADDED HERE */}
+      {/* HERO SECTION POP-UP */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -383,24 +383,28 @@ export default function App() {
         </div>
       </motion.section>
       
-      {/* POP-UP ADDED HERE */}
+      {/* ---------------- DASHBOARD POP-UP SECTION (BOUNCY EFFECT) ---------------- */}
       <motion.section 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
         className="relative z-10 w-full pb-20 pt-8 bg-[#030712]"
       >
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          initial={{ opacity: 0, scale: 0.5, y: 120 }} 
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.1 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 120, 
+            damping: 14,    
+            delay: 0.2 
+          }}
           className="relative max-w-5xl mx-auto group w-full px-4 sm:px-6"
         >
           <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/50 to-indigo-600/50 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
           
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-dark-900 shadow-[0_50px_100px_rgba(0,0,0,0.8)]">
             <div className="h-10 sm:h-12 bg-dark-800/80 border-b border-white/10 flex items-center px-4 sm:px-6 justify-between backdrop-blur-sm">
               <div className="flex space-x-2">
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/40"></div>
@@ -425,7 +429,7 @@ export default function App() {
       
       <WorkflowSection/>
 
-      {/* POP-UP ADDED HERE */}
+      {/* WHY CHOOSE US POP-UP */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -504,7 +508,7 @@ export default function App() {
 
       <ComparisonSection />
 
-      {/* POP-UP ADDED HERE */}
+      {/* HOW IT WORKS POP-UP */}
       <motion.section 
         id="how-it-works"
         initial={{ opacity: 0, y: 50 }}
@@ -595,7 +599,7 @@ export default function App() {
         </div>
       </motion.section>
       
-      {/* POP-UP ADDED HERE */}
+      {/* FEATURES POP-UP */}
       <motion.section 
         id="features"
         initial={{ opacity: 0, y: 50 }}
@@ -696,7 +700,7 @@ export default function App() {
       
       <LegalAssistantSection/>
 
-      {/* POP-UP ADDED HERE */}
+      {/* PRICING POP-UP */}
       <motion.section 
         id="pricing"
         initial={{ opacity: 0, y: 50 }}
@@ -767,7 +771,7 @@ export default function App() {
         </div>
       </motion.section>
 
-      {/* POP-UP ADDED HERE */}
+      {/* CALL TO ACTION POP-UP */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -838,7 +842,7 @@ export default function App() {
       <FAQSection/>
       <ScrollRevealSection/>
 
-      {/* POP-UP ADDED TO FOOTER TOO */}
+      {/* FOOTER POP-UP */}
       <motion.footer 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
