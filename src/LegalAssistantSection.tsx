@@ -6,12 +6,18 @@ const LegalAssistantSection = () => {
   const animationTiming = [0, 0.125, 0.25, 0.5, 0.625, 0.75, 1];
 
   return (
-    <section className="relative w-full pt-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative w-full pt-32 bg-[#030712] overflow-hidden flex flex-col items-center justify-center"
+    >
       
-    
+      {/* ---------------- MAIN ANIMATION AREA ---------------- */}
       <div className="relative w-full h-[30vh] min-h-[300px] flex items-center justify-center">
         
-       
+        {/* 1. BACKGROUND: ASSISTANT (Solid White) */}
         <motion.div
           animate={{ x: ["0%", "35vw", "0%", "0%", "-35vw", "0%", "0%"] }}
           transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
@@ -21,7 +27,7 @@ const LegalAssistantSection = () => {
           Assistant
         </motion.div>
 
-       
+        {/* 2. FOREGROUND: LEGAL AI (Outline with Dark Background Fill) */}
         <motion.div
           animate={{ x: ["0%", "-35vw", "0%", "0%", "35vw", "0%", "0%"] }}
           transition={{ duration: loopDuration, times: animationTiming, repeat: Infinity, ease: "easeInOut" }}
@@ -38,7 +44,7 @@ const LegalAssistantSection = () => {
 
       </div>
 
-    
+      {/* ---------------- Bottom Tagline ---------------- */}
       <motion.p 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -48,7 +54,7 @@ const LegalAssistantSection = () => {
         A comprehensive platform
       </motion.p>
 
-     
+      {/* ---------------- CONTINUOUS SCROLLING MARQUEE BANNER ---------------- */}
       <div className="relative z-10 w-full overflow-hidden py-4 md:py-5 flex items-center">
         <motion.div
           className="flex whitespace-nowrap"
@@ -66,7 +72,7 @@ const LegalAssistantSection = () => {
         </motion.div>
       </div>
 
-    </section>
+    </motion.section>
   );
 };
 
