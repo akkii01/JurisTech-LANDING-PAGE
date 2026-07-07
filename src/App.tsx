@@ -247,7 +247,7 @@ export default function App() {
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative pt-20 md:pt-32 pb-4 md:pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center"
       >
@@ -387,13 +387,13 @@ export default function App() {
       <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: false, amount: 0.1, margin: "-100px" }}
         className="relative z-10 w-full pb-20 pt-8 bg-[#030712]"
       >
         <motion.div 
           initial={{ opacity: 0, scale: 0.5, y: 120 }} 
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, amount: 0.1, margin: "-100px" }}
           transition={{ 
             type: "spring", 
             stiffness: 120, 
@@ -433,7 +433,7 @@ export default function App() {
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="py-24 bg-[#030712] relative"
       >
@@ -441,7 +441,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">Why Indian Advocates Choose JurisTech</h2>
@@ -487,7 +487,7 @@ export default function App() {
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, amount: 0.1, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.02 }}
                 className="glass-card p-8 rounded-3xl group hover:bg-white/[0.04] transition-all duration-300 relative overflow-hidden border border-white/5"
@@ -513,7 +513,7 @@ export default function App() {
         id="how-it-works"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="py-24 bg-[#030712] relative overflow-hidden"
       >
@@ -523,7 +523,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             className="text-center mb-16 px-6"
           >
             <span className="text-blue-500 font-bold tracking-widest text-xs uppercase mb-3 block">Workflow</span>
@@ -604,7 +604,7 @@ export default function App() {
         id="features"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="py-24 bg-[#030712] relative"
       >
@@ -614,7 +614,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, amount: 0.1, margin: "-50px" }}
             transition={{ type: "spring", stiffness: 80, damping: 20 }}
             className="flex flex-col md:flex-row items-center gap-12 border border-white/5 bg-dark-900/40 rounded-[2.5rem] p-8 md:p-12 hover:bg-dark-900/60 transition-colors duration-500"
           >
@@ -662,7 +662,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, amount: 0.1, margin: "-50px" }}
             transition={{ type: "spring", stiffness: 80, damping: 20 }}
             className="flex flex-col md:flex-row-reverse items-center gap-12 border border-white/5 bg-dark-900/40 rounded-[2.5rem] p-8 md:p-12 hover:bg-dark-900/60 transition-colors duration-500"
           >
@@ -705,7 +705,7 @@ export default function App() {
         id="pricing"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="py-24 bg-[#030712] relative overflow-hidden"
       >
@@ -715,7 +715,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             className="mb-14"
           >
             <motion.div className="inline-block mb-6"><Star className="w-12 h-12 text-blue-500 drop-shadow-[0_0_15px_rgba(37,99,235,0.5)]" /></motion.div>
@@ -730,7 +730,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, amount: 0.1, margin: "-50px" }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
             whileHover={{ y: -8 }}
             className="max-w-md mx-auto relative group"
@@ -775,7 +775,7 @@ export default function App() {
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="bg-[#030712] py-24"
       >
@@ -783,7 +783,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.1 }}
             className="relative bg-dark-900/60 rounded-[3rem] p-12 sm:p-16 overflow-hidden text-center border border-white/5 shadow-2xl"
           >
             <div className="absolute inset-0 grid-pattern opacity-[0.05]"></div>
@@ -846,7 +846,7 @@ export default function App() {
       <motion.footer 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="bg-[#030712] pt-16 pb-8"
       >
