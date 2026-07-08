@@ -845,10 +845,9 @@ export default function App() {
      <FAQSection/>
       
       {/* 🔥 MAGIC HERE: Wrapped Animation and Footer together to prevent empty space 🔥 */}
-      <div className="relative">
+      <div className="relative w-full">
         
         <ScrollRevealSection/>
-        </div>
 
         {/* Footer is now absolute at the bottom of the animation section */}
         <div className="absolute bottom-0 w-full z-20 pointer-events-none">
