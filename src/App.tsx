@@ -163,7 +163,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#030712] text-gray-200 selection:bg-blue-500/30 selection:text-blue-200 antialiased">
       
-      <nav className="fixed w-full z-50 top-0 pt-4 px-6 pb-4 bg-transparent">
+      <nav className="fixed w-full z-50 top-0 pt-8 px-6 pb-4 bg-transparent">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <motion.a 
             initial={{ opacity: 0, x: -40 }}
@@ -187,7 +187,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-8 py-3 shadow-xl backdrop-blur-xl gap-8 text-sm font-medium text-gray-300"
+            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-10 py-4 shadow-xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-300"
           >
             <a href="#features" className="hover:text-white hover:scale-105 transition-all">Features</a>
             <a href="#how-it-works" className="hover:text-white hover:scale-105 transition-all">How it works</a>
@@ -205,7 +205,7 @@ export default function App() {
             href="https://juristech-v1.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden lg:flex items-center gap-2 px-7 py-3 text-sm font-semibold text-white bg-dark-800 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-lg hover:shadow-[0_0_20px_-5px_rgba(37,99,235,0.6)] group relative overflow-hidden"
+            className="hidden lg:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-dark-800 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-lg hover:shadow-[0_0_20px_-5px_rgba(37,99,235,0.6)] group relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors duration-300"></div>
             <span className="relative z-10">Try Now</span>
