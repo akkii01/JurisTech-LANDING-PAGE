@@ -859,7 +859,7 @@ export default function App() {
               <img 
                 src="https://i.ibb.co/zWYNn82b/logo-png.png" 
                 alt="JTC Logo" 
-                className="h-12 sm:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                 referrerPolicy="no-referrer"
               />
             </div>
