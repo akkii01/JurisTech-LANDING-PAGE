@@ -382,7 +382,7 @@ export default function App() {
         </div>
       </motion.section>
       
-      {/* DASHBOARD SECTION */}
+      {/* 🔥 DASHBOARD SECTION WITH VIDEO & BOUNCING POP-UP 🔥 */}
       <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -410,12 +410,16 @@ export default function App() {
             </div>
             
             <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
-              <img 
-                src="https://i.ibb.co/QvhSNC7j/868shots-so.png" 
-                alt="JurisTech Dashboard Interface" 
-                className="w-full h-auto block opacity-100"
-                referrerPolicy="no-referrer"
-              />
+              {/* VIDEO TAG IS BACK HERE */}
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-auto block opacity-100 object-cover"
+              >
+                <source src="/dashboard-video.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </motion.div>
@@ -834,46 +838,44 @@ export default function App() {
       </motion.section>
 
       <FAQSection/>
-      
-      {/* 🔥 OVERLAPPING FOOTER TRICK STARTS HERE 🔥 */}
-      <div className="relative w-full">
-        
-        <ScrollRevealSection/>
+      <ScrollRevealSection/>
 
-        <div className="absolute bottom-0 w-full z-40 pointer-events-none">
-          <motion.footer 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="pt-32 pb-8 pointer-events-auto bg-gradient-to-t from-[#030712] via-[#030712] to-transparent"
-          >
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-              <div className="flex flex-col mb-12 items-center justify-center">
-                <div className="mb-10">
-                  <img 
-                    src="https://i.ibb.co/zWYNn82b/logo-png.png" 
-                    alt="JTC Logo" 
-                    className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
-                  <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
-                  <button onClick={() => setIsContactOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Contact</button>
-                  <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Privacy</button>
-                  <button onClick={() => setIsTermsOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Terms</button>
-                </div>
+      {/* 🔥 THE MASTERSTROKE FOOTER FIX: OVERLAPS THE BLANK SPACE 🔥 */}
+      <div className="relative z-40 w-full -mt-[100vh]">
+        {/* Transparent to Dark Gradient - Fades smoothly over the background */}
+        <div className="h-40 w-full bg-gradient-to-b from-transparent to-[#030712] pointer-events-none"></div>
+        
+        <motion.footer 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="bg-[#030712] pb-8 pt-4 pointer-events-auto"
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex flex-col mb-12 items-center justify-center">
+              <div className="mb-10">
+                <img 
+                  src="https://i.ibb.co/zWYNn82b/logo-png.png" 
+                  alt="JTC Logo" 
+                  className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              
-              <div className="text-center pt-8">
-                <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
+              <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
+                <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
+                <button onClick={() => setIsContactOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Contact</button>
+                <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Privacy</button>
+                <button onClick={() => setIsTermsOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Terms</button>
               </div>
             </div>
-          </motion.footer>
-        </div>
+            
+            <div className="text-center pt-8">
+              <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
+            </div>
+          </div>
+        </motion.footer>
       </div>
-      {/* 🔥 OVERLAPPING FOOTER TRICK ENDS HERE 🔥 */}
 
       {/* MODALS */}
       <InfoModal 
@@ -1453,7 +1455,7 @@ export default function App() {
             <p className="mb-4 leading-relaxed font-bold text-white">इन मामलों में कोई रिफंड नहीं मिलेगा:</p>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>डॉक्यूमेंट सफलतापूर्वक जेनरेट होने और आपकी स्क्रीन पर दिखने के बाद (जेनरेशन का मतलब है सर्विस की पूरी डिलीवरी)।</li>
-              <li>अगर हमारे प्लेटफ़ॉर्म पर किसी टेम्पररी टेक्निकल एरर के कारण डॉक्यूमेंट जेनरेट नहीं हो पाता है, तो आपका जेनरेशन क्रेडिट नहीं काटा जाएगा। आप बस फिर से डॉक्यूमेंट जेनरेट करने की कोशिश कर सकते हैं। हम टेम्पररी सर्वर एरर या डाउनटाइम के लिए कैश रिफंड जारी नहीं करते हैं।</li>
+              <li>अगर हमारे प्लेटफ़ॉर्म पर किसी टेम्पररी टेक्निकल एरर के कारण डॉक्यूमेंट जेनरेट नहीं हो पाता है, तो आपका जेनरेशन क्रेडिट नहीं काटा जाएगा। आप बस फिर से डॉक्यूमेंट जेनरेट करने की कोशिश कर सकते हैं। हम टेम्पररी सर्वर एरर या डाउनटाइम के लिए कैश रिफंड जारी ক্যাম नहीं करते हैं।</li>
               <li>आपने गलत जानकारी या इनपुट डाले हैं।</li>
               <li>आप कंटेंट से संतुष्ट नहीं हैं (आप सही इनपुट के साथ फिर से जेनरेट करने के लिए अपनी बाकी कोशिशों का इस्तेमाल कर सकते हैं)।</li>
               <li>डॉक्यूमेंट जेनरेट होने के बाद आपने अपना मन बदल लिया है।</li>
