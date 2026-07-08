@@ -860,7 +860,7 @@ export default function App() {
             className="pt-32 pb-8 pointer-events-auto bg-gradient-to-t from-[#030712] via-[#030712] to-transparent"
           >
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-              {/* 🔥 Gap कम करने के लिए 'mb-12' को बदलकर 'mb-6' कर दिया है 🔥 */}
+              
               <div className="flex flex-col mb-6 items-center justify-center">
                 <div className="mb-10">
                   <img 
@@ -878,7 +878,6 @@ export default function App() {
                 </div>
               </div>
               
-              {/* 🔥 लाइन को ऊपर करने के लिए 'pt-8' को बदलकर 'pt-2' कर दिया है 🔥 */}
               <div className="text-center pt-2">
                 <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
               </div>
