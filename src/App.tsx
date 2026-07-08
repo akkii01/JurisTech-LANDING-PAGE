@@ -871,7 +871,7 @@ export default function App() {
             </div>
           </div>
           
-          <div className="text-center pt-8 border-t border-white/5">
+          <div className="text-center pt-8">
             <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
           </div>
         </div>
