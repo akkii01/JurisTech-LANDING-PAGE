@@ -838,43 +838,48 @@ export default function App() {
       </motion.section>
 
       <FAQSection/>
-      <ScrollRevealSection/>
-
-      {/* 🔥 THE MASTERSTROKE FOOTER FIX: OVERLAPS THE BLANK SPACE 🔥 */}
-      <div className="relative z-40 w-full -mt-[100vh]">
-        {/* Transparent to Dark Gradient - Fades smoothly over the background */}
-        <div className="h-40 w-full bg-gradient-to-b from-transparent to-[#030712] pointer-events-none"></div>
+      
+      {/* 🔥 THE BALANCED FOOTER FIX: LEAVES GAP FOR THE TEXT 🔥 */}
+      <div className="relative w-full">
         
-        <motion.footer 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="bg-[#030712] pb-8 pt-4 pointer-events-auto"
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col mb-12 items-center justify-center">
-              <div className="mb-10">
-                <img 
-                  src="https://i.ibb.co/zWYNn82b/logo-png.png" 
-                  alt="JTC Logo" 
-                  className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                  referrerPolicy="no-referrer"
-                />
+        <ScrollRevealSection/>
+
+        {/* यहाँ -mt-[100vh] की जगह -mt-[20vh] md:-mt-[25vh] कर दिया है ताकि गैप बनी रहे */}
+        <div className="relative z-40 w-full -mt-[20vh] md:-mt-[25vh]">
+          {/* Transparent to Dark Gradient - Fades smoothly over the background */}
+          <div className="h-32 md:h-40 w-full bg-gradient-to-b from-transparent to-[#030712] pointer-events-none"></div>
+          
+          <motion.footer 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="bg-[#030712] pb-8 pt-4 pointer-events-auto"
+          >
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="flex flex-col mb-12 items-center justify-center">
+                <div className="mb-10">
+                  <img 
+                    src="https://i.ibb.co/zWYNn82b/logo-png.png" 
+                    alt="JTC Logo" 
+                    className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
+                  <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
+                  <button onClick={() => setIsContactOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Contact</button>
+                  <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Privacy</button>
+                  <button onClick={() => setIsTermsOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Terms</button>
+                </div>
               </div>
-              <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
-                <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
-                <button onClick={() => setIsContactOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Contact</button>
-                <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Privacy</button>
-                <button onClick={() => setIsTermsOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Terms</button>
+              
+              <div className="text-center pt-8">
+                <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
               </div>
             </div>
-            
-            <div className="text-center pt-8">
-              <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
-            </div>
-          </div>
-        </motion.footer>
+          </motion.footer>
+        </div>
       </div>
 
       {/* MODALS */}
