@@ -163,7 +163,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#030712] text-gray-200 selection:bg-blue-500/30 selection:text-blue-200 antialiased">
       
-      {/* WIDER NAV BAR LIKE DELV */}
       <nav className="fixed w-full z-50 top-0 pt-8 px-6 pb-4 bg-transparent">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <motion.a 
@@ -184,6 +183,7 @@ export default function App() {
             </span>
           </motion.a>
 
+          {/* 🔥 WIDER HEADER LIKE DELV: Increased px-10 to px-14 and gap-10 to gap-12/14 🔥 */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -196,7 +196,7 @@ export default function App() {
             <a href="#faq" className="hover:text-white hover:scale-105 transition-all">FAQ</a>
             <button onClick={() => setIsFeedbackOpen(true)} className="hover:text-white hover:scale-105 transition-all focus:outline-none">Feedback</button>
           </motion.div>
-
+          
           <motion.a 
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -244,7 +244,7 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      {/* HERO SECTION */}
+      {/* HERO SECTION POP-UP */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -384,7 +384,7 @@ export default function App() {
         </div>
       </motion.section>
       
-      {/* DASHBOARD SECTION WITH VIDEO */}
+      {/* ---------------- DASHBOARD POP-UP SECTION (BOUNCY EFFECT) ---------------- */}
       <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -412,20 +412,20 @@ export default function App() {
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/40"></div>
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/40"></div>
               </div>
-              <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">JurisTech Dashboard</div>
+              <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">Dashboard</div>
               <div className="w-8 sm:w-12"></div>
             </div>
             
             <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
               <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="w-full h-auto block opacity-100 object-cover"
-              >
-                <source src="/dashboard-video.mp4" type="video/mp4" />
-              </video>
+  autoPlay 
+  loop 
+  muted 
+  playsInline
+  className="w-full h-auto block opacity-100 object-cover"
+>
+  <source src="dashboard.mp4" type="video/mp4" />
+</video>
             </div>
           </div>
         </motion.div>
@@ -775,115 +775,92 @@ export default function App() {
         </div>
       </motion.section>
 
-      {/* 🔥 NEW CALL TO ACTION SECTION (WITH SCROLLING TEXT & NO BOX) 🔥 */}
+      {/* CALL TO ACTION POP-UP */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-[#030712] py-32 relative overflow-hidden"
+        className="bg-[#030712] py-24"
       >
-        {/* BACKGROUND SCROLLING TEXT (LEFT TO RIGHT) */}
-        <div 
-          className="absolute top-[20%] left-0 w-full overflow-hidden pointer-events-none z-0 flex items-center h-40" 
-          style={{ 
-            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
-          }}
-        >
-          <motion.div 
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="flex whitespace-nowrap gap-16 items-center"
-          >
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex gap-16 text-5xl md:text-8xl font-black text-white/[0.03] tracking-widest uppercase">
-                <span>AI</span>
-                <span>Legal Documents</span>
-                <span>Drafting Assistant</span>
-                <span>Automation</span>
-                <span>Precision</span>
-                <span>Court-Ready</span>
-                <span>Smart Contracts</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* CONTENT WITHOUT THE DARK BOX */}
-        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-5xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1 }}
-            className="relative"
+            className="relative bg-dark-900/60 rounded-[3rem] p-12 sm:p-16 overflow-hidden text-center border border-white/5 shadow-2xl"
           >
-            <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-10 flex items-center justify-center">
-              <motion.div
-                animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
-                className="absolute inset-0 bg-blue-500 rounded-3xl"
-              ></motion.div>
-              
-              <motion.div 
-                animate={{ 
-                  boxShadow: [
-                    "0 0 15px rgba(37,99,235,0.4)", 
-                    "0 0 50px rgba(37,99,235,0.9)", 
-                    "0 0 15px rgba(37,99,235,0.4)"
-                  ] 
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-blue-600 rounded-3xl flex items-center justify-center z-10"
-              >
-                <motion.div
-                  animate={{ 
-                    rotate: [0, -15, 15, -15, 0],
-                    scale: [1, 1.2, 1],
-                  }}
-                  transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2.5 }}
-                >
-                  <Zap className="w-10 h-10 md:w-12 md:h-12 text-white fill-white/20 drop-shadow-md" />
-                </motion.div>
-              </motion.div>
-            </div>
+            <div className="absolute inset-0 grid-pattern opacity-[0.05]"></div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
-            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
+            <div className="relative z-10">
+              
+              <div className="relative w-20 h-20 mx-auto mb-10 flex items-center justify-center">
+                
+                <motion.div
+                  animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                  className="absolute inset-0 bg-blue-500 rounded-3xl"
+                ></motion.div>
+                
+                <motion.div 
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 15px rgba(37,99,235,0.4)", 
+                      "0 0 50px rgba(37,99,235,0.9)", 
+                      "0 0 15px rgba(37,99,235,0.4)"
+                    ] 
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-blue-600 rounded-3xl flex items-center justify-center z-10"
+                >
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, -15, 15, -15, 0],
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2.5 }}
+                  >
+                    <Zap className="w-10 h-10 text-white fill-white/20 drop-shadow-md" />
+                  </motion.div>
+                </motion.div>
+              </div>
+              
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
+              <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
 
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://juristech-v1.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center text-sm md:text-base font-bold text-white bg-blue-600 rounded-full py-4 px-12 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300"
-            >
-              Try JurisTech Now
-            </motion.a>
+              <motion.a 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://juristech-v1.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center text-sm font-bold text-white bg-blue-600 rounded-full py-4 px-10 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300"
+              >
+                Try JurisTech Now
+              </motion.a>
+            </div>
           </motion.div>
         </div>
       </motion.section>
 
-      <FAQSection/>
+     <FAQSection/>
       
-      {/* 🔥 THE BALANCED FOOTER FIX: LEAVES GAP FOR THE TEXT 🔥 */}
+      {/* 🔥 MAGIC HERE: Wrapped Animation and Footer together to prevent empty space 🔥 */}
       <div className="relative w-full">
         
         <ScrollRevealSection/>
 
-        <div className="relative z-40 w-full -mt-[20vh] md:-mt-[25vh]">
-          {/* Transparent to Dark Gradient - Fades smoothly over the background */}
-          <div className="h-32 md:h-40 w-full bg-gradient-to-b from-transparent to-[#030712] pointer-events-none"></div>
-          
+        {/* Footer is now absolute at the bottom of the animation section */}
+        <div className="absolute bottom-0 w-full z-20 pointer-events-none">
           <motion.footer 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-[#030712] pb-8 pt-4 pointer-events-auto"
+            className="pt-32 pb-8 pointer-events-auto bg-gradient-to-t from-[#030712] via-[#030712] to-transparent"
           >
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+              
               <div className="flex flex-col mb-6 items-center justify-center">
                 <div className="mb-10">
                   <img 
@@ -906,10 +883,10 @@ export default function App() {
               </div>
             </div>
           </motion.footer>
+          
         </div>
       </div>
 
-      {/* MODALS */}
       <InfoModal 
         isOpen={isAboutOpen} 
         onClose={() => setIsAboutOpen(false)}
