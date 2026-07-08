@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { FileText, Clock, AlertCircle, Zap, CheckCircle2, Sparkles, BrainCircuit, Loader2 } from 'lucide-react';
 
 // ----------------- SCATTERED LETTER COMPONENT -----------------
 const ScatteredLetter = ({ children, progress, startX, startY, startRot, kerningClass = "" }: any) => {
@@ -62,7 +61,7 @@ const ScrollRevealSection = () => {
   const textY = useTransform(scrollYProgress, [0, 0.9, 1], [0, 0, -50]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[250vh] bg-[#030712]">
+    <section ref={containerRef} className="relative min-h-[250vh] bg-[#030712]">
       
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden">
         
