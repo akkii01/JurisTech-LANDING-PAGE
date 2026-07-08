@@ -183,11 +183,12 @@ export default function App() {
             </span>
           </motion.a>
 
+          {/* 🔥 WIDER HEADER LIKE DELV: Increased px-10 to px-14 and gap-10 to gap-12/14 🔥 */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-16 py-4 shadow-xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-300"
+            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-14 py-4 shadow-xl backdrop-blur-xl gap-12 text-[15px] font-medium text-gray-300"
           >
             <a href="#features" className="hover:text-white hover:scale-105 transition-all">Features</a>
             <a href="#how-it-works" className="hover:text-white hover:scale-105 transition-all">How it works</a>
@@ -195,7 +196,7 @@ export default function App() {
             <a href="#faq" className="hover:text-white hover:scale-105 transition-all">FAQ</a>
             <button onClick={() => setIsFeedbackOpen(true)} className="hover:text-white hover:scale-105 transition-all focus:outline-none">Feedback</button>
           </motion.div>
-
+          
           <motion.a 
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
