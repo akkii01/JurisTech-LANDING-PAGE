@@ -842,40 +842,48 @@ export default function App() {
         </div>
       </motion.section>
 
-      <FAQSection/>
-      <ScrollRevealSection/>
+     <FAQSection/>
+      
+      {/* 🔥 MAGIC HERE: Wrapped Animation and Footer together to prevent empty space 🔥 */}
+      <div className="relative w-full">
+        
+        <ScrollRevealSection/>
 
-      {/* FOOTER POP-UP */}
-      <motion.footer 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-[#030712] pt-16 pb-8"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col mb-12 items-center justify-center">
-            <div className="mb-10">
-              <img 
-                src="https://i.ibb.co/zWYNn82b/logo-png.png" 
-                alt="JTC Logo" 
-                className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                referrerPolicy="no-referrer"
-              />
+        {/* Footer is now absolute at the bottom of the animation section */}
+        <div className="absolute bottom-0 w-full z-20 pointer-events-none">
+          <motion.footer 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            /* यहाँ ग्रेडिएंट लगाया है ताकि फुटर और एनीमेशन एकदम स्मूथली आपस में ब्लेंड हो जाएँ */
+            className="pt-24 pb-8 pointer-events-auto bg-gradient-to-t from-[#030712] via-[#030712] to-transparent"
+          >
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+              <div className="flex flex-col mb-12 items-center justify-center">
+                <div className="mb-10">
+                  <img 
+                    src="https://i.ibb.co/zWYNn82b/logo-png.png" 
+                    alt="JTC Logo" 
+                    className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
+                  <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
+                  <button onClick={() => setIsContactOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Contact</button>
+                  <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Privacy</button>
+                  <button onClick={() => setIsTermsOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Terms</button>
+                </div>
+              </div>
+              
+              <div className="text-center pt-8">
+                <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
+              </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
-              <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
-              <button onClick={() => setIsContactOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Contact</button>
-              <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Privacy</button>
-              <button onClick={() => setIsTermsOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">Terms</button>
-            </div>
-          </div>
-          
-          <div className="text-center pt-8">
-            <p className="text-xs text-gray-600 font-medium tracking-wide">Copyright © JurisTech All Rights Reserved. Made in India 🇮🇳</p>
-          </div>
+          </motion.footer>
         </div>
-      </motion.footer>
+      </div>
 
       <InfoModal 
         isOpen={isAboutOpen} 
