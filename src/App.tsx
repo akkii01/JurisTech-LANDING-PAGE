@@ -416,12 +416,15 @@ export default function App() {
             </div>
             
             <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
-              <img 
-                src="https://i.ibb.co/QvhSNC7j/868shots-so.png" 
-                alt="JurisTech Dashboard Interface" 
-                className="w-full h-auto block opacity-100"
-                referrerPolicy="no-referrer"
-              />
+              <video 
+  autoPlay 
+  loop 
+  muted 
+  playsInline
+  className="w-full h-auto block opacity-100 object-cover"
+>
+  <source src="dashboard.mp4" type="video/mp4" />
+</video>
             </div>
           </div>
         </motion.div>
