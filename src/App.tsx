@@ -243,7 +243,6 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      {/* HERO SECTION POP-UP */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -383,7 +382,7 @@ export default function App() {
         </div>
       </motion.section>
       
-      {/* ---------------- DASHBOARD POP-UP SECTION (BOUNCY EFFECT) ---------------- */}
+      {/* DASHBOARD SECTION */}
       <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -394,12 +393,7 @@ export default function App() {
           initial={{ opacity: 0, scale: 0.5, y: 120 }} 
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1, margin: "-100px" }}
-          transition={{ 
-            type: "spring", 
-            stiffness: 120, 
-            damping: 14,    
-            delay: 0.2 
-          }}
+          transition={{ type: "spring", stiffness: 120, damping: 14, delay: 0.2 }}
           className="relative max-w-5xl mx-auto group w-full px-4 sm:px-6"
         >
           <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600/50 to-indigo-600/50 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
@@ -411,20 +405,17 @@ export default function App() {
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/40"></div>
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/40"></div>
               </div>
-              <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">Dashboard</div>
+              <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">JurisTech Dashboard</div>
               <div className="w-8 sm:w-12"></div>
             </div>
             
             <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
-              <video 
-  autoPlay 
-  loop 
-  muted 
-  playsInline
-  className="w-full h-auto block opacity-100 object-cover"
->
-  <source src="dashboard.mp4" type="video/mp4" />
-</video>
+              <img 
+                src="https://i.ibb.co/QvhSNC7j/868shots-so.png" 
+                alt="JurisTech Dashboard Interface" 
+                className="w-full h-auto block opacity-100"
+                referrerPolicy="no-referrer"
+              />
             </div>
           </div>
         </motion.div>
@@ -432,7 +423,7 @@ export default function App() {
       
       <WorkflowSection/>
 
-      {/* WHY CHOOSE US POP-UP */}
+      {/* WHY CHOOSE US SECTION */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -511,7 +502,7 @@ export default function App() {
 
       <ComparisonSection />
 
-      {/* HOW IT WORKS POP-UP */}
+      {/* HOW IT WORKS SECTION */}
       <motion.section 
         id="how-it-works"
         initial={{ opacity: 0, y: 50 }}
@@ -602,7 +593,7 @@ export default function App() {
         </div>
       </motion.section>
       
-      {/* FEATURES POP-UP */}
+      {/* FEATURES SECTION */}
       <motion.section 
         id="features"
         initial={{ opacity: 0, y: 50 }}
@@ -703,7 +694,7 @@ export default function App() {
       
       <LegalAssistantSection/>
 
-      {/* PRICING POP-UP */}
+      {/* PRICING SECTION */}
       <motion.section 
         id="pricing"
         initial={{ opacity: 0, y: 50 }}
@@ -774,7 +765,7 @@ export default function App() {
         </div>
       </motion.section>
 
-      {/* CALL TO ACTION POP-UP */}
+      {/* CALL TO ACTION SECTION */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -842,22 +833,20 @@ export default function App() {
         </div>
       </motion.section>
 
-     <FAQSection/>
+      <FAQSection/>
       
-      {/* 🔥 MAGIC HERE: Wrapped Animation and Footer together to prevent empty space 🔥 */}
+      {/* 🔥 OVERLAPPING FOOTER TRICK STARTS HERE 🔥 */}
       <div className="relative w-full">
         
         <ScrollRevealSection/>
 
-        {/* Footer is now absolute at the bottom of the animation section */}
-        <div className="absolute bottom-0 w-full z-20 pointer-events-none">
+        <div className="absolute bottom-0 w-full z-40 pointer-events-none">
           <motion.footer 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            /* यहाँ ग्रेडिएंट लगाया है ताकि फुटर और एनीमेशन एकदम स्मूथली आपस में ब्लेंड हो जाएँ */
-            className="pt-24 pb-8 pointer-events-auto bg-gradient-to-t from-[#030712] via-[#030712] to-transparent"
+            className="pt-32 pb-8 pointer-events-auto bg-gradient-to-t from-[#030712] via-[#030712] to-transparent"
           >
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               <div className="flex flex-col mb-12 items-center justify-center">
@@ -884,7 +873,9 @@ export default function App() {
           </motion.footer>
         </div>
       </div>
+      {/* 🔥 OVERLAPPING FOOTER TRICK ENDS HERE 🔥 */}
 
+      {/* MODALS */}
       <InfoModal 
         isOpen={isAboutOpen} 
         onClose={() => setIsAboutOpen(false)}
@@ -1189,7 +1180,7 @@ export default function App() {
             </ul>
 
             <p className="mb-4 leading-relaxed font-bold text-white">थर्ड-पार्टी AI प्रोसेसर:</p>
-            <p className="mb-4 leading-relaxed">हम आपकी अपलोड की गई रेफ़रेंस फ़ाइलों और फ़ॉर्म डेटा को प्रोसेस करने के लिए एडवांस्ड AI मॉडल (जैसे, Google Gemini API) का इस्तेमाल करते हैं। डॉक्यूमेंट अपलोड करके, आप इस डेटा को सिर्फ़ आपके रिक्वेस्ट किए गए ड्राफ़्ट को बनाने के मकसद से हमारे AI पार्टनर को सुरक्षित रूप से भेजने की मंज़ूरी देते हैं।</p>
+            <p className="mb-4 leading-relaxed">हम आपकी अपलोड की गई रेफ़रेंस फ़ाइलों और फ़ॉर्म डेटा को प्रोसेस करने के लिए एडवांस्ड协同 AI मॉडल (जैसे, Google Gemini API) का इस्तेमाल करते हैं। डॉक्यूमेंट अपलोड करके, आप इस डेटा को सिर्फ़ आपके रिक्वेस्ट किए गए ड्राफ़्ट को बनाने के मकसद से हमारे AI पार्टनर को सुरक्षित रूप से भेजने की मंज़ूरी देते हैं।</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">4. कुकीज़ (Cookies)</h3>
             <p className="mb-4 leading-relaxed">हम आपको लॉग इन रखने, प्राथमिकताओं को याद रखने और उपयोग का विश्लेषण करने के लिए कुकीज़ का उपयोग करते हैं। आप अपनी ब्राउज़र सेटिंग्स के माध्यम से कुकीज़ प्रबंधित कर सकते हैं।</p>
