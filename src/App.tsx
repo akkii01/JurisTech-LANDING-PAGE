@@ -187,7 +187,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-14 py-4 shadow-xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-300"
+            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-12 py-4 shadow-xl backdrop-blur-xl gap-10 text-sm font-medium text-gray-300"
           >
             <a href="#features" className="hover:text-white hover:scale-105 transition-all">Features</a>
             <a href="#how-it-works" className="hover:text-white hover:scale-105 transition-all">How it works</a>
