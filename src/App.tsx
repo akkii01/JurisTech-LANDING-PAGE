@@ -411,7 +411,7 @@ export default function App() {
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/40"></div>
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/40"></div>
               </div>
-              <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">JurisTech Dashboard</div>
+              <div className="text-[9px] sm:text-[11px] text-gray-400 font-mono tracking-widest uppercase font-semibold">Dashboard</div>
               <div className="w-8 sm:w-12"></div>
             </div>
             
