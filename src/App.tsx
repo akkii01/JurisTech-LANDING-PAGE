@@ -827,7 +827,7 @@ export default function App() {
               >
                 {[...Array(2)].map((_, i) => (
                  
-                  <div key={i} className="flex gap-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.08] tracking-[0.2em]">
+                  <div key={i} className="flex gap-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.15] tracking-[0.2em]">
                     <span>AI</span>
                     <span>Legal Documents</span>
                     <span>Drafting Assistant</span>
