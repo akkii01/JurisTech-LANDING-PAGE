@@ -801,15 +801,26 @@ export default function App() {
             
             {/* A. Local Grid Background */}
             <div className="absolute inset-0 z-0 flex items-center justify-center opacity-100 pointer-events-none">
-              <div 
+              <motion.div 
+                /* 
+                  🔥 MAGIC HERE: Moving background position on both X and Y axis simultaneously.
+                  40px aligns perfectly with standard grid repetitions for a 100% seamless loop.
+                */
+                animate={{ 
+                  backgroundPosition: ["0px 0px", "40px 40px"] 
+                }}
+                transition={{ 
+                  duration: 8, 
+                  repeat: Infinity, 
+                  ease: "linear" 
+                }}
                 className="w-full max-w-[400px] md:max-w-[600px] h-[200px] md:h-[250px] grid-pattern"
                 style={{ 
                   maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)',
                   WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)'
                 }}
-              ></div>
+              ></motion.div>
             </div>
-
             {/* B. Small Scrolling Text (Fades out BEFORE hitting the glass) */}
             <div 
               className="absolute z-10 flex items-center overflow-hidden pointer-events-none w-full max-w-2xl md:max-w-4xl left-1/2 -translate-x-1/2"
