@@ -786,20 +786,20 @@ export default function App() {
         {/* Subtle Grid behind everything */}
         <div className="absolute inset-0 grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
 
-        {/* --- CUSTOM 3D GLASS PANELS (LEFT & RIGHT) --- */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 lg:w-64 z-10 pointer-events-none flex items-center">
+        {/* --- CUSTOM 3D GLASS PANELS (LEFT & RIGHT) - MADE THINNER TO AVOID OVERLAP --- */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 lg:w-48 z-10 pointer-events-none flex items-center">
            <div className="absolute -left-10 w-full h-[80%] bg-white/[0.01] backdrop-blur-md border-r border-white/5 rounded-r-[80px] shadow-[30px_0_50px_rgba(0,0,0,0.3)] transform -skew-x-3 transition-transform duration-700"></div>
            <div className="absolute -left-20 top-1/4 w-40 h-40 bg-blue-500/10 rounded-full blur-[60px]"></div>
         </div>
 
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 lg:w-64 z-10 pointer-events-none flex items-center justify-end">
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 lg:w-48 z-10 pointer-events-none flex items-center justify-end">
            <div className="absolute -right-10 w-full h-[80%] bg-white/[0.01] backdrop-blur-md border-l border-white/5 rounded-l-[80px] shadow-[-30px_0_50px_rgba(0,0,0,0.3)] transform skew-x-3 transition-transform duration-700"></div>
            <div className="absolute -right-20 bottom-1/4 w-40 h-40 bg-purple-500/10 rounded-full blur-[60px]"></div>
         </div>
 
-        {/* --- BACKGROUND SCROLLING TEXT (Z-0) --- */}
+        {/* --- BACKGROUND SCROLLING TEXT (Z-0) - MOVED UP BEHIND THE ZAP BUTTON & SMALLER FONT --- */}
         <div 
-          className="absolute top-1/2 -translate-y-1/2 left-0 w-full overflow-hidden pointer-events-none z-0 flex items-center h-full" 
+          className="absolute top-28 md:top-36 left-0 w-full overflow-hidden pointer-events-none z-0 flex items-center h-24" 
           style={{ 
             maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
@@ -808,10 +808,10 @@ export default function App() {
           <motion.div 
             animate={{ x: ["-50%", "0%"] }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="flex whitespace-nowrap gap-16 items-center"
+            className="flex whitespace-nowrap gap-12 items-center"
           >
             {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex gap-16 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white/[0.03] tracking-[0.2em] uppercase">
+              <div key={i} className="flex gap-12 text-xl md:text-2xl font-bold text-white/[0.04] tracking-[0.3em] uppercase">
                 <span>AI</span>
                 <span>Legal Documents</span>
                 <span>Drafting Assistant</span>
@@ -824,13 +824,13 @@ export default function App() {
           </motion.div>
         </div>
 
-        {/* --- MAIN CONTENT (Z-20, SO IT STAYS ON TOP OF WORDS) --- */}
+        {/* --- MAIN CONTENT (Z-20) --- */}
         <div className="max-w-5xl mx-auto px-6 relative z-20 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1 }}
-            className="relative"
+            className="relative flex flex-col items-center"
           >
             <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-10 flex items-center justify-center">
               <motion.div
@@ -862,11 +862,16 @@ export default function App() {
               </motion.div>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
+            {/* Added max-w-3xl to ensure the heading never touches the side panels */}
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight max-w-3xl mx-auto px-4 leading-tight">
+              Ready to do drafting the right way?
+            </h2>
+            
             <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light drop-shadow-md bg-[#030712]/50 inline-block px-4 py-2 rounded-xl backdrop-blur-sm">
               Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.
             </p>
             <br />
+            
             <motion.a 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
