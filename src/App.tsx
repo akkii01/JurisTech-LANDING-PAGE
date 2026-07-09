@@ -932,22 +932,21 @@ export default function App() {
               
               <div className="flex flex-col mb-6 items-center justify-center">
                 <div className="mb-10">
-                  <div className="relative cursor-pointer pointer-events-auto">
+                  <div className="relative group">
   <img 
     src="https://i.ibb.co/zWYNn82b/logo-png.png" 
     alt="JTC Logo" 
-    /* 
-       🔥 GLOW IS BACK: pointer-events-none हटा दिया है।
-       अब चमकने वाला इफ़ेक्ट वापस आ गया है और इमेज भी सुरक्षित है।
-    */
     className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 
-               hover:grayscale-0 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
-               active:grayscale-0 active:opacity-100 active:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
+               group-hover:grayscale-0 group-hover:opacity-100 
+               group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
+               active:grayscale-0 active:opacity-100 
+               active:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
                transition-all duration-300"
     referrerPolicy="no-referrer"
   />
-  {/* यह अदृश्य लेयर इमेज के ऊपर रहेगी और लॉन्ग-प्रेस/डाउनलोड वाले मेनू को रोकेगी */}
-  <div className="absolute inset-0 z-10"></div>
+  {/* 🔥 यह अदृश्य लेयर इमेज के ऊपर है, इसे 'pointer-events-none' कर दिया है 🔥 */}
+  {/* अब यह डाउनलोड वाले मेनू को रोकेगी, लेकिन इमेज की चमक को नहीं दबाएगी */}
+  <div className="absolute inset-0 z-10 pointer-events-none"></div>
 </div>
                 </div>
                 <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
