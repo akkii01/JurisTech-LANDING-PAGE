@@ -830,11 +830,11 @@ export default function App() {
               <motion.div 
                 animate={{ x: ["-50%", "0%"] }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                {/*  MAIN FIX: Removed 'gap-24' from here to fix math loop  */}
+                
                 className="flex whitespace-nowrap items-center w-max"
               >
                 {[...Array(2)].map((_, i) => (
-                  {/*  ADDED 'pr-24' (Padding Right) here instead so 50% width is exact  */}
+                  
                   <div key={i} className="flex gap-24 pr-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.15] tracking-[0.2em]">
                     <span>AI</span>
                     <span>Legal Documents</span>
