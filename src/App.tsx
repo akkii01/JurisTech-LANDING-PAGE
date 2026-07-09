@@ -797,7 +797,6 @@ export default function App() {
         {/* --- MAIN CONTENT CONTAINER --- */}
         <div className="max-w-5xl mx-auto px-6 relative z-20 text-center w-full flex flex-col items-center">
           
-          {/* 🔥 1. ZAP BUTTON WRAPPER 🔥 */}
           <div className="relative w-full flex justify-center items-center mb-10 h-32 md:h-40">
             
             {/* A. Local Grid Background */}
@@ -820,7 +819,7 @@ export default function App() {
               ></motion.div>
             </div>
 
-            {/* B. Small Scrolling Text (🔥 JERK-FREE FIX 🔥) */}
+            {/* B. Small Scrolling Text */}
             <div 
               className="absolute z-10 flex items-center overflow-hidden pointer-events-none w-full max-w-2xl md:max-w-4xl left-1/2 -translate-x-1/2"
               style={{ 
@@ -831,11 +830,11 @@ export default function App() {
               <motion.div 
                 animate={{ x: ["-50%", "0%"] }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                {/* 🔥 MAIN FIX: Removed 'gap-24' from here to fix math loop 🔥 */}
+                {/*  MAIN FIX: Removed 'gap-24' from here to fix math loop  */}
                 className="flex whitespace-nowrap items-center w-max"
               >
                 {[...Array(2)].map((_, i) => (
-                  {/* 🔥 ADDED 'pr-24' (Padding Right) here instead so 50% width is exact 🔥 */}
+                  {/*  ADDED 'pr-24' (Padding Right) here instead so 50% width is exact  */}
                   <div key={i} className="flex gap-24 pr-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.15] tracking-[0.2em]">
                     <span>AI</span>
                     <span>Legal Documents</span>
@@ -915,7 +914,7 @@ export default function App() {
     
      <FAQSection/>
       
-      {/* 🔥 MAGIC HERE: Wrapped Animation and Footer together to prevent empty space 🔥 */}
+      {/*  MAGIC HERE: Wrapped Animation and Footer together to prevent empty space  */}
       <div className="relative w-full">
         
         <ScrollRevealSection/>
