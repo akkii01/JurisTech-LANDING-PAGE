@@ -776,6 +776,7 @@ export default function App() {
       </motion.section>
 
       {/* CALL TO ACTION POP-UP */}
+      {/* 🔥 NEW CALL TO ACTION SECTION (SEAMLESS GRID ANIMATION & PERFECT WORDS) 🔥 */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -797,17 +798,14 @@ export default function App() {
         {/* --- MAIN CONTENT CONTAINER --- */}
         <div className="max-w-5xl mx-auto px-6 relative z-20 text-center w-full flex flex-col items-center">
           
+          {/* 🔥 1. ZAP BUTTON WRAPPER 🔥 */}
           <div className="relative w-full flex justify-center items-center mb-10 h-32 md:h-40">
             
-            {/* A. Local Grid Background */}
+            {/* A. Local Grid Background (🔥 SEAMLESS JERK-FREE ANIMATION 🔥) */}
             <div className="absolute inset-0 z-0 flex items-center justify-center opacity-100 pointer-events-none">
               <motion.div 
-                /* 
-                  🔥 MAGIC HERE: Moving background position on both X and Y axis simultaneously.
-                  40px aligns perfectly with standard grid repetitions for a 100% seamless loop.
-                */
                 animate={{ 
-                  backgroundPosition: ["0px 0px", "40px 40px"] 
+                  backgroundPosition: ["0px 0px", "50px 50px"] 
                 }}
                 transition={{ 
                   duration: 1, 
@@ -816,12 +814,15 @@ export default function App() {
                 }}
                 className="w-full max-w-[400px] md:max-w-[600px] h-[200px] md:h-[250px] grid-pattern"
                 style={{ 
+                  /* 🔥 MAGIC FIX: Forcing strict size so the animation loop is perfectly seamless 🔥 */
+                  backgroundSize: "50px 50px", 
                   maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)',
                   WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)'
                 }}
               ></motion.div>
             </div>
-            {/* B. Small Scrolling Text (Fades out BEFORE hitting the glass) */}
+
+            {/* B. Small Scrolling Text */}
             <div 
               className="absolute z-10 flex items-center overflow-hidden pointer-events-none w-full max-w-2xl md:max-w-4xl left-1/2 -translate-x-1/2"
               style={{ 
@@ -831,13 +832,10 @@ export default function App() {
             >
               <motion.div 
                 animate={{ x: ["-50%", "0%"] }}
-                
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                
                 className="flex whitespace-nowrap gap-24 items-center"
               >
                 {[...Array(2)].map((_, i) => (
-                 
                   <div key={i} className="flex gap-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.15] tracking-[0.2em]">
                     <span>AI</span>
                     <span>Legal Documents</span>
