@@ -797,7 +797,6 @@ export default function App() {
         {/* --- MAIN CONTENT CONTAINER --- */}
         <div className="max-w-5xl mx-auto px-6 relative z-20 text-center w-full flex flex-col items-center">
           
-          {/* 🔥 1. ZAP BUTTON WRAPPER 🔥 */}
           <div className="relative w-full flex justify-center items-center mb-10 h-32 md:h-40">
             
             {/* A. Local Grid Background */}
@@ -821,13 +820,13 @@ export default function App() {
             >
               <motion.div 
                 animate={{ x: ["-50%", "0%"] }}
-                {/* 🔥 SPEED INCREASED: duration changed from 40 to 30 🔥 */}
+                
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                {/* 🔥 GAP INCREASED: gap-12 to gap-24 🔥 */}
+                
                 className="flex whitespace-nowrap gap-24 items-center"
               >
                 {[...Array(2)].map((_, i) => (
-                  {/* 🔥 GAP INCREASED: gap-12 to gap-24 🔥 */}
+                 
                   <div key={i} className="flex gap-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.08] tracking-[0.2em]">
                     <span>AI</span>
                     <span>Legal Documents</span>
