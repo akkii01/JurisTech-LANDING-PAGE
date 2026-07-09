@@ -800,7 +800,7 @@ export default function App() {
           {/* 🔥 1. ZAP BUTTON WRAPPER (CONTAINS GRID, SCROLLING TEXT, AND BUTTON) 🔥 */}
           <div className="relative w-full flex justify-center items-center mb-10 h-32 md:h-40">
             
-            {/* A. Local Grid Background (Increased Visibility) */}
+            {/* A. Local Grid Background */}
             <div className="absolute inset-0 z-0 flex items-center justify-center opacity-100 pointer-events-none">
               <div 
                 className="w-full max-w-[400px] md:max-w-[600px] h-[200px] md:h-[250px] grid-pattern"
@@ -811,7 +811,7 @@ export default function App() {
               ></div>
             </div>
 
-            {/* B. Small Scrolling Text (Fades out BEFORE hitting the glass) */}
+            {/* B. Small Scrolling Text (Proper Title Case formatting applied) */}
             <div 
               className="absolute z-10 flex items-center overflow-hidden pointer-events-none w-full max-w-2xl md:max-w-4xl left-1/2 -translate-x-1/2"
               style={{ 
@@ -826,13 +826,14 @@ export default function App() {
               >
                 {[...Array(2)].map((_, i) => (
                   <div key={i} className="flex gap-12 text-sm md:text-base lg:text-lg font-bold text-white/[0.08] tracking-[0.2em]">
-                    <span>Ai</span>
-                    <span>Legal documents</span>
-                    <span>Drafting assistant</span>
+                    {/* 🔥 UPDATED CASING HERE 🔥 */}
+                    <span>AI</span>
+                    <span>Legal Documents</span>
+                    <span>Drafting Assistant</span>
                     <span>Automation</span>
                     <span>Precision</span>
-                    <span>Court-ready</span>
-                    <span>Smart contracts</span>
+                    <span>Court-Ready</span>
+                    <span>Smart Contracts</span>
                   </div>
                 ))}
               </motion.div>
