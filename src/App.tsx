@@ -932,22 +932,23 @@ export default function App() {
               
               <div className="flex flex-col mb-6 items-center justify-center">
                 <div className="mb-10">
-                  <img 
-  src="https://i.ibb.co/zWYNn82b/logo-png.png" 
-  alt="JTC Logo" 
-  /* 
-     🔥 MOBILE GLOW FIX: 
-     1. transition-all duration-500: इसे स्मूथ बनाने के लिए
-     2. grayscale opacity-40: नॉर्मल स्टेट
-     3. hover:grayscale-0 hover:opacity-100: माउस के लिए
-     4. active:grayscale-0 active:opacity-100 active:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]: टच/टैप के लिए
-  */
-  className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 
-             hover:grayscale-0 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
-             active:grayscale-0 active:opacity-100 active:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
-             transition-all duration-300 cursor-pointer pointer-events-none"
-  referrerPolicy="no-referrer"
-/>
+                  <div className="relative cursor-pointer pointer-events-auto">
+  <img 
+    src="https://i.ibb.co/zWYNn82b/logo-png.png" 
+    alt="JTC Logo" 
+    /* 
+       🔥 GLOW IS BACK: pointer-events-none हटा दिया है।
+       अब चमकने वाला इफ़ेक्ट वापस आ गया है और इमेज भी सुरक्षित है।
+    */
+    className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 
+               hover:grayscale-0 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
+               active:grayscale-0 active:opacity-100 active:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
+               transition-all duration-300"
+    referrerPolicy="no-referrer"
+  />
+  {/* यह अदृश्य लेयर इमेज के ऊपर रहेगी और लॉन्ग-प्रेस/डाउनलोड वाले मेनू को रोकेगी */}
+  <div className="absolute inset-0 z-10"></div>
+</div>
                 </div>
                 <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
                   <button onClick={() => setIsAboutOpen(true)} className="hover:text-white hover:scale-105 transition-all cursor-pointer capitalize">About</button>
