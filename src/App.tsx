@@ -776,7 +776,6 @@ export default function App() {
       </motion.section>
 
       {/* CALL TO ACTION POP-UP */}
-      {/* 🔥 NEW CALL TO ACTION SECTION (SEAMLESS GRID ANIMATION & PERFECT WORDS) 🔥 */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -801,20 +800,19 @@ export default function App() {
           {/* 🔥 1. ZAP BUTTON WRAPPER 🔥 */}
           <div className="relative w-full flex justify-center items-center mb-10 h-32 md:h-40">
             
-            {/* A. Local Grid Background (🔥 SEAMLESS JERK-FREE ANIMATION 🔥) */}
+            {/* A. Local Grid Background */}
             <div className="absolute inset-0 z-0 flex items-center justify-center opacity-100 pointer-events-none">
               <motion.div 
                 animate={{ 
                   backgroundPosition: ["0px 0px", "50px 50px"] 
                 }}
                 transition={{ 
-                  duration: 1, 
+                  duration: 3, 
                   repeat: Infinity, 
                   ease: "linear" 
                 }}
                 className="w-full max-w-[400px] md:max-w-[600px] h-[200px] md:h-[250px] grid-pattern"
                 style={{ 
-                  /* 🔥 MAGIC FIX: Forcing strict size so the animation loop is perfectly seamless 🔥 */
                   backgroundSize: "50px 50px", 
                   maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)',
                   WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)'
@@ -822,7 +820,7 @@ export default function App() {
               ></motion.div>
             </div>
 
-            {/* B. Small Scrolling Text */}
+            {/* B. Small Scrolling Text (🔥 JERK-FREE FIX 🔥) */}
             <div 
               className="absolute z-10 flex items-center overflow-hidden pointer-events-none w-full max-w-2xl md:max-w-4xl left-1/2 -translate-x-1/2"
               style={{ 
@@ -833,10 +831,12 @@ export default function App() {
               <motion.div 
                 animate={{ x: ["-50%", "0%"] }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="flex whitespace-nowrap gap-24 items-center"
+                {/* 🔥 MAIN FIX: Removed 'gap-24' from here to fix math loop 🔥 */}
+                className="flex whitespace-nowrap items-center w-max"
               >
                 {[...Array(2)].map((_, i) => (
-                  <div key={i} className="flex gap-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.15] tracking-[0.2em]">
+                  {/* 🔥 ADDED 'pr-24' (Padding Right) here instead so 50% width is exact 🔥 */}
+                  <div key={i} className="flex gap-24 pr-24 text-sm md:text-base lg:text-lg font-bold text-white/[0.15] tracking-[0.2em]">
                     <span>AI</span>
                     <span>Legal Documents</span>
                     <span>Drafting Assistant</span>
@@ -912,7 +912,7 @@ export default function App() {
 
         </div>
       </motion.section>
-
+    
      <FAQSection/>
       
       {/* 🔥 MAGIC HERE: Wrapped Animation and Footer together to prevent empty space 🔥 */}
