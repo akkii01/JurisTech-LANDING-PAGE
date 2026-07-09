@@ -945,7 +945,7 @@ export default function App() {
   className="h-12 sm:h-16 w-auto object-contain grayscale opacity-40 
              hover:grayscale-0 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
              active:grayscale-0 active:opacity-100 active:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
-             transition-all duration-300 cursor-pointer"
+             transition-all duration-300 cursor-pointer pointer-events-none"
   referrerPolicy="no-referrer"
 />
                 </div>
