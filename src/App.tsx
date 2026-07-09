@@ -781,64 +781,102 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.1, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-[#030712] py-24"
+        className="bg-[#030712] py-32 md:py-48 relative overflow-hidden flex items-center justify-center min-h-[60vh]"
       >
-        <div className="max-w-5xl mx-auto px-6">
+        {/* Subtle Grid behind everything */}
+        <div className="absolute inset-0 grid-pattern opacity-[0.03] z-0 pointer-events-none"></div>
+
+        {/* --- CUSTOM 3D GLASS PANELS (LEFT & RIGHT) --- */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 lg:w-64 z-10 pointer-events-none flex items-center">
+           <div className="absolute -left-10 w-full h-[80%] bg-white/[0.01] backdrop-blur-md border-r border-white/5 rounded-r-[80px] shadow-[30px_0_50px_rgba(0,0,0,0.3)] transform -skew-x-3 transition-transform duration-700"></div>
+           <div className="absolute -left-20 top-1/4 w-40 h-40 bg-blue-500/10 rounded-full blur-[60px]"></div>
+        </div>
+
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 lg:w-64 z-10 pointer-events-none flex items-center justify-end">
+           <div className="absolute -right-10 w-full h-[80%] bg-white/[0.01] backdrop-blur-md border-l border-white/5 rounded-l-[80px] shadow-[-30px_0_50px_rgba(0,0,0,0.3)] transform skew-x-3 transition-transform duration-700"></div>
+           <div className="absolute -right-20 bottom-1/4 w-40 h-40 bg-purple-500/10 rounded-full blur-[60px]"></div>
+        </div>
+
+        {/* --- BACKGROUND SCROLLING TEXT (Z-0) --- */}
+        <div 
+          className="absolute top-1/2 -translate-y-1/2 left-0 w-full overflow-hidden pointer-events-none z-0 flex items-center h-full" 
+          style={{ 
+            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+          }}
+        >
+          <motion.div 
+            animate={{ x: ["-50%", "0%"] }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            className="flex whitespace-nowrap gap-16 items-center"
+          >
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex gap-16 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white/[0.03] tracking-[0.2em] uppercase">
+                <span>AI</span>
+                <span>Legal Documents</span>
+                <span>Drafting Assistant</span>
+                <span>Automation</span>
+                <span>Precision</span>
+                <span>Court-Ready</span>
+                <span>Smart Contracts</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* --- MAIN CONTENT (Z-20, SO IT STAYS ON TOP OF WORDS) --- */}
+        <div className="max-w-5xl mx-auto px-6 relative z-20 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1 }}
-            className="relative bg-dark-900/60 rounded-[3rem] p-12 sm:p-16 overflow-hidden text-center border border-white/5 shadow-2xl"
+            className="relative"
           >
-            <div className="absolute inset-0 grid-pattern opacity-[0.05]"></div>
-            
-            <div className="relative z-10">
+            <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-10 flex items-center justify-center">
+              <motion.div
+                animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                className="absolute inset-0 bg-blue-500 rounded-3xl"
+              ></motion.div>
               
-              <div className="relative w-20 h-20 mx-auto mb-10 flex items-center justify-center">
-                
-                <motion.div
-                  animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
-                  className="absolute inset-0 bg-blue-500 rounded-3xl"
-                ></motion.div>
-                
-                <motion.div 
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 15px rgba(37,99,235,0.4)", 
-                      "0 0 50px rgba(37,99,235,0.9)", 
-                      "0 0 15px rgba(37,99,235,0.4)"
-                    ] 
-                  }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-blue-600 rounded-3xl flex items-center justify-center z-10"
-                >
-                  <motion.div
-                    animate={{ 
-                      rotate: [0, -15, 15, -15, 0],
-                      scale: [1, 1.2, 1],
-                    }}
-                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2.5 }}
-                  >
-                    <Zap className="w-10 h-10 text-white fill-white/20 drop-shadow-md" />
-                  </motion.div>
-                </motion.div>
-              </div>
-              
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
-              <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12 font-light">Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.</p>
-
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://juristech-v1.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center text-sm font-bold text-white bg-blue-600 rounded-full py-4 px-10 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300"
+              <motion.div 
+                animate={{ 
+                  boxShadow: [
+                    "0 0 15px rgba(37,99,235,0.4)", 
+                    "0 0 50px rgba(37,99,235,0.9)", 
+                    "0 0 15px rgba(37,99,235,0.4)"
+                  ] 
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-blue-600 rounded-3xl flex items-center justify-center z-10"
               >
-                Try JurisTech Now
-              </motion.a>
+                <motion.div
+                  animate={{ 
+                    rotate: [0, -15, 15, -15, 0],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2.5 }}
+                >
+                  <Zap className="w-10 h-10 md:w-12 md:h-12 text-white fill-white/20 drop-shadow-md" />
+                </motion.div>
+              </motion.div>
             </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">Ready to do drafting the right way?</h2>
+            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light drop-shadow-md bg-[#030712]/50 inline-block px-4 py-2 rounded-xl backdrop-blur-sm">
+              Join hundreds of Indian advocates who are saving time and increasing efficiency with JurisTech.
+            </p>
+            <br />
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://juristech-v1.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center text-sm md:text-base font-bold text-white bg-blue-600 rounded-full py-4 px-12 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300 relative z-20"
+            >
+              Try JurisTech Now
+            </motion.a>
           </motion.div>
         </div>
       </motion.section>
