@@ -810,7 +810,7 @@ export default function App() {
                   backgroundPosition: ["0px 0px", "40px 40px"] 
                 }}
                 transition={{ 
-                  duration: 8, 
+                  duration: 3, 
                   repeat: Infinity, 
                   ease: "linear" 
                 }}
