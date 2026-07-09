@@ -800,23 +800,23 @@ export default function App() {
           {/* 🔥 1. ZAP BUTTON WRAPPER (CONTAINS GRID, SCROLLING TEXT, AND BUTTON) 🔥 */}
           <div className="relative w-full flex justify-center items-center mb-10 h-32 md:h-40">
             
-            {/* A. Local Grid Background (Only behind the Zap button) */}
-            <div className="absolute inset-0 z-0 flex items-center justify-center opacity-40 pointer-events-none">
+            {/* A. Local Grid Background (Increased Visibility) */}
+            <div className="absolute inset-0 z-0 flex items-center justify-center opacity-100 pointer-events-none">
               <div 
-                className="w-full max-w-[300px] md:max-w-[450px] h-[150px] md:h-[200px] grid-pattern"
+                className="w-full max-w-[400px] md:max-w-[600px] h-[200px] md:h-[250px] grid-pattern"
                 style={{ 
-                  maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 60%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 60%)'
+                  maskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%)'
                 }}
               ></div>
             </div>
 
-            {/* B. Small Scrolling Text (Moves exactly behind the button) */}
+            {/* B. Small Scrolling Text (Fades out BEFORE hitting the glass) */}
             <div 
-              className="absolute z-10 flex items-center overflow-hidden pointer-events-none w-screen left-1/2 -translate-x-1/2"
+              className="absolute z-10 flex items-center overflow-hidden pointer-events-none w-full max-w-2xl md:max-w-4xl left-1/2 -translate-x-1/2"
               style={{ 
-                maskImage: 'linear-gradient(to right, transparent, black 25%, black 75%, transparent)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent, black 25%, black 75%, transparent)'
+                maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
               }}
             >
               <motion.div 
@@ -825,20 +825,20 @@ export default function App() {
                 className="flex whitespace-nowrap gap-12 items-center"
               >
                 {[...Array(2)].map((_, i) => (
-                  <div key={i} className="flex gap-12 text-sm md:text-base lg:text-lg font-bold text-white/[0.06] tracking-[0.3em] uppercase">
-                    <span>AI</span>
-                    <span>Legal Documents</span>
-                    <span>Drafting Assistant</span>
+                  <div key={i} className="flex gap-12 text-sm md:text-base lg:text-lg font-bold text-white/[0.08] tracking-[0.2em]">
+                    <span>Ai</span>
+                    <span>Legal documents</span>
+                    <span>Drafting assistant</span>
                     <span>Automation</span>
                     <span>Precision</span>
-                    <span>Court-Ready</span>
-                    <span>Smart Contracts</span>
+                    <span>Court-ready</span>
+                    <span>Smart contracts</span>
                   </div>
                 ))}
               </motion.div>
             </div>
 
-            {/* C. The Zap Button (Z-20, sits on top of Grid & Scrolling Text) */}
+            {/* C. The Zap Button */}
             <div className="relative w-20 h-20 md:w-24 md:h-24 z-20 flex items-center justify-center">
               <motion.div
                 animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
@@ -870,9 +870,8 @@ export default function App() {
             </div>
 
           </div> 
-          {/* 🔥 END OF ZAP BUTTON WRAPPER 🔥 */}
           
-          {/* Main Heading & Paragraph (Z-30, stays clearly on top) */}
+          {/* Main Heading & Paragraph */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -894,7 +893,7 @@ export default function App() {
               href="https://juristech-v1.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center text-sm md:text-base font-bold text-white bg-blue-600 rounded-full py-4 px-12 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300"
+              className="inline-flex items-center justify-center text-sm md:text-base font-bold text-white bg-blue-600 rounded-full py-4 px-12 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] hover:bg-blue-500 transition-all duration-300 relative z-20"
             >
               Try JurisTech Now
             </motion.a>
