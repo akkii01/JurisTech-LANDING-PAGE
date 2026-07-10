@@ -268,15 +268,21 @@ export default function App() {
         <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20 z-0"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none z-0"></div>
 
-        <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center mt-4 md:mt-8">
+        {/* 🔥 GOOGLE AI STYLE ANIMATED ROTATING BORDER + FLOATING ANIMATION 🔥 */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
             transition={{ opacity: { duration: 0.5 }, scale: { duration: 0.5 }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-[10px] sm:text-xs font-semibold mb-4 md:mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(37,99,235,0.15)]"
+            className="relative inline-flex mb-4 md:mb-8 overflow-hidden rounded-full p-[1.5px] cursor-default shadow-[0_0_20px_rgba(37,99,235,0.2)]"
           >
-            <Star className="w-3 h-3 fill-blue-500/50" />
-            Where Accuracy Meets Innovation
+            {/* 1. Rotating Comet Tail (Brand Colors: Cyan & Blue) */}
+            <span className="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#06b6d4_85%,#3b82f6_100%)]"></span>
+            
+            {/* 2. Inner Content (Dark background to create the 'border' illusion) */}
+            <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#030712] text-blue-300 text-[10px] sm:text-xs font-semibold w-full h-full backdrop-blur-md">
+              <Star className="w-3 h-3 fill-blue-500/50" />
+              <span>Where Accuracy Meets Innovation</span>
+            </div>
           </motion.div>
 
           <motion.h1 
