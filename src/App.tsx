@@ -268,7 +268,6 @@ export default function App() {
         <div className="absolute inset-0 grid-pattern [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-20 z-0"></div>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none z-0"></div>
 
-        {/* 🔥 GOOGLE AI STYLE ANIMATED ROTATING BORDER + FLOATING ANIMATION 🔥 */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
