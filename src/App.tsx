@@ -274,10 +274,8 @@ export default function App() {
             transition={{ opacity: { duration: 0.5 }, scale: { duration: 0.5 }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
             className="relative inline-flex mb-4 md:mb-8 overflow-hidden rounded-full p-[1.5px] cursor-default shadow-[0_0_20px_rgba(37,99,235,0.2)]"
           >
-            {/* 1. Rotating Comet Tail (Brand Colors: Cyan & Blue) */}
             <span className="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#06b6d4_85%,#3b82f6_100%)]"></span>
             
-            {/* 2. Inner Content (Dark background to create the 'border' illusion) */}
             <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#030712] text-blue-300 text-[10px] sm:text-xs font-semibold w-full h-full backdrop-blur-md">
               <Star className="w-3 h-3 fill-blue-500/50" />
               <span>Where Accuracy Meets Innovation</span>
