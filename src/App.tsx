@@ -183,12 +183,12 @@ export default function App() {
             </span>
           </motion.a>
 
-          {/* 🔥 WIDER HEADER LIKE DELV: Increased px-10 to px-14 and gap-10 to gap-12/14 🔥 */}
+          {/* 🔥 FULLY TRANSPARENT MENU BAR 🔥 */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-            className="hidden lg:flex items-center bg-dark-800/60 border-white/10 border rounded-full px-14 py-4 shadow-xl backdrop-blur-xl gap-12 text-[15px] font-medium text-gray-300"
+            className="hidden lg:flex items-center bg-transparent border border-white/20 rounded-full px-14 py-4 gap-12 text-[15px] font-medium text-gray-300"
           >
             <a href="#features" className="hover:text-white hover:scale-105 transition-all">Features</a>
             <a href="#how-it-works" className="hover:text-white hover:scale-105 transition-all">How it works</a>
@@ -197,6 +197,7 @@ export default function App() {
             <button onClick={() => setIsFeedbackOpen(true)} className="hover:text-white hover:scale-105 transition-all focus:outline-none">Feedback</button>
           </motion.div>
           
+          {/* 🔥 FULLY TRANSPARENT TRY NOW BUTTON 🔥 */}
           <motion.a 
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -206,16 +207,17 @@ export default function App() {
             href="https://juristech-v1.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden lg:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-dark-800 border border-white/10 hover:border-blue-500/50 rounded-full transition-all shadow-lg hover:shadow-[0_0_20px_-5px_rgba(37,99,235,0.6)] group relative overflow-hidden"
+            className="hidden lg:flex items-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-transparent border border-white/20 hover:border-blue-500/50 rounded-full transition-all group relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/20 transition-colors duration-300"></div>
             <span className="relative z-10">Try Now</span>
             <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </motion.a>
 
+          {/* 🔥 FULLY TRANSPARENT MOBILE TOGGLE 🔥 */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-gray-300 p-2 hover:bg-white/10 rounded-lg transition-colors"
+            className="lg:hidden text-gray-300 p-2 bg-transparent border border-white/20 hover:bg-white/5 rounded-lg transition-colors"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -229,13 +231,14 @@ export default function App() {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden mt-4 overflow-hidden"
             >
-              <div className="bg-dark-800/95 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl flex flex-col gap-4">
+              {/* 🔥 FULLY TRANSPARENT MOBILE MENU 🔥 */}
+              <div className="bg-transparent border border-white/20 rounded-2xl p-6 flex flex-col gap-4">
                 <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Features</a>
                 <a href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">How it works</a>
                 <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Pricing</a>
                 <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">FAQ</a>
                 <button onClick={() => { setIsFeedbackOpen(true); setIsMobileMenuOpen(false); }} className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Feedback</button>
-                <a href="https://juristech-v1.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                <a href="https://juristech-v1.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-transparent border border-white/20 hover:border-blue-500/50 rounded-xl transition-all">
                   Try Now <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -269,17 +272,14 @@ export default function App() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-5xl bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.15)_0%,_transparent_60%)] pointer-events-none z-0"></div>
 
           <div className="z-10 text-center max-w-5xl mx-auto px-4 w-full flex flex-col items-center mt-4 md:mt-8">
-          {/* 🔥 GOOGLE AI STYLE ANIMATED ROTATING BORDER + FLOATING ANIMATION 🔥 */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
             transition={{ opacity: { duration: 0.5 }, scale: { duration: 0.5 }, y: { duration: 3, repeat: Infinity, ease: "easeInOut" } }}
             className="relative inline-flex mb-4 md:mb-8 overflow-hidden rounded-full p-[1.5px] cursor-default shadow-[0_0_20px_rgba(37,99,235,0.2)]"
           >
-            {/* 1. Rotating Comet Tail (Brand Colors: Cyan & Blue) */}
             <span className="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_70%,#06b6d4_85%,#3b82f6_100%)]"></span>
             
-            {/* 2. Inner Content (Dark background to create the 'border' illusion) */}
             <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#030712] text-blue-300 text-[10px] sm:text-xs font-semibold w-full h-full backdrop-blur-md">
               <Star className="w-3 h-3 fill-blue-500/50" />
               <span>Where Accuracy Meets Innovation</span>
@@ -920,8 +920,8 @@ export default function App() {
       </motion.section>
     
      <FAQSection/>
-      
-      {/*  MAGIC HERE: Wrapped Animation and Footer together to prevent empty space  */}
+     
+      {/* MAGIC HERE: Wrapped Animation and Footer together to prevent empty space  */}
       <div className="relative w-full">
         
         <ScrollRevealSection/>
@@ -1261,7 +1261,7 @@ export default function App() {
             
             <p className="mb-4 leading-relaxed font-bold text-white">डेटा का उपयोग निम्न के लिए करते हैं:</p>
             <ul className="list-disc pl-5 mb-4 space-y-2">
-              <li>हमारी सेवा प्रदान करने और सुधारने के लिए</li>
+              <li>हमारी सेवा प्रदान और सुधारने के लिए</li>
               <li>भुगतान संसाधित करने और रसीदें भेजने के लिए</li>
               <li>पूछताछ और फ़ीडबैक का जवाब देने के लिए</li>
               <li>कानूनी दायित्वों का पालन करने के लिए</li>
