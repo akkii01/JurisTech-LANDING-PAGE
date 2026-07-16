@@ -214,10 +214,10 @@ export default function App() {
             <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </motion.a>
 
-          {/* 🔥 FULLY TRANSPARENT MOBILE TOGGLE 🔥 */}
+          {/* 🔥 Mobile Toggle Button - Restored to Solid 🔥 */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-gray-300 p-2 bg-transparent border border-white/20 hover:bg-white/5 rounded-lg transition-colors"
+            className="lg:hidden text-gray-300 p-2 bg-dark-800/80 backdrop-blur-xl border border-white/10 hover:bg-white/10 rounded-lg transition-colors shadow-lg"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -231,14 +231,14 @@ export default function App() {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden mt-4 overflow-hidden"
             >
-              {/* 🔥 FULLY TRANSPARENT MOBILE MENU 🔥 */}
-              <div className="bg-transparent border border-white/20 rounded-2xl p-6 flex flex-col gap-4">
+              {/* 🔥 Mobile Menu Content - Restored to Solid 🔥 */}
+              <div className="bg-dark-800/95 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl flex flex-col gap-4">
                 <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Features</a>
                 <a href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">How it works</a>
                 <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Pricing</a>
                 <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">FAQ</a>
                 <button onClick={() => { setIsFeedbackOpen(true); setIsMobileMenuOpen(false); }} className="text-left text-gray-300 hover:text-white py-2 border-b border-white/5 transition-colors font-medium">Feedback</button>
-                <a href="https://juristech-v1.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-transparent border border-white/20 hover:border-blue-500/50 rounded-xl transition-all">
+                <a href="https://juristech-v1.vercel.app/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 w-full px-6 py-4 text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all">
                   Try Now <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
