@@ -299,8 +299,8 @@ export default function App() {
             transition={{ delay: 0.2 }}
             className="text-sm sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-6 md:mb-10 font-light leading-relaxed px-4"
           >
-            Experience AI-driven document generation built specifically for Indian advocates. 
-            Let JurisTech's autonomous AI, Anvik, draft your court-ready documents in minutes, not hours.
+            Built for Indian advocates. 
+            Let our AI engine, Anvik, draft court-ready documents in seconds.
           </motion.p>
 
           <motion.div 
