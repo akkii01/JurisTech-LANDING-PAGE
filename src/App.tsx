@@ -291,7 +291,7 @@ export default function App() {
             className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-4 md:mb-6 leading-[1.1] px-2"
           >
             Smarter Legal Drafting,<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-[0_0_30px_rgba(37,99,235,0.3)]">Real Results</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 drop-shadow-[0_0_30px_rgba(37,99,235,0.3)]">Powered by Anvik</span>
           </motion.h1>
 
           <motion.p 
@@ -299,8 +299,8 @@ export default function App() {
             transition={{ delay: 0.2 }}
             className="text-sm sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto mb-6 md:mb-10 font-light leading-relaxed px-4"
           >
-            AI-powered legal document generation built specifically for Indian advocates. 
-            Draft court-ready documents in minutes, not hours.
+            Experience AI-driven document generation built specifically for Indian advocates. 
+            Let JurisTech's autonomous AI, Anvik, draft your court-ready documents in minutes, not hours.
           </motion.p>
 
           <motion.div 
