@@ -982,31 +982,45 @@ export default function App() {
       >
         {lang === 'en' ? (
           <>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Our Vision</span> To democratize legal access in India by blending deep legal expertise with cutting-edge artificial intelligence.</p>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Who We Are</span> JurisTech is an innovative legal-tech startup proudly built in India. We recognized a fundamental challenge in the Indian legal system: drafting high-quality, legally sound documents is often a time-consuming, repetitive, and expensive process. Whether you are a seasoned advocate managing multiple cases or an everyday citizen seeking basic legal recourse, the drafting process shouldn't be a bottleneck.</p>
-            <p className="mb-4 leading-relaxed">That’s why we built JurisTech.</p>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">What We Do</span> We provide a lightning-fast, AI-driven Legal Drafting Studio tailored specifically for the Indian legal framework. Powered by advanced Generative AI, JurisTech empowers users to generate professional, court-ready documents in a matter of seconds, not hours.</p>
-            <p className="mb-4 leading-relaxed">From completely free Legal Notices to affordable, pay-per-use agreements and deeds, we have structured our platform to be accessible to everyone. We believe that technology should empower legal professionals to focus on strategy and advocacy, while handling the heavy lifting of procedural drafting.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Our Vision:</span> To simplify and democratize legal access in India by uniting deep legal domain knowledge with cutting-edge Artificial Intelligence.</p>
+            
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Who We Are:</span> JurisTech is an innovative legal-tech startup proudly built in India. We identified a fundamental challenge within the Indian legal ecosystem: drafting high-quality, legally sound documents is often time-consuming, repetitive, and expensive. Whether you are a seasoned advocate managing a high volume of cases or an individual seeking basic legal support, the drafting process should never be a bottleneck.</p>
+            
+            <p className="mb-4 leading-relaxed">That is why we built JurisTech.</p>
+            
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">What We Do:</span> We provide an ultra-fast Legal AI platform specifically engineered for the Indian legal framework. Powered by advanced Generative AI, JurisTech enables users to generate professional, court-ready documents in seconds rather than hours. From legal notices to affordable, pay-per-use agreements and deeds, our platform is designed to be accessible to everyone.</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">Anvik: Our Autonomous Legal Brain</h3>
+            <p className="mb-3 leading-relaxed">Taking our vision a step further, we developed Anvik—our advanced universal drafter and AI legal assistant.</p>
+            <ul className="list-disc pl-5 mb-4 space-y-3 text-gray-300">
+              <li className="leading-relaxed"><span className="font-bold text-white">Meaning & Inspiration:</span> The name "Anvik" is derived from the ancient Indian philosophy of <em>Anvikshiki</em>—the science of critical logic, inquiry, and analysis.</li>
+              <li className="leading-relaxed"><span className="font-bold text-white">Why We Built It:</span> Traditional drafting tools rely on static, rigid templates. However, the legal profession demands dynamic reasoning and a deep contextual understanding of case law. We needed an intelligence that doesn't just fill in blanks, but comprehends legal logic like a seasoned practitioner.</li>
+              <li className="leading-relaxed"><span className="font-bold text-white">Features & Benefits:</span> Anvik operates as an autonomous legal engine. It takes minimal input from the user and automatically expands it into a comprehensive, court-ready draft. With smart features like a customizable Clause Bank to store recurring paragraphs, Multi-Language Support (Hindi & English), and Dynamic Context Expansion, Anvik eliminates repetitive typing and accelerates drafting workflows.</li>
+            </ul>
+
             <h3 className="font-bold text-white text-lg mt-6 mb-3">Our Core Values</h3>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accessibility:</span> Making essential legal tools affordable and available to all.</p>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accuracy:</span> Delivering precise, highly customizable drafts that respect the nuances of Indian law.</p>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Innovation:</span> Continuously evolving our AI to stay ahead of the curve in legal technology.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accessibility:</span> Making essential legal assistance affordable and available to everyone.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Accuracy:</span> Delivering precise, highly customizable drafts that respect the nuances and complexities of Indian law.</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">Innovation:</span> Continuously evolving our AI infrastructure to remain at the cutting edge of legal technology.</p>
+            
             <h3 className="font-bold text-white text-lg mt-6 mb-3">Our Commitment</h3>
-            <p className="mb-4 leading-relaxed">While JurisTech is powered by AI, it is built for humans. We are committed to maintaining the highest standards of data privacy and user security. We are not a replacement for professional legal counsel, but rather a powerful toolkit designed to assist, accelerate, and simplify your legal journey.</p>
-            <p className="mb-4 leading-relaxed">Join us as we write the future of legal technology in India.</p>
+            <p className="mb-4 leading-relaxed">Although JurisTech is an AI startup, it is built with legal professionals at its core. We are committed to maintaining the highest standards of data privacy and user security. We do not replace professional legal counsel; rather, we are a powerful platform engineered to assist, accelerate, and simplify your legal practice.</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">Join us in shaping the future of legal technology in India.</p>
+
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
               <button 
                 onClick={() => { setIsAboutOpen(false); setIsTermsOpen(true); }}
                 className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                {lang === 'en' ? 'Prev: Terms' : 'पिछला: नियम और शर्तें'}
+                Prev: Terms
               </button>
               <button 
                 onClick={() => { setIsAboutOpen(false); setIsContactOpen(true); }}
                 className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
               >
-                {lang === 'en' ? 'Next: Contact' : 'अगला: संपर्क करें'}
+                Next: Contact
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -1014,30 +1028,44 @@ export default function App() {
         ) : (
           <>
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हमारा विज़न:</span> गहरी कानूनी जानकारी को लेटेस्ट आर्टिफिशियल इंटेलिजेंस के साथ मिलाकर भारत में कानूनी पहुँच को आसान बनाना।</p>
+            
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हम कौन हैं?</span> JurisTech एक इनोवेटिव लीगल-टेक स्टार्टअप है जिसे गर्व से भारत में बनाया गया है। हमने भारतीय कानूनी सिस्टम में एक बुनियादी चुनौती को पहचाना: अच्छी क्वालिटी वाले, कानूनी तौर पर सही डॉक्यूमेंट्स बनाना अक्सर समय लेने वाला, बार-बार होने वाला और महंगा प्रोसेस होता है। चाहे आप एक अनुभवी वकील हों जो कई केस मैनेज कर रहे हों या एक आम नागरिक जो बेसिक कानूनी मदद ढूंढ रहा हो, ड्राफ्टिंग प्रोसेस में कोई रुकावट नहीं आनी चाहिए।</p>
+            
             <p className="mb-4 leading-relaxed">इसलिए हमने JurisTech बनाया।</p>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हम क्या करते हैं?</span> हम एक बहुत तेज़, AI से चलने वाला लीगल ड्राफ्टिंग स्टूडियो देते हैं जो खास तौर पर भारतीय कानूनी फ्रेमवर्क के लिए बनाया गया है। एडवांस्ड जेनरेटिव AI से चलने वाला, JurisTech यूज़र्स को घंटों में नहीं, बल्कि कुछ ही सेकंड में प्रोफेशनल, कोर्ट के लिए तैयार डॉक्यूमेंट्स बनाने में मदद करता है।</p>
-            <p className="mb-4 leading-relaxed">पूरी तरह से फ्री लीगल नोटिस से लेकर सस्ते, पे-पर-यूज़ एग्रीमेंट और डीड तक, हमने अपने प्लेटफॉर्म को इस तरह से बनाया है कि वह सभी के लिए आसान हो। हमारा मानना है कि टेक्नोलॉजी को लीगल प्रोफेशनल्स को स्ट्रैटेजी और एडवोकेसी पर फोकस करने में मदद करनी चाहिए, साथ ही प्रोसिजरल ड्राफ्टिंग का भारी काम भी संभालना चाहिए।</p>
+            
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हम क्या करते हैं?</span> हम एक बहुत तेज़, लीगल AI असिस्टेंट प्रदान करते हैं जो खास तौर पर भारतीय कानूनी फ्रेमवर्क के लिए बनाया गया है। एडवांस्ड जेनरेटिव AI से चलने वाला, JurisTech यूज़र्स को घंटों में नहीं, बल्कि कुछ ही सेकंड में प्रोफेशनल, कोर्ट के लिए तैयार डॉक्यूमेंट्स बनाने में मदद करता है। लीगल नोटिस से लेकर सस्ते, पे-पर-यूज़ एग्रीमेंट और डीड तक, हमने अपने प्लेटफॉर्म को इस तरह से बनाया है कि वह सभी के लिए आसान हो।</p>
+
+            <h3 className="font-bold text-white text-lg mt-6 mb-3">Anvik: हमारा ऑटोनोमस लीगल ब्रेन</h3>
+            <p className="mb-3 leading-relaxed">अपने विज़न को एक कदम और आगे ले जाते हुए, हमने Anvik को डेवलप किया है—जो हमारा एडवांस्ड यूनिवर्सल ड्राफ्टर और AI लीगल असिस्टेंट है।</p>
+            <ul className="list-disc pl-5 mb-4 space-y-3 text-gray-300">
+              <li className="leading-relaxed"><span className="font-bold text-white">नाम का अर्थ और प्रेरणा:</span> "Anvik" नाम प्राचीन भारतीय दर्शन 'आन्वीक्षिकी' (Anvikshiki) से प्रेरित है—जिसका अर्थ है लॉजिक, जांच और क्रिटिकल एनालिसिस का विज्ञान (The Science of Critical Logic & Analysis)।</li>
+              <li className="leading-relaxed"><span className="font-bold text-white">इसे बनाना क्यों ज़रूरी था?</span> हमने महसूस किया कि साधारण ड्राफ्टिंग टूल्स फिक्स टेम्पलेट्स पर काम करते हैं। लेकिन कानूनी पेशे में डायनामिक सोच और केस के बैकग्राउंड को गहराई से समझने की ज़रूरत होती है। हमें एक ऐसे इंटेलिजेंस की ज़रूरत थी जो सिर्फ खाली जगह (blanks) न भरे, बल्कि एक वकील की तरह केस के लॉजिक को समझे।</li>
+              <li className="leading-relaxed"><span className="font-bold text-white">फीचर्स और फायदे:</span> Anvik एक ऑटोनोमस लीगल इंजन की तरह काम करता है। यह यूज़र द्वारा दी गई छोटी और सीमित जानकारी को समझकर उसे अपने आप एक कम्पलीट, कॉम्प्रिहेंसिव और कोर्ट-रेडी ड्राफ्ट में बदल देता है। 'क्लॉज़ बैंक' (Clause Bank) में अपने फेवरिट पैराग्राफ्स सेव करने, मल्टी-लैंग्वेज सपोर्ट (हिंदी/अंग्रेज़ी) और डायनामिक कॉन्टेक्स्ट एक्सपेंशन जैसे स्मार्ट फीचर्स के साथ, Anvik बार-बार टाइप करने के झंझट को खत्म कर देता है।</li>
+            </ul>
+
             <h3 className="font-bold text-white text-lg mt-6 mb-3">हमारी मुख्य वैल्यूज़</h3>
-            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">एक्सेसिबिलिटी:</span> ज़रूरी लीगल टूल्स को सभी के लिए सस्ता और उपलब्ध कराना।</p>
+            <p className="mb-4 leading-relaxed"><span className="font-bold text-white">एक्सेसिबिलिटी:</span> ज़रूरी लीगल असिस्टेंट को सभी के लिए सस्ता और उपलब्ध कराना।</p>
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">एक्यूरेसी:</span> सटीक, बहुत ज़्यादा कस्टमाइज़ेबल ड्राफ्ट देना जो भारतीय कानून की बारीकियों का सम्मान करते हों।</p>
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">इनोवेशन:</span> लीगल टेक्नोलॉजी में सबसे आगे रहने के लिए अपने AI को लगातार बेहतर बनाना।</p>
+            
             <h3 className="font-bold text-white text-lg mt-6 mb-3">हमारा कमिटमेंट</h3>
-            <p className="mb-4 leading-relaxed">हालांकि JurisTech AI से चलता है, लेकिन इसे इंसानों के लिए बनाया गया है। हम डेटा प्राइवेसी और यूज़र सिक्योरिटी के सबसे ऊंचे स्टैंडर्ड बनाए रखने के लिए कमिटेड हैं। हम प्रोफेशनल लीगल काउंसिल की जगह नहीं ले रहे हैं, बल्कि आपकी लीगल यात्रा में मदद करने, उसे तेज़ करने और आसान बनाने के लिए डिज़ाइन किया गया एक पावरफुल टूलकिट हैं।</p>
-            <p className="mb-4 leading-relaxed">भारत में लीगल टेक्नोलॉजी का भविष्य लिखने के लिए हमसे जुड़ें।</p>
+            <p className="mb-4 leading-relaxed">हालांकि JurisTech एक AI स्टार्टअप है, लेकिन इसे वकीलों के लिए बनाया गया है। हम डेटा प्राइवेसी और यूज़र सिक्योरिटी के सबसे ऊंचे स्टैंडर्ड बनाए रखने के लिए कमिटेड हैं। हम प्रोफेशनल लीगल काउंसिल की जगह नहीं ले रहे हैं, बल्कि आपकी लीगल यात्रा में मदद करने, उसे तेज़ करने और आसान बनाने के लिए डिज़ाइन किया गया एक शक्तिशाली प्लेटफार्म हैं।</p>
+            
+            <p className="mb-4 leading-relaxed font-bold text-white">भारत में लीगल टेक्नोलॉजी का भविष्य लिखने के लिए हमसे जुड़ें।</p>
+
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between gap-3 sm:gap-4">
               <button 
                 onClick={() => { setIsAboutOpen(false); setIsTermsOpen(true); }}
                 className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-dark-800 hover:bg-dark-700 border border-white/10 text-white text-sm font-bold rounded-xl transition-all shadow-lg w-full sm:w-auto group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                {lang === 'en' ? 'Prev: Terms' : 'पिछला: नियम और शर्तें'}
+                पिछला: नियम और शर्तें
               </button>
               <button 
                 onClick={() => { setIsAboutOpen(false); setIsContactOpen(true); }}
                 className="flex items-center justify-center gap-2 px-4 sm:px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-500/20 w-full sm:w-auto group"
               >
-                {lang === 'en' ? 'Next: Contact' : 'अगला: संपर्क करें'}
+                अगला: संपर्क करें
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
