@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100%" alt="JurisTech Banner" src="https://i.ibb.co/zWYNn82b/logo-png.png" />
+  <img width="100%" alt="JurisTech Banner" src="https://i.ibb.co/fKhW0fd/Annotation-2026-08-12-175952.png" />
   
   <h1>JurisTech: Autonomous AI Legal Assistant</h1>
 </div>
