@@ -255,13 +255,16 @@ export default function App() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative pt-20 md:pt-32 pb-4 md:pb-12 overflow-hidden flex flex-col md:min-h-[90vh] justify-center items-center"
       >
+        {/* 🔥 INSTANT VIDEO LOADER UPDATE 🔥 */}
         <div className="absolute inset-0 w-full h-full z-0">
           <video 
             autoPlay 
             loop 
             muted 
             playsInline
-            className="absolute w-full h-full object-cover opacity-30 pointer-events-none"
+            preload="auto"
+            poster="/hero-bg-poster.jpg"
+            className="absolute w-full h-full object-cover opacity-30 pointer-events-none bg-[#030712]"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
@@ -423,16 +426,19 @@ export default function App() {
               <div className="w-8 sm:w-12"></div>
             </div>
             
+            {/* 🔥 INSTANT DASHBOARD VIDEO LOADER UPDATE 🔥 */}
             <div className="bg-dark-900 min-h-[150px] sm:min-h-[200px] flex items-center justify-center">
               <video 
-  autoPlay 
-  loop 
-  muted 
-  playsInline
-  className="w-full h-auto block opacity-100 object-cover"
->
-  <source src="dashboard.mp4" type="video/mp4" />
-</video>
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                preload="auto"
+                poster="/dashboard-poster.jpg"
+                className="w-full h-auto block opacity-100 object-cover bg-dark-900"
+              >
+                <source src="dashboard.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
         </motion.div>
@@ -1036,9 +1042,9 @@ export default function App() {
             <p className="mb-4 leading-relaxed"><span className="font-bold text-white">हम क्या करते हैं?</span> हम एक बहुत तेज़, लीगल AI असिस्टेंट प्रदान करते हैं जो खास तौर पर भारतीय कानूनी फ्रेमवर्क के लिए बनाया गया है। एडवांस्ड जेनरेटिव AI से चलने वाला, JurisTech यूज़र्स को घंटों में नहीं, बल्कि कुछ ही सेकंड में प्रोफेशनल, कोर्ट के लिए तैयार डॉक्यूमेंट्स बनाने में मदद करता है। लीगल नोटिस से लेकर सस्ते, पे-पर-यूज़ एग्रीमेंट और डीड तक, हमने अपने प्लेटफॉर्म को इस तरह से बनाया है कि वह सभी के लिए आसान हो।</p>
 
             <h3 className="font-bold text-white text-lg mt-6 mb-3">Anvik: हमारा ऑटोनोमस लीगल ब्रेन</h3>
-            <p className="mb-3 leading-relaxed">अपने विज़न को एक कदम और आगे ले जाते हुए, हमने Anvik को डेवलप किया है—जो हमारा एडवांस्ड यूनिवर्सल ड्राफ्टर और AI लीगल असिस्टेंट है।</p>
+            <p className="mb-3 leading-relaxed">अपने विज़न को एक कदम और आगे ले जाते हुए, हमने Anvik को डेवलप किया-जो हमारा एडवांस्ड यूनिवर्सल ड्राफ्टर और AI लीगल असिस्टेंट है।</p>
             <ul className="list-disc pl-5 mb-4 space-y-3 text-gray-300">
-              <li className="leading-relaxed"><span className="font-bold text-white">नाम का अर्थ और प्रेरणा:</span> "Anvik" नाम प्राचीन भारतीय दर्शन 'आन्वीक्षिकी' (Anvikshiki) से प्रेरित है—जिसका अर्थ है लॉजिक, जांच और क्रिटिकल एनालिसिस का विज्ञान (The Science of Critical Logic & Analysis)।</li>
+              <li className="leading-relaxed"><span className="font-bold text-white">नाम का अर्थ और प्रेरणा:</span> "Anvik" नाम प्राचीन भारतीय दर्शन 'आन्वीक्षिकी' (Anvikshiki) से प्रेरित है-जिसका अर्थ है लॉजिक, जांच और क्रिटिकल एनालिसिस का विज्ञान (The Science of Critical Logic & Analysis)।</li>
               <li className="leading-relaxed"><span className="font-bold text-white">इसे बनाना क्यों ज़रूरी था?</span> हमने महसूस किया कि साधारण ड्राफ्टिंग टूल्स फिक्स टेम्पलेट्स पर काम करते हैं। लेकिन कानूनी पेशे में डायनामिक सोच और केस के बैकग्राउंड को गहराई से समझने की ज़रूरत होती है। हमें एक ऐसे इंटेलिजेंस की ज़रूरत थी जो सिर्फ खाली जगह (blanks) न भरे, बल्कि एक वकील की तरह केस के लॉजिक को समझे।</li>
               <li className="leading-relaxed"><span className="font-bold text-white">फीचर्स और फायदे:</span> Anvik एक ऑटोनोमस लीगल इंजन की तरह काम करता है। यह यूज़र द्वारा दी गई छोटी और सीमित जानकारी को समझकर उसे अपने आप एक कम्पलीट, कॉम्प्रिहेंसिव और कोर्ट-रेडी ड्राफ्ट में बदल देता है। 'क्लॉज़ बैंक' (Clause Bank) में अपने फेवरिट पैराग्राफ्स सेव करने, मल्टी-लैंग्वेज सपोर्ट (हिंदी/अंग्रेज़ी) और डायनामिक कॉन्टेक्स्ट एक्सपेंशन जैसे स्मार्ट फीचर्स के साथ, Anvik बार-बार टाइप करने के झंझट को खत्म कर देता है।</li>
             </ul>
